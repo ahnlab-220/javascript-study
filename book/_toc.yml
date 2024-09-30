@@ -1,0 +1,21 @@
+# Table of contents 
+# `_toc.yml` is a layout configuration file
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: Chapters
+  chapters:
+  - file: docs/chapter_04
+- caption: 개인 공간
+  chapters:
+  - file: 공희재/main
+    sections:
+    - file: 공희재/chapter_04
+  - file: 김현우/main
+    sections:
+    - file: 김현우/chapter_04
+  - file: 이용우/main
+    sections:
+    - file: 이용우/chapter_04

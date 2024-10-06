@@ -356,7 +356,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -372,6 +374,19 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable">1. Variable: 변수란?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-declaration">2. Variable Declaration: 자바스크립트에서 변수 선언이란?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hoisting">3. Hoisting: 자바스크립트의 호이스팅</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-of-variables">4. Assignment of Variables: 값의 할당</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reassignment-of-variables">5. Reassignment of Variables: 값의 재할당</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6. 식별자 네이밍 규칙</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -383,6 +398,87 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="chapter-04">
 <h1>Chapter 04 - 변수<a class="headerlink" href="#chapter-04" title="Link to this heading">#</a></h1>
+<section id="variable">
+<h2>1. Variable: 변수란?<a class="headerlink" href="#variable" title="Link to this heading">#</a></h2>
+<p>자바스크립트를 비롯한 프로그래밍 언어들은 <strong>메모리 주소에 상징적인 이름을 매핑해 값에 안전하게 접근하고 재사용</strong>하도록 “변수”라는 <strong>메커니즘</strong>을 제공한다
+<br><br></p>
+</section>
+<section id="variable-declaration">
+<h2>2. Variable Declaration: 자바스크립트에서 변수 선언이란?<a class="headerlink" href="#variable-declaration" title="Link to this heading">#</a></h2>
+<p>(ES5의 <code class="docutils literal notranslate"><span class="pre">var</span></code>가 지닌 단점은 우선 차치하고) 자바스크립트의 키워드 <code class="docutils literal notranslate"><span class="pre">var</span></code>로 변수를 선언해보자</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>이렇게 score란 변수를 선언한 순간, 자바스크립트 엔진은 아래처럼 2단계에 걸쳐 변수 선언을 처리한다</p>
+<ol class="arabic simple">
+<li><p><strong>선언:</strong> 변수명을 실행 컨텍스트에 등록하고 메모리 공간을 확보한다</p></li>
+<li><p><strong>초기화:</strong> 변수 선언 이후 확보된 메모리 공간은 암묵적으로 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>라는 값으로 알아서 초기화된다. -&gt; 쓰레기 값으로부터 안전하게 해줌
+<br><br></p></li>
+</ol>
+</section>
+<section id="hoisting">
+<h2>3. Hoisting: 자바스크립트의 호이스팅<a class="headerlink" href="#hoisting" title="Link to this heading">#</a></h2>
+<p><img alt="image" src="https://github.com/user-attachments/assets/853f8476-2500-4aa4-95b4-d34340f2819f" /></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">score</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>자바스크립트에서 위 같은 현상이 가능한 건 자바스크립트의 호이스팅(Hoisting)이라는 특징 때문이다.</p>
+<p>호이스팅이란, 소스코드 실행시점(=런타임) 전에 모든 식별자 선언(변수, 함수, 클래스 선언 등)을 먼저 실행시키는 자바스크립트의 동작 방식.</p>
+<p>마치 식별자 선언문들이 코드의 선두로 끌어 올려진 것처럼 보여서 Hoisting이라고 표현.
+<br><br></p>
+</section>
+<section id="assignment-of-variables">
+<h2>4. Assignment of Variables: 값의 할당<a class="headerlink" href="#assignment-of-variables" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">80</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>위와 같이 변수 선언과 값의 할당을 하나의 문으로 표현해도, 자바스크립트 엔진은 변수 선언과 값의 할당을 아래처럼 2개의 문으로 나눠 실행한다</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="p">;</span><span class="w">  </span><span class="c1">// 1. 변수 선언</span>
+<span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">80</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2. 값의 할당</span>
+</pre></div>
+</div>
+<p>중요한 점은 변수 선언과 값의 할당 시점이 다르다는 것이다.</p>
+<ul class="simple">
+<li><p>변수 선언: 런타임 전에 먼저 실행</p></li>
+<li><p>값의 할당: 런타임에 실행</p></li>
+</ul>
+<p>따라서 아래 같은 현상도 설명이 된다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">score</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+
+<span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">80</span><span class="p">;</span><span class="w">  </span><span class="c1">// 2. 값의 할당(런타임에 실행)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="p">;</span><span class="w">  </span><span class="c1">// 1. 변수 선언(런타임 전에 먼저 실행)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">score</span><span class="p">);</span><span class="w">  </span><span class="c1">// 80을 출력한다.</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="reassignment-of-variables">
+<h2>5. Reassignment of Variables: 값의 재할당<a class="headerlink" href="#reassignment-of-variables" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>위와 같이 값을 재할당하면, 이전 메모리 공간에서 값 <code class="docutils literal notranslate"><span class="pre">5</span></code>를 지우고 같은 공간에 <code class="docutils literal notranslate"><span class="pre">10</span></code>을 새롭게 저장하는 것이 아니라,</p>
+<p>새로운 메모리 공간을 확보한 후 그곳에 <code class="docutils literal notranslate"><span class="pre">10</span></code>을 저장하는 식이다. 식별자만 같다.</p>
+<p><img
+  src="https://github.com/user-attachments/assets/6d8649b5-7a18-45ec-81f2-a3544be228ea"
+  alt="reassignment example"
+  style="border:2px solid grey"
+/> <em>이미지 출처: <a class="reference external" href="https://algodaily.com/lessons/intro-to-variables-assignment-js">https://algodaily.com/lessons/intro-to-variables-assignment-js</a></em></p>
+<p>그렇다면 이전에 사용했던 값 <code class="docutils literal notranslate"><span class="pre">5</span></code>를 저장한 메모리 공간은 버려진 건데, 이건 어떻게 되느냐!</p>
+<p>가비지 콜렉터가 알아서 나중에 해제해준다.
+<br><br></p>
+</section>
+<section id="id1">
+<h2>6. 식별자 네이밍 규칙<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>식별자는 숫자로 시작할 수 없으며 예약어 사용 불가</p></li>
+<li><p>자바스크립트는 관습적으로 변수와 함수는 camelCase, 생성자와 클래스는 PascalCase를 사용한다.</p></li>
+</ul>
+<p>끝.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -439,6 +535,26 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable">1. Variable: 변수란?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-declaration">2. Variable Declaration: 자바스크립트에서 변수 선언이란?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hoisting">3. Hoisting: 자바스크립트의 호이스팅</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-of-variables">4. Assignment of Variables: 값의 할당</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reassignment-of-variables">5. Reassignment of Variables: 값의 재할당</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6. 식별자 네이밍 규칙</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

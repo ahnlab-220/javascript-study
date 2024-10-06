@@ -18,7 +18,7 @@ var score;
 <br><br>
 
 ## 3. Hoisting: 자바스크립트의 호이스팅
-![image](https://github.com/user-attachments/assets/853f8476-2500-4aa4-95b4-d34340f2819f)
+![image](https://github.com/user-attachments/assets/6be87788-f164-4ddf-a944-593913e54bcb)
 
 ```javascript
 console.log(score);  // undefined
@@ -68,11 +68,8 @@ score = 10;
 
 새로운 메모리 공간을 확보한 후 그곳에 `10`을 저장하는 식이다. 식별자만 같다.
 
-<img
-  src="https://github.com/user-attachments/assets/6d8649b5-7a18-45ec-81f2-a3544be228ea"
-  alt="reassignment example"
-  style="border:2px solid grey"
-/> _이미지 출처: https://algodaily.com/lessons/intro-to-variables-assignment-js_
+![image](https://github.com/user-attachments/assets/32f9c62c-2d1f-46c2-be10-1cb284fead08)
+_이미지 출처: https://algodaily.com/lessons/intro-to-variables-assignment-js_
 
 그렇다면 이전에 사용했던 값 `5`를 저장한 메모리 공간은 버려진 건데, 이건 어떻게 되느냐!
 

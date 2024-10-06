@@ -22,7 +22,8 @@ _(평가: 식을 해석해 값을 생성하거나 참조하는 행위)_
 
 리터럴의 종류는 아래와 같이 다양하다.
 
-![image](https://github.com/user-attachments/assets/6f5c3b4e-e21d-4328-b632-68714a69682d)
+![image](https://github.com/user-attachments/assets/a34aaf3d-d353-4102-8343-080779e6dbbd)
+_이미지 출처: https://velog.io/@dltjq2323/%EB%A6%AC%ED%84%B0%EB%9F%B4_
 <br><br>
 
 ## 3. Expression: 표현식
@@ -53,7 +54,7 @@ score;  // 이렇게 값을 생성하지 않고 그냥 기존 식별자를 참�
 <br><br>
 
 ## 6. 표현식인 문 vs. 표현식이 아닌 문
-![image](https://github.com/user-attachments/assets/0cd220f1-1ac7-45b0-8a3a-342dd8dc88d0)
+![image](https://github.com/user-attachments/assets/e5637785-2d54-4d3f-8ef5-e8d1d36febfe)
 _이미지 출처: https://lion284.tistory.com/323_
 
 문에는 표현식인 문과 표현식이 아닌 문이 있다.

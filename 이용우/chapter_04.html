@@ -61,6 +61,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 05 - 표현식과 문" href="chapter_05.html" />
     <link rel="prev" title="이용우" href="main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -181,6 +182,7 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="main.html">이용우</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
 </ul>
 </details></li>
 </ul>
@@ -355,7 +357,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -371,6 +375,23 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">식별자</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">변수 선언</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">변수 선언의 실행 시점과 변수 호이스팅</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">값의 할당</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">값의 재할당</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">식별자 네이밍 규칙</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">네이밍 컨벤션</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -382,6 +403,188 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="chapter-04">
 <h1>Chapter 04 - 변수<a class="headerlink" href="#chapter-04" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>개요<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="mf">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">20</span>
+</pre></div>
+</div>
+<p>변수는 프로그래밍 언어에서 데이터를 관리하기 위한 핵심 개념입니다.<br />
+위와 같은 계산식이 자바스크립트에서는 어떻게 동작하는지 알아보도록 합시다.</p>
+<p>자바스크립트의 실행 방식은 사람이 변수를 바라보는 시각과 비슷합니다.<br />
+자바스크립트 엔진이 위 수식을 계산(평가: evaluation)하려면<br />
+먼저 <code class="docutils literal notranslate"><span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">20</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>라는 기호(리터럴과 연산자)의 의미를 알고 있어야 하며,<br />
+<code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">+</span> <span class="pre">20</span></code>이라는 식(표현식)의 의미도 해석(파싱)할 수 있어야 합니다.</p>
+<p>자바스크립트가 <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">+</span> <span class="pre">20</span></code> 이라는 식의 의미를 해석하면<br />
+먼저 <code class="docutils literal notranslate"><span class="pre">+</span></code> 연산자의 좌변과 우변의 숫자 값, 즉 피연산자(operand)를 기억합니다.</p>
+<p>메모리는 데이터를 저장할 수 있는 메모리 셀(memory cell)의 집합체입니다.<br />
+메모리 셀 하나의 크기는 1 byte이며,<br />
+컴퓨터는 메모리 셀의 크기인 1 byte 단위로 데이터를 저장하거나 읽어들입니다.</p>
+<img src="https://github.com/user-attachments/assets/cf73f15d-3fbe-43d4-af1f-7e4540546b57" width=300px>
+<p>위 예제의 숫자 값 10과 20은 메모리 상의 임의의 메모리 주소에 저장되고<br />
+CPU는 이 값을 읽어들여 연산을 수행합니다.<br />
+연산 결과 또한 임의의 위치에 저장됩니다.</p>
+<p><font color='orange'>변수는 하나의 값을 저장하기 위해 확보한 메모리 공간 자체,<br />
+또는 그 메모리 공간을 식별하기 위해 붙인 이름을 의미합니다. </font></p>
+<p>메모리 공간 내의 특정 위치에 저장, 저장된 값을 참조하는 매커니즘으로<br />
+값의 위치를 가리키는 상징적인 이름을 의미합니다.</p>
+<p>변수는 프로그래밍 언어의 컴파일러,<br />
+혹은 인터프리터에 의해 값이 저장된 메모리 공간의 주소로 치환되어 실행됩니다.<br />
+따라서 개발자는 직접 메모리 주소에 직접 접근할 필요 없이<br />
+변수를 통해 안전하게 값에 접근할 수 있습니다.</p>
+<p><br><br></p>
+</section>
+<section id="id2">
+<h2>식별자<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><strong>변수 이름은 식별자(identifier)라고 부릅니다.</strong><br />
+식별자는 어떤 값을 구별해서 식별할 수 있는 고유한 이름을 의미합니다.</p>
+<p>값은 메모리 공간에 저장되어 있기 때문에.<br />
+식별자는 메모리 공간에 저장되어 있는 특정 값을 구별해서 식별해낼 수 있어야 합니다.<br />
+이를 위해 식별자는 특정 값이 저장되어 있는 메모리 주소를 기억해야 합니다.</p>
+<p>때문에 식별자는 값이 저장되어 있는 메모리 주소와 매핑되어야 하며,<br />
+이 매핑 정보를 가지고 있어야 합니다.</p>
+<p>즉, 식별자는 값이 아니라 메모리 주소를 가지고 있습니다.<br />
+식별자는 메모리 주소를 통해 메모리 공간에 저장된 값에 접근할 수 있습니다.</p>
+<img width="330" alt="image" src="https://github.com/user-attachments/assets/8ff333b6-fd44-4838-a819-e202c6220872">
+<br>
+<p>“식별자”라는 용어는 변수 이름에서만 사용되는 것이 아니라 함수, 클래스 등의 이름을 모두 포함합니다.<br />
+<strong>즉, 메모리 상에 존재하는 어떤 값을 식별할 수 있는 이름은 모두 식별자라고 부릅니다.</strong></p>
+<p>변수, 함수, 클래스 등의 이름과 같은 식별자는<br />
+선언(declaration)에 의해 자바스크립트 엔진에 식별자의 존재를 알립니다.<br />
+이제부터 변수 선언 방식에 대해 알아보겠습니다.</p>
+<p><br><br></p>
+</section>
+<section id="id3">
+<h2>변수 선언<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>변수 선언이란, 변수를 생성하는 것을 의미합니다.<br />
+값을 저장하기 위한 메모리 공간을 확보하고<br />
+변수 이름과 확보된 메모리 공간의 주소를 연결해서 값을 저장할 수 잇게 준비하는 것을 의미합니다.</p>
+<p>변수를 사용하려면 반드시 선언이 필요합니다.<br />
+변수 선언 시에는 <code class="docutils literal notranslate"><span class="pre">var</span></code>, <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드를 사용합니다.</p>
+<p>아래 코드를 살펴봅시다.<br />
+<code class="docutils literal notranslate"><span class="pre">var</span></code> 키워드는 뒤에 오는 변수 이름으로 새로운 변수를 선언할 것을 지시하는 키워드입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>위 변수 선언문은 다음과 같이 변수 이름을 등록하고 값을 저장할 메모리 공간을 확보합니다.</p>
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/ad0db63a-43a4-4e37-bef9-262f120d687a">
+<p>아직 변수에 값을 할당하지 않았기 때문에 확보된 메모리 공간은 비어 있을 것이라 생각할 수도 있지만,<br />
+확보된 메모리 공간에는 자바스크립트 엔진에 의해 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>라는 값이 암묵적으로 할당되어 초기화됩니다. <strong>이는 자바스크립트만의 특징입니다.</strong></p>
+<p>정리하자면, 자바스크립트 엔진은 변수 선언을 다음과 같이 2단계에 걸쳐 수행합니다.</p>
+<ul class="simple">
+<li><p>선언 단계: 변수 이름을 등록해서 변수의 존재를 알립니다.</p></li>
+<li><p>초기화 단계: 값을 저장하기 위한 메모리 공간을 확보하고 암묵적으로 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>를 할당해 초기화합니다.</p></li>
+</ul>
+<blockquote>
+<div><p>※ 변수 이름의 등록 위치
+변수 이름을 비롯한 모든 식별자는 실행 컨텍스트에 등록됩니다.<br />
+실행 컨텍스트(execution context)는 자바 스크립트 엔진이 소스코드를 평가하고<br />
+실행하기 위해 필요한 환경을 제공하고 코드의 실행 결과를 관리하는 영역입니다.
+<font color='orange'>자바 스크립트 엔진은 실행 컨텍스트를 통해 식별자와 스코프를 관리합니다.</font></p>
+</div></blockquote>
+<p><br><br></p>
+</section>
+<section id="id4">
+<h2>변수 선언의 실행 시점과 변수 호이스팅<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">score</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>위 코드는 변수 선언문보다 변수를 참조하는 코드가 앞에 있습니다.<br />
+자바스크립트 코드는 인터프리터에 의해 한 줄씩 순차적으로 실행되므로<br />
+<code class="docutils literal notranslate"><span class="pre">console.log(score);</span></code>가 먼저 실행되고 다음 줄에 있는 코드를 실행합니다.</p>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">console.log(score);</span></code>가 실행되는 시점에서는 아직 <code class="docutils literal notranslate"><span class="pre">score</span></code> 변수가 선언되지 않았으므로<br />
+참조 에러가 발생할 것처럼 보이는 코드입니다.<br />
+하지만 참조 에러가 발생하지 않고 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>가 출력됩니다.</p>
+<p>자바스크립트 엔진은 소스 코드를 한 줄씩 순차적으로 <font color='orange'>실행하기에 앞서<br />
+먼저 소스코드의 평가 과정을 거치면서 소스코드를 실행하기 위한 준비를 합니다. </font></p>
+<p>이때 평가 과정에서 자바스크립트 엔진은 변수 선언을 포함한<br />
+<font color='orange'>모든 선언문(변수 선언, 함수 선언 등)을 소스코드에서 찾아내 먼저 실행합니다.</font></p>
+<p>이처럼 자바스크립트 엔진은 변수 선언이<br />
+소스코드의 어디에 있든 상관없이 다른 코드보다 먼저 실행됩니다.</p>
+<p>이는 변수 선언문이 코드의 선두로 끌어 올려진 것처럼 동작하는<br />
+자바스크립트 고유의 특징인 변수 호이스팅이라고 부릅니다.</p>
+<blockquote>
+<div><p>변수 선언 뿐만 아니라 <code class="docutils literal notranslate"><span class="pre">var</span></code>, <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">function</span></code>, <code class="docutils literal notranslate"><span class="pre">function*</span></code>, <code class="docutils literal notranslate"><span class="pre">class</span></code> 키워드를 사용해서<br />
+선언하는 모든 식별자는 호이스팅 됩니다.</p>
+</div></blockquote>
+<p><br><br></p>
+</section>
+<section id="id5">
+<h2>값의 할당<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>변수에 값을 할당할 때는 연산자 <code class="docutils literal notranslate"><span class="pre">=</span></code>을 사용합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="p">;</span>
+<span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">80</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>여기서 한가지 알고 가야할 점이 있습니다.<br />
+변수 선언은 런타임 이전에 먼저 실행되지만<br />
+값의 할당은 소스코드가 순차적으로 실행되는 시점인 런타임에 실행됩니다.</p>
+<p>아래 코드를 실행하면 이 특징을 바로 확인할 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">score</span><span class="p">);</span><span class="w">   </span><span class="c1">// undefined</span>
+
+<span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">80</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">score</span><span class="p">);</span><span class="w">   </span><span class="c1">// 80</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id6">
+<h2>값의 재할당<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>변수에 새로운 값을 재할당 할 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">80</span><span class="p">;</span>
+<span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">90</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>여기서는 <code class="docutils literal notranslate"><span class="pre">var</span></code> 키워드로 변수를 선언 및 초기화했기 때문에 재할당이 가능합니다.<br />
+만약 값을 재할당 할 수 없어서 저장된 값을 변경할 수 없다면<br />
+변수가 아니라 상수(constant)라고 부릅니다.</p>
+<p>변수에 값을 재할당하면 score 변수에서 이전 값 80이 저장된 메모리 공간에 덮어씌우는 것이 아닌,<br />
+새로운 메모리 공간을 확보하고 그 메모리 공간에 숫자 값 90을 저장합니다.</p>
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/46486177-f842-4700-ac74-a7941bd6f8b6">
+<br>
+<p>식별자에 의해 연결되어 있지 않은 메모리 주소는 더이상 필요하지 않은 것으로 판단하여<br />
+가비지 콜렉터에 의해 메모리에서 자동 해제됩니다. (해제 시점은 알 수 없습니다)</p>
+<p><br><br></p>
+</section>
+<section id="id7">
+<h2>식별자 네이밍 규칙<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>식별자는 아래와 같은 네이밍 규칙을 준수해야 합니다.</p>
+<ul class="simple">
+<li><p>식별자는 특수문자를 제외한 문자, 숫자, 언더스코어(_), 달러 기호($)를 포함할 수 있다.</p></li>
+<li><p>식별자는 숫자로 시작하는 것을 허용하지 않는다.</p></li>
+<li><p>예약어는 식별자로 사용할 수 없다.</p></li>
+</ul>
+<br>
+<section id="id8">
+<h3>네이밍 컨벤션<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>네이밍 컨벤션은 하나 이상의 영어 단어로 구성된 식별자를 만들 때<br />
+가독성 좋게 단어를 구분하기 위해 규정한 명명 규칙이다.</p>
+<p>다음과 같은 4가지 유형의 네이밍 컨벤션이 자주 사용됩니다.</p>
+<ul class="simple">
+<li><p>카멜 케이스(camelCase)</p></li>
+<li><p>스네이크 케이스(snake_case)</p></li>
+<li><p>파스칼 케이스(PascalCase)</p></li>
+<li><p>헝가리언 케이스(typeHungarianCase)</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 카멜 케이스</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">firstName</span><span class="p">;</span>
+
+<span class="c1">// 스네이크 케이스</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">first_name</span><span class="p">;</span>
+
+<span class="c1">// 파스칼 케이스;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">FirstName</span><span class="p">;</span>
+
+<span class="c1">// 헝가리언 케이스</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">strFirstName</span><span class="p">;</span><span class="w">  </span><span class="c1">// type + identifier</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">$elem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myId&#39;</span><span class="p">);</span><span class="w">  </span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">observable$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fromEvent</span><span class="p">(</span><span class="nb">document</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;click&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -423,12 +626,45 @@ document.write(`
         <p class="prev-next-title">이용우</p>
       </div>
     </a>
+    <a class="right-next"
+       href="chapter_05.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 05 - 표현식과 문</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">식별자</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">변수 선언</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">변수 선언의 실행 시점과 변수 호이스팅</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">값의 할당</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">값의 재할당</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">식별자 네이밍 규칙</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">네이밍 컨벤션</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

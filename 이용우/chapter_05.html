@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 05 - 표현식과 문 &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_05';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Chapter 04 - 변수" href="chapter_04.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="main.html">이용우</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Chapter 05 - 표현식과 문</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_05.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/이용우/chapter_05.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 05 - 표현식과 문</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">값</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">리터럴</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">표현식</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">문</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">세미콜론과 세미콜론 자동 삽입 기능</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">표현식인 문과 표현식이 아닌 문</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-05">
+<h1>Chapter 05 - 표현식과 문<a class="headerlink" href="#chapter-05" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>값<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>값(value)은 표현식이 평가되어 생성된 결과를 말합니다.<br />
+평가란, 식을 해석해서 값을 생성하거나 참조하는 것을 의미합니다.</p>
+<p>아래 예제의 식은 평가되어 숫자 값 30을 생성합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="mf">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span><span class="w">   </span><span class="c1">// 30</span>
+</pre></div>
+</div>
+<br>
+<p>변수는 <strong>하나의 값</strong>을 저장하기 위한 메모리 공간 자체,<br />
+혹은 그 메모리를 식별하기 위해 붙인 이름입니다.</p>
+<p>따라서 변수에 할당되는 것은 값입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>값은 다양한 방법으로 생성할 수 있습니다.<br />
+위 예제처럼 식으로 생성할 수도 있지만, 가장 기본적인 방법은 리터럴을 사용하는 것이다.</p>
+<p><br><br></p>
+</section>
+<section id="id2">
+<h2>리터럴<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>리터럴(literal)은 사람이 이해할 수 있는 문자 혹은 약속된 기호를 사용해 값을 생성하는 표기법입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="mf">5</span>
+</pre></div>
+</div>
+<p>위 예제의 5는 단순 아라비아 숫자가 아니라 <strong>숫자 리터럴</strong> 입니다.<br />
+사람이 이해할 수 있는 아라비아 숫자를 사용해 숫자 리터럴 3을 코드에 기술하면<br />
+자바스크립트 엔진은 이를 평가해 숫자 3을 생성합니다.</p>
+<br>
+<p>이처럼 <font color='orange'>리터럴은 사람이 이해할 수 있는 문자(아라비아 숫자, 알파벳, 한글 등) 또는<br />
+미리 약속된 기호(‘’, “”, [] 등)로 표기한 코드입니다.</font></p>
+<p>자바스크립트 엔진은 실행되는 시점인 런타임에 리터럴을 평가해 값을 생성합니다.<br />
+즉, 리터럴은 값을 생성하기 위해 미리 약속한 표기법입니다.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>리터럴</p></th>
+<th class="head text-left"><p>예시</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>정수 리터럴</p></td>
+<td class="text-left"><p>100</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>부동소수점 리터럴</p></td>
+<td class="text-left"><p>100.5</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>2진수 리터럴</p></td>
+<td class="text-left"><p>0b01000001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>8진수 리터럴</p></td>
+<td class="text-left"><p>0o101</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>16진수 리터럴</p></td>
+<td class="text-left"><p>0x1b</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>문자열 리터럴</p></td>
+<td class="text-left"><p>“hello”, ‘world’</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>boolean 리터럴</p></td>
+<td class="text-left"><p>true, false</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>null 리터럴</p></td>
+<td class="text-left"><p>null</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>undefined 리터럴</p></td>
+<td class="text-left"><p>undefined</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>객체 리터럴</p></td>
+<td class="text-left"><p>{name: ‘Lee’, address: ‘Seoul’}</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>배열 리터럴</p></td>
+<td class="text-left"><p>[1, 2, 3]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>함수 리터럴</p></td>
+<td class="text-left"><p>function() {}</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>정규표현식 리터럴</p></td>
+<td class="text-left"><p>/[A-Z]+/g</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br><br></p>
+</section>
+<section id="id3">
+<h2>표현식<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p><font color='orange'>표현식은 값으로 평가될 수 있는 문(statement)입니다.</font><br />
+즉, 표현식이 평가되면 새로운 값을 생성하거나 값을 참조합니다.</p>
+<p>바로 위에서 살펴본 리터럴은 값으로 평가됩니다. 따라서 리터럴도 표현식입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">200</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>위 예제의 <code class="docutils literal notranslate"><span class="pre">200</span></code>은 리터럴입니다.<br />
+리터럴 <code class="docutils literal notranslate"><span class="pre">200</span></code>은 자바스크립트 엔진에 의해 평가되어 값을 생성하므로 그 자체로 표현힉입니다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">+</span> <span class="pre">100</span></code>은 리터럴과 연산자로 이루어져 있습니다.<br />
+하지만 <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">+</span> <span class="pre">100</span></code>도 평가되어 숫자 값 <code class="docutils literal notranslate"><span class="pre">200</span></code>을 생성하므로 표현식입니다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">score</span><span class="p">;</span><span class="w">  </span><span class="c1">// 200</span>
+</pre></div>
+</div>
+<p>변수 식별자를 참조하면 변수 값으로 평가됩니다.<br />
+식별자 참조는 값을 생성하지는 않지만 값으로 평가되므로 표현식입니다.</p>
+<p><font color='orange'>즉, 값으로 출력될 수 있는 것은 모두 표현식입니다.</font></p>
+<p><br><br></p>
+</section>
+<section id="id4">
+<h2>문<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>문(statement)은 프로그램을 구성하는 기본 단위이자 최소 실행 단위입니다.<br />
+문의 집합으로 이루어진 것이 바로 프로그램이며,<br />
+문을 작성하고 순서에 맞게 나열하는 것이 프로그래밍입니다.</p>
+<p>문은 여러 토큰으로 구분됩니다.<br />
+토큰(token)이란, 문법적인 의미를 가지며,<br />
+문법적으로 더 이상 나눌 수 없는 코드의 기본 요소를 의미합니다.</p>
+<p>예를 들어, 키워드, 식별자, 연산자, 리터럴, 세미콜론(;)이나 마침표(.) 등의 특수 기호는<br />
+문법적인 의미를 가지며, 문법적으로 더 이상 나눌 수 없는 코드의 기본 요소이므로 모두 토큰입니다.</p>
+<img width="353" alt="image" src="https://github.com/user-attachments/assets/73410fc9-0d65-45b9-a646-47a09be62380">
+<p>이런 특징으로, 문은 명령문이라고도 부릅니다.<br />
+문을 실행하게 되면 명령이 실행되고 무슨 일인가 일어나게 됩니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 변수 선언문</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+
+<span class="c1">// 할당문</span>
+<span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+
+<span class="c1">// 함수 선언문</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="c1">// 조건문</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c1">// 반복문</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">consoe</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id5">
+<h2>세미콜론과 세미콜론 자동 삽입 기능<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>세미콜론(;)은 문의 종료를 나타냅니다.<br />
+즉, 자바스크립트 엔진은 세미콜론으로 문이 종료한 위치를 파악하고 순차적으로 하나씩 문을 실행합니다.<br />
+따라서 문을 끝낼 때는 세미콜론을 붙여야 합니다.<br />
+단, 중괄호로 묶은 코드 블록({ … })은 세미콜론을 붙이지 않습니다.<br />
+예를 들어, if 문, for 문, 함수 등의 코드 블록 뒤에는 세미콜론을 붙이지 않는다.
+코드 블록은 언제나 문의 종료를 의미하는 자체 종결성(self closing)을 가지기 때문입니다.</p>
+<br>
+<p>문의 끝에 붙이는 세미콜론은 옵션입니다. <font color='orange'>즉, 세미콜론은 생략 가능합니다.</font><br />
+자바스크립트 엔진은 소스코드를 해석할 때 문의 끝이라고 예측되는 지점에 자동으로 세미콜론을 붙여주는<br />
+세미콜론 자동 삽입 기능(ASI; Automatic Semicolon Insertion)이 암묵적으로 수행되기 때문입니다.</p>
+<p>하지만 세미콜론 자동 삽입 기능이<br />
+아래의 예제와 같이 개발자의 예측이 일치하지 않는 경우가 간혹 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>
+<span class="w">        </span><span class="p">{}</span>
+<span class="w">    </span><span class="c1">// ASI 동작 결과: return; {};</span>
+<span class="w">    </span><span class="c1">// 개발자의 의도: return {};</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">());</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{})();</span>
+<span class="c1">// ASI 동작 결과: var bar = function() {}(function() {})();</span>
+<span class="c1">// 개발자의 의도: var bar = function() {}; (function() {})();</span>
+</pre></div>
+</div>
+<p>ESLint와 같은 정적 분석 도구에서도 세미콜론의 사용을 기본으로 하고 있고<br />
+TS39(ECMAScript 기술 위원회)도 세미콜론 사용을 권장하는 분위기이므로<br />
+세미콜론을 붙이도록 합시다.</p>
+<p><br><br></p>
+</section>
+<section id="id6">
+<h2>표현식인 문과 표현식이 아닌 문<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>표현식은 문의 일부일 수도 있고, 그 자체로도 문이 될 수 있습니다.<br />
+아래 예제를 살펴봅시다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span><span class="w">      </span><span class="c1">// 값으로 출력될 수 없으므로 표현식이 아닙니다.</span>
+<span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w">  </span><span class="c1">// 표현식이면서 완전한 문입니다.</span>
+</pre></div>
+</div>
+<p>표현식인 문과 표현식이 아닌 문을 구별하는 가장 간단하고 명료한 방법은 변수에 할당해보는 것입니다.<br />
+표현식인 문은 값으로 평가되므로 변수에 할당이 가능합니다.</p>
+<p>하지만 표현식이 아닌 문은 값으로 평가할 수 없으므로 변수에 할당하면 에러가 발생합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+</pre></div>
+</div>
+<br>
+<p>※ 완료 값(completion value)<br />
+개발자 도구에서 표현식이 아닌 문을 실행하면 언제나 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>를 출력합니다.<br />
+이를 완료 값이라 하며, 완료 값은 표현식의 평가 결과가 아닙니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">foo</span><span class="p">;</span><span class="w">        </span><span class="c1">// undefined</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./이용우"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter_04.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 04 - 변수</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">값</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">리터럴</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">표현식</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">문</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">세미콜론과 세미콜론 자동 삽입 기능</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">표현식인 문과 표현식이 아닌 문</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

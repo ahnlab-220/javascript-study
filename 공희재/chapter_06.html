@@ -384,10 +384,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-typing">1. Dynamic Typing: 동적 타이핑</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">2. Data Types: 자바스크립트의 테이터 타입</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-type">1. Number Type: 숫자 타입</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-type">2. String Type: 문자열 타입</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#template-literal">잠깐만! 템플릿 리터럴(Template Literal)</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-type">2. String Type: 문자열 타입</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-type">3. Boolean Type: 불리언 타입</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#undefined-type-undefined">4. Undefined Type: undefined 타입</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#null-type-null">5. Null Type: null 타입</a></li>
@@ -440,8 +437,9 @@ document.write(`
 <li><p>그리고 <strong>재할당</strong>에 의해 변수가 참조하는 값의 타입은 언제든지 동적으로 <strong>변할 수 있다</strong>.</p></li>
 </ul>
 <p>데이터 타입을 위와 같이 다루는 언어의 특징을 우리는 “dynamic typing(동적 타이핑)”이라고 부른다</p>
-<p>동적 타이핑을 하는 언어, 즉 동적 타입 언어는 개발자가 데이터 타입을 매번 신경 쓰지 않아도 돼 편리한 만큼,</p>
-<p>변수 값을 추적하거나 예측하기 어렵게 만든다는 구조적인 단점 또한 존재한다.</p>
+<p>동적 타이핑을 하는 언어, 즉 동적 타입 언어는 개발자가 데이터 타입을 매번 신경 쓰지 않아도 돼 편리한 만큼,
+<br>
+변수 값을 추적하거나 예측하기 어렵게 만든다는 구조적인 단점 또한 존재한다.</p>
 <p>따라서 자바스크립트 변수를 사용할 땐 다음과 같은 <strong>주의사항</strong>을 숙지하자.</p>
 <ol class="arabic simple">
 <li><p><strong>변수는 제한적으로 사용한다.</strong> 변수의 개수를 남발할수록 오류가 발생할 확률도 높아진다. 필요한 만큼만 최소한으로 유지한다.</p></li>
@@ -453,32 +451,76 @@ document.write(`
 </section>
 <section id="data-types">
 <h2>2. Data Types: 자바스크립트의 테이터 타입<a class="headerlink" href="#data-types" title="Link to this heading">#</a></h2>
+<p><img alt="image" src="https://github.com/user-attachments/assets/b36ca1be-f49b-4e87-8095-eae1ab68df69" />
+<br>
+자바스크립트(ES6)는 위처럼 primitive type(원시 타입)과 object/reference type(객체 타입)으로 나뉘는 7개의 데이터 타입을 제공한다.
+<br>
+(ES11부터는 새로운 원시값 BigInt까지 합해서 총 8개의 데이터 타입을 제공한다.)</p>
+<p>8개 데이터 타입을 차례대로 살펴보자.</p>
 <section id="number-type">
 <h3>1. Number Type: 숫자 타입<a class="headerlink" href="#number-type" title="Link to this heading">#</a></h3>
+<p>자바스크립트는 하나의 숫자 타입만 존재한다. 자바스크립트에서 숫자 타입의 값은 배정밀도 64비트 부동소수점 형식을 따른다.
+<br>
+<strong>즉, 자바스크립트는 모든 수를 실수로 처리한다.</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">integer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w">   </span><span class="c1">// 10(정수)</span>
+<span class="kd">var</span><span class="w"> </span><span class="kr">double</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.12</span><span class="p">;</span><span class="w">   </span><span class="c1">// 10.12(실수)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">negative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">20</span><span class="p">;</span><span class="w">   </span><span class="c1">// -20(음의 정수)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">binary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mb">0b01000001</span><span class="p">;</span><span class="w"> </span><span class="c1">// 65(2진수로 표현했으나 참조 시 10진수로 해석됨)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">octal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0o101</span><span class="p">;</span><span class="w">   </span><span class="c1">// 65(8진수로 표현했으나 참조 시 10진수로 해석됨)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">hex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x41</span><span class="p">;</span><span class="w">      </span><span class="c1">// 65(16진수로 표현했으나 참조 시 10진수로 해석됨)</span>
+</pre></div>
+</div>
+<p>숫자 타입은 아래처럼 특별한 값도 표현할 수 있다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">10</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// Infinity(양의 무한대)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">10</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// -Infinity(음의 무한대)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="s1">&#39;meow&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// NaN(산술 연산 불가(Not-a-Number))</span>
+</pre></div>
+</div>
 </section>
 <section id="string-type">
 <h3>2. String Type: 문자열 타입<a class="headerlink" href="#string-type" title="Link to this heading">#</a></h3>
-<section id="template-literal">
-<h4>잠깐만! 템플릿 리터럴(Template Literal)<a class="headerlink" href="#template-literal" title="Link to this heading">#</a></h4>
-</section>
+<p>자바스크립트의 문자열은, 배열이나 객체로 표현되는 다른 언어들의 문자열과는 달리
+<br>
+<strong>primitive(원시) 타입</strong>이며, <strong>immutable value(변경 불가능한 값)</strong> 이다.</p>
 </section>
 <section id="boolean-type">
 <h3>3. Boolean Type: 불리언 타입<a class="headerlink" href="#boolean-type" title="Link to this heading">#</a></h3>
+<p>자바스크립트는 논리적 참, 거짓을 나타내는 true, false를 데이터 타입으로 제공한다. 조건문에서 자주 사용한다.</p>
 </section>
 <section id="undefined-type-undefined">
 <h3>4. Undefined Type: undefined 타입<a class="headerlink" href="#undefined-type-undefined" title="Link to this heading">#</a></h3>
+<p>var 키워드로 선언한 변수는 undefined로 암묵적 초기화된다.
+<br>
+이처럼 undefined는 개발자가 의도적으로 할당하기 위한 데이터라기보다는, <strong>자바스크립트 엔진이 변수를 초기화할 때 사용하는 값</strong>이므로,
+<br>
+개발자가 굳이 undefined를 할당하는 행동은 하지 않는 게 좋다. (undefined의 본래 취지를 지키며, 혼동을 방지하기 위해)</p>
+<p>그렇다면 변수에 값이 없다는 것을 명시하고 싶을 때, 개발자는 무엇을 할당할 수 있는가? 바로 null 값이다.</p>
 </section>
 <section id="null-type-null">
 <h3>5. Null Type: null 타입<a class="headerlink" href="#null-type-null" title="Link to this heading">#</a></h3>
+<p>프로그래밍 언어에서 null은 변수에 <strong>값이 없다는 것을 의도적으로 명시</strong>(=”intentional absence(의도적 부재)”할 때 사용한다.
+<br>
+변수에 null을 할당하는 것은, 변수가 이전에 할당되어 있던 값에 대한 <strong>참조를 명시적으로 제거</strong>하겠다고 선언하는 것이다.</p>
 </section>
 <section id="sympol-type">
 <h3>6. Sympol Type: 심벌 타입<a class="headerlink" href="#sympol-type" title="Link to this heading">#</a></h3>
+<p>Symbol() 함수를 호출해 생성하는, 다른 값과 절대 중복되지 않는 유일무이한 값. 33장 “7번째 타입 Symbol”에서 자세히 볼 예정.</p>
 </section>
 <section id="bigint-type-bigint">
 <h3>7. BigInt Type: BigInt 타입(책에는 없는 내용)<a class="headerlink" href="#bigint-type-bigint" title="Link to this heading">#</a></h3>
+<p>숫자 값을 안정적으로 나타낼 수 있는 최대치인 2<sup>53</sup> - 1보다 큰 정수를 표현할 수 있는, 새로운 원시값이다.
+<br>
+정수 리터럴의 뒤에 n을 붙이거나, BigInt() 함수를 호출해 생성할 수 있다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">bigInt1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10n</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">bigInt2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">BigInt</span><span class="p">(</span><span class="mf">10</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
 <section id="objects">
 <h3>8. Objects: 객체 타입<a class="headerlink" href="#objects" title="Link to this heading">#</a></h3>
+<p>자바스크립트의 객체 타입은 11장 “원시 값과 객체의 비교”에서 자세히 볼 예정.
+<br>
+중요한 것은 자바스크립트는 객체 기반의 언어이며, <strong>자바스크립트를 이루는 거의 모든 것이 객체</strong>라는 사실이다.</p>
 <p>끝.</p>
 </section>
 </section>
@@ -534,10 +576,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-typing">1. Dynamic Typing: 동적 타이핑</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">2. Data Types: 자바스크립트의 테이터 타입</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-type">1. Number Type: 숫자 타입</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-type">2. String Type: 문자열 타입</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#template-literal">잠깐만! 템플릿 리터럴(Template Literal)</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-type">2. String Type: 문자열 타입</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-type">3. Boolean Type: 불리언 타입</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#undefined-type-undefined">4. Undefined Type: undefined 타입</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#null-type-null">5. Null Type: null 타입</a></li>

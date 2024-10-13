@@ -8,6 +8,7 @@ parts:
 - caption: Chapters
   chapters:
   - file: docs/chapter_04
+  - file: docs/chapter_05
 - caption: 개인 공간
   chapters:
   - file: 공희재/main

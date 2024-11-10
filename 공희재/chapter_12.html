@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 12 - 함수 &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '공희재/chapter_12';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_07.html">Chapter 07 - 연산자</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_07.html">Chapter 07 - 연산자</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/main.html">이용우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F공희재/chapter_12.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/공희재/chapter_12.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 12 - 함수</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 함수란? 그리고 왜 쓰는가?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-literals">2. Function Literals: 함수 리터럴</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-definition">3. Function Definition: 함수 정의</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-declaration">3-1. Function Declaration: 함수 선언문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-expression">3-2. Function Expression: 함수 표현식</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-constructor-function">3-3. Function Constructor: Function 생성자 함수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrow-function-expression">3-4. Arrow Function Expression: 화살표 함수</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-12">
+<h1>Chapter 12 - 함수<a class="headerlink" href="#chapter-12" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>1. 함수란? 그리고 왜 쓰는가?<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p><strong>함수</strong>는 입력을 받아 출력을 내보내는 일련의 과정을 statement(문)으로 구현하고,<br>
+코드 블록으로 감싸 하나의 재사용 가능한 실행단위로 정의한 것이다.</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/7912ee5f-0108-49d9-8ee0-23f75c5165af" /></p>
+<ul class="simple">
+<li><p><strong>parameter(매개변수):</strong> 함수 내부로 입력을 전달받는 변수.</p></li>
+<li><p><strong>argument(인수):</strong> 함수의 입력.</p></li>
+<li><p><strong>return value(반환값):</strong> 함수의 출력, 함수의 실행 결과.</p></li>
+<li><p><strong>function definition(함수 정의):</strong> 함수를 생성하는 행위.</p></li>
+<li><p><strong>function call/invoke(함수 호출):</strong> argument를 parameter를 통해 함수에 전달하며 함수의 실행을 명시적으로 지시하는 행위.</p></li>
+</ul>
+<p>함수를 사용하는 이유는 대표적으로 <strong>코드의 재사용</strong>을 위함임.<br>
+코드를 재사용할 수 있도록 돕는 함수는 프로그램의 <strong>유지보수</strong>를 편리하게 하고,<br>
+개발자의 실수를 줄여 코드의 <strong>신뢰성</strong>을 높인다. 또한 함수 이름으로 <strong>가독성</strong>을 향상시킨다.</p>
+</section>
+<section id="function-literals">
+<h2>2. Function Literals: 함수 리터럴<a class="headerlink" href="#function-literals" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 변수에 함수 리터럴을 할당</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>자바스크립트의 함수는 객체</strong>다.<br>
+따라서 마치 숫자 값을 숫자 리터럴로 생성하고, 객체를 객체 리터럴로 생성하는 것처럼<br>
+함수도 <strong>함수 리터럴</strong>로 생성할 수 있다. 함수 리터럴도 다른 리터럴들처럼 <strong>평가되어 값을 생성</strong>한다.<br>
+함수 리터럴의 구성요소는 다음과 같다.</p>
+<ul class="simple">
+<li><p><strong>함수 이름</strong></p>
+<ul>
+<li><p>함수 몸체 내에서만 참조할 수 있는 식별자.</p></li>
+<li><p>생략 가능함. 이에 따라 이름이 있는 함수를 named function(기명 함수), 이름이 없는 함수를 anonymous function(익명 함수)라고 부른다.</p></li>
+</ul>
+</li>
+<li><p><strong>매개변수 목록</strong></p>
+<ul>
+<li><p>0개 이상의 매개변수를 소괄호로 감싸고 쉼표로 구분함.</p></li>
+</ul>
+</li>
+<li><p><strong>함수 몸체</strong></p>
+<ul>
+<li><p>함수 호출에 의해 실행되는 코드 블록</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="function-definition">
+<h2>3. Function Definition: 함수 정의<a class="headerlink" href="#function-definition" title="Link to this heading">#</a></h2>
+<p>함수 정의란, 함수 호출 이전에 인수를 전달받을 매개변수와 실행할 statements, 그리고 반환할 값을 지정하는 행위다.<br>
+함수를 정의하는 방법에는 아래처럼 4가지가 있다. 차례대로 살펴 보자.</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/2b92b95e-8c50-4fa6-920f-eb734a1a7de3" /></p>
+<section id="function-declaration">
+<h3>3-1. Function Declaration: 함수 선언문<a class="headerlink" href="#function-declaration" title="Link to this heading">#</a></h3>
+<p><strong>함수 선언문</strong>은 표현식이 아닌 문이다.<br>
+함수 선언문은 함수 리터럴과 형태가 동일하나, <strong>함수 이름을 생략할 수 없다</strong>는 차이점이 있다.<br>
+함수 선언문을 사용해 함수를 정의하는 방식은 다음과 같다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 함수 선언문</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>함수는 함수 이름으로 호출하는 것이 아니라 <strong>함수 객체를 가리키는 식별자로 호출</strong>한다.<br>
+그런데 자바스크립트의 특이한 점은, 위 코드 예제처럼 함수 선언문만 작성한 경우에도<br>
+<code class="docutils literal notranslate"><span class="pre">add</span></code>라는 함수 이름으로(비록 여기서 <code class="docutils literal notranslate"><span class="pre">add</span></code>는 함수 객체를 가리키는 ‘식별자’가 아닌, 함수 선언문의 ‘함수 이름’일 뿐인데도)<br>
+아래처럼 <code class="docutils literal notranslate"><span class="pre">add</span></code> 함수를 호출할 수 있다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 위에서 선언한 add 함수를 호출하기</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">));</span><span class="w">  </span><span class="c1">// 7</span>
+</pre></div>
+</div>
+<p>어떻게 이게 가능할까?<br>
+함수 선언문으로 선언만 했을 뿐인 <code class="docutils literal notranslate"><span class="pre">add</span></code>라는 함수 이름으로, <code class="docutils literal notranslate"><span class="pre">add</span></code> 함수를 호출까지 할 수 있었던 이유는<br>
+바로 자바스크립트 엔진이 <strong>암묵적으로</strong> <code class="docutils literal notranslate"><span class="pre">add</span></code> 함수의 식별자를 생성했기 때문이다.</p>
+<p>자바스크립트 엔진은 함수 선언문을 해석해 함수 객체를 생성한다.<br>
+이때, 만약 함수 객체를 가리키는 식별자가 없다면 생성된 함수 객체를 참조할 수 없으므로 호출할 수도 없다.<br>
+따라서 자바스크립트 엔진은 생성된 함수를 호출하기 위해 함수 이름과 동일한 이름의 식별자를 <strong>암묵적으로</strong> 생성하고, 거기에 함수 객체를 할당한다.</p>
+<p>즉, 수도 코드로 표현하자면 함수 선언문을 작성한 경우, 내부에서는 다음과 같이 작동한다는 의미다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">));</span><span class="w">  </span><span class="c1">// 7</span>
+</pre></div>
+</div>
+<p><img alt="image" src="https://github.com/user-attachments/assets/3c57e685-a58d-4661-a547-f00508ff2461" /></p>
+<p>자바스크립트 엔진은 <strong>함수 선언문을 함수 표현식으로 자동 변환</strong>해 함수 객체를 생성한다고도 할 수 있다.<br>
+그러나 함수를 정의하는 이 두 방식이, 자바스크립트 엔진에서 완전히 동일하게 동작하지는 않는다.<br>
+둘 간의 미묘한 차이점이 무엇인지 알아보기 전에, 우선 함수 표현식부터 알아보자.</p>
+</section>
+<section id="function-expression">
+<h3>3-2. Function Expression: 함수 표현식<a class="headerlink" href="#function-expression" title="Link to this heading">#</a></h3>
+<p>자바스크립트에서 함수는, 마치 값처럼 자유자재로 사용할 수 있는 <strong>일급 객체</strong>다.<br>
+따라서 개발자는 함수를 생성해 그 객체를 <strong>변수에 할당</strong>할 수 있다. 이러한 정의 방식을 우리는 <strong>함수 표현식</strong>이라고 부른다.</p>
+<p>TBD…</p>
+</section>
+<section id="function-constructor-function">
+<h3>3-3. Function Constructor: Function 생성자 함수<a class="headerlink" href="#function-constructor-function" title="Link to this heading">#</a></h3>
+</section>
+<section id="arrow-function-expression">
+<h3>3-4. Arrow Function Expression: 화살표 함수<a class="headerlink" href="#arrow-function-expression" title="Link to this heading">#</a></h3>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./공희재"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 함수란? 그리고 왜 쓰는가?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-literals">2. Function Literals: 함수 리터럴</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-definition">3. Function Definition: 함수 정의</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-declaration">3-1. Function Declaration: 함수 선언문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-expression">3-2. Function Expression: 함수 표현식</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-constructor-function">3-3. Function Constructor: Function 생성자 함수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrow-function-expression">3-4. Arrow Function Expression: 화살표 함수</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

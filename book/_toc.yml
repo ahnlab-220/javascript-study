@@ -9,11 +9,16 @@ parts:
   chapters:
   - file: docs/chapter_04
   - file: docs/chapter_05
+  - file: docs/chapter_06
+  - file: docs/chapter_07
 - caption: 개인 공간
   chapters:
   - file: 공희재/main
     sections:
     - file: 공희재/chapter_04
+    - file: 공희재/chapter_05
+    - file: 공희재/chapter_06
+    - file: 공희재/chapter_07
   - file: 김현우/main
     sections:
     - file: 김현우/chapter_04

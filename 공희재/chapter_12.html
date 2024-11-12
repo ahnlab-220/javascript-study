@@ -542,10 +542,12 @@ document.write(`
 <li><p>런타임 <strong>이전에</strong> 함수 객체가 생성됨</p>
 <ul>
 <li><p>다시 말해, 자바스크립트 엔진이 함수 이름과 동일한 식별자를 암묵적으로 생성 후, 함수 객체를 <strong>할당까지 함.</strong></p></li>
-<li><p>따라서 함수 정의 <strong>이전</strong> 위치에서도 함수를 <strong>참조/호출</strong>할 수 있게 됨(=<strong>Function Hoisting(함수 호이스팅)</strong>)
-<strong>함수 표현식으로 정의한 함수:</strong></p></li>
+<li><p>따라서 함수 정의 <strong>이전</strong> 위치에서도 함수를 <strong>참조/호출</strong>할 수 있게 됨(=<strong>Function Hoisting(함수 호이스팅)</strong>)</p></li>
 </ul>
 </li>
+</ul>
+<p><strong>함수 표현식으로 정의한 함수:</strong></p>
+<ul class="simple">
 <li><p>함수 표현식은 변수 선언문 및 할당문과 다를 게 없음</p>
 <ul>
 <li><p>다시 말해, 런타임 <strong>이전에</strong> 실행돼 함수 식별자가 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>로 초기화되며, 런타임 <strong>중에</strong> 할당문이 평가돼 함수 객체가 뒤늦게 생성됨.</p></li>

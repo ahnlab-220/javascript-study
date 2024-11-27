@@ -102,7 +102,7 @@ let foo;
 그러나 `let`으로 선언한 변수는 이 두 단계를 분리한다.<br>
 즉, 런타임 이전에 암묵적으로 선언 단계를 먼저 실행하지만, **초기화 단계는 변수 선언문에 도달했을 때 실행**한다.
 
-![image](https://github.com/user-attachments/assets/b4a430e9-0b5e-4b26-bb66-58bdcd7a2a9b)
+<img width="400px" src="https://github.com/user-attachments/assets/b4a430e9-0b5e-4b26-bb66-58bdcd7a2a9b" />
 
 만약 초기화 단계에 다다르기 전에 변수에 접근하려고 하면 `ReferenceError`가 발생한다.<br>
 왜냐하면 `let`으로 선언한 변수는 스코프의 시작 지점부터 변수 선언문까지 변수를 참조할 수 없기 때문이다.<br>

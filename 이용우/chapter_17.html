@@ -1,0 +1,894 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 17 - 생성자 함수에 의한 객체 생성 &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_17';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_07.html">Chapter 07 - 연산자</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_07.html">Chapter 07 - 연산자</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="main.html">이용우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_17.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/이용우/chapter_17.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 17 - 생성자 함수에 의한 객체 생성</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object">Object 생성자 함수</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">생성자 함수</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">객체 리터럴에 의한 객체 생성 방식의 문제점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">생성자 함수에 의한 객체 생성 방식의 장점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">생성자 함수의 인스턴스 생성 과정</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#this">1. 인스턴스 생성과 this 바인딩</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2. 인스턴스 초기화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3. 인스턴스 반환</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#call-construct">내부 메소드 [[Call]]과 [[Construct]]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructor-non-constructor">constructor와 non-constructor의 구분</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new">new 연산자</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-target">new.target</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-17">
+<h1>Chapter 17 - 생성자 함수에 의한 객체 생성<a class="headerlink" href="#chapter-17" title="Link to this heading">#</a></h1>
+<p>자바 스크립트에서는 객체 리터럴에 의한 다양한 객체 생성 방식이 있습니다.<br />
+그중에서 객체 리터럴은 가장 일반적이고 간단한 객체 생성 방식입니다.<br />
+하지만 객체 리터럴 이외에도 다양한 방법으로 생성할 수 있습니다.</p>
+<p><br><br></p>
+<section id="object">
+<h2>Object 생성자 함수<a class="headerlink" href="#object" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 <code class="docutils literal notranslate"><span class="pre">Object</span></code> 생성자 함수를 호출하면 빈 객체를 생성하여 반환합니다.<br />
+빈 객체를 생성한 이후 프로퍼티 또는 메소드를 추가하여 객체를 완성할 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 빈 객체 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Object</span><span class="p">();</span>
+
+<span class="c1">// 프로퍼티 추가</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">sayHello</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;My name is &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span><span class="w">    </span><span class="c1">// {name: &quot;Lee&quot;, sayHello: f}</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">sayHello</span><span class="p">();</span><span class="w">      </span><span class="c1">// Hi! My name is Lee</span>
+</pre></div>
+</div>
+<br>
+<blockquote>
+<div><p><strong>※ 생성자 함수</strong><br />
+<code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 호출하여 객체(인스턴스)를 생성하는 함수를 의미한다.<br />
+생성자 함수에 의해 생성된 객체를 **인스턴스(instance)**라고 한다.<br />
+<code class="docutils literal notranslate"><span class="pre">Object</span></code> 생성자 함수 이외에도 <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Number</span></code>, <code class="docutils literal notranslate"><span class="pre">Boolean</span></code>, <code class="docutils literal notranslate"><span class="pre">Function</span></code>, <code class="docutils literal notranslate"><span class="pre">Array</span></code>, <code class="docutils literal notranslate"><span class="pre">Date</span></code>, <code class="docutils literal notranslate"><span class="pre">RegExp</span></code>, <code class="docutils literal notranslate"><span class="pre">Promise</span></code> 등의 빌트인 생성자 함수를 제공한다.</p>
+</div></blockquote>
+<br>
+<p>반드시 <code class="docutils literal notranslate"><span class="pre">Object</span></code> 생성자 함수를 사용해 빈 객체를 생성할 필요는 없습니다.<br />
+객체를 생성하는 방법은 객체 리터럴을 사용하는 것이 더 간편합니다.</p>
+<p><br><br></p>
+</section>
+<section id="id1">
+<h2>생성자 함수<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h3>객체 리터럴에 의한 객체 생성 방식의 문제점<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>객체 리터럴에 의한 객체 생성 방식은 단 하나의 객체만 생성한다는 문제점이 있습니다.<br />
+따라서 동일한 프로퍼티를 갖는 객체를 여러 개 생성해야 하는 경우 매번 같은 프로퍼티를 기술해야 하기 때문에 비효율적입니다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">circle1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">radius</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">getDiameter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle1</span><span class="p">.</span><span class="nx">getDiameter</span><span class="p">());</span><span class="w">     </span><span class="c1">// 10</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">radius</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">getDiameter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getDiameter</span><span class="p">());</span><span class="w">     </span><span class="c1">// 20</span>
+</pre></div>
+</div>
+<p><strong>객체는 프로퍼티를 통해 객체 고유의 상태(state)를 표현</strong>합니다.<br />
+그리고 메소드를 통해 상태 데이터인 프로퍼티를 참조하고 조작하는 동작(behavior)을 표현합니다.<br />
+따라서 프로퍼티는 객체마다 프로퍼티 값이 다를 수 있지만 메소드는 동일한 경우가 일반적입니다.</p>
+<p>여기서 circle1 객체와 circle2 객체는 프로퍼티 구조가 동일합니다.<br />
+객체 고유의 상태 데이터인 <code class="docutils literal notranslate"><span class="pre">radius</span></code> 프로퍼티 값은 객체마다 다르지만,<br />
+<code class="docutils literal notranslate"><span class="pre">getDiameter()</span></code> 메소드는 완전히 동일합니다.</p>
+<p>다만 객체 리터럴에 의해 객체를 생성하는 경우,<br />
+프로퍼티 구조가 동일함에도 매번 같은 프로퍼티와 메소드를 기술해야 하는 번거로움이 있습니다.</p>
+<br>
+</section>
+<section id="id3">
+<h3>생성자 함수에 의한 객체 생성 방식의 장점<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>생성자 함수에 의한 객체 생성 방식은<br />
+객체(인스턴스)를 생성하기 위한 템플릿(클래스)처럼 생성자 함수를 사용해서<br />
+프로퍼티 구조가 동일한 여러 개의 객체를 간편히 만들 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 생성자 함수 내부이 this는 생성자 함수가 생성할 인스턴스를 가리킨다.</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// 인스턴스의 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">10</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle1</span><span class="p">.</span><span class="nx">getDiameter</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getDiameter</span><span class="p">());</span>
+</pre></div>
+</div>
+<br>
+<p><strong>※ this</strong><br />
+자기 자신의 프로퍼티나 메소드를 참조하기 위한 자기 참조 변수(self-referencing variable)이다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">(){</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 일반적인 함수로써 호출</span>
+<span class="c1">// 전역 객체는 브라우저 환겨엥서는 window, Node.js 환경에서는 global을 가리킨다.</span>
+<span class="nx">foo</span><span class="p">();</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="p">};</span><span class="w">        </span><span class="c1">// ES6 프로퍼티 축약 표현</span>
+
+<span class="c1">// 메소드로서 호출</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span><span class="w">      </span><span class="c1">// obj</span>
+
+<span class="c1">// 생성자 함수로써 호출</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">foo</span><span class="p">();</span><span class="w">     </span><span class="c1">// inst</span>
+</pre></div>
+</div>
+<br>
+<p>생성자 함수는 이름 그대로 객체(인스턴스)를 생성하는 함수입니다.<br />
+하지만 자바와 같은 클래스 기반 객체지향언어의 생성자와는 다르게 그 형식이 정해져 있는 것이 아니라</p>
+<p>일반 함수와 동일한 방법으로 생성자 함수를 정의하고 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 호출하면<br />
+해당 함수는 생성자 함수로 동작합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// new 연산자와 함께 호출하지 않으면 생성자 함수로 동작하지 않는다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">15</span><span class="p">);</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>객체로써 동작하게 하려면 new 연산자를 사용해야 함</p>
+</div></blockquote>
+<br>
+</section>
+<section id="id4">
+<h3>생성자 함수의 인스턴스 생성 과정<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p><font color='orange'>생성자 함수의 역할은 프로퍼티 구조가 동일한 인스턴스를 생성하기 위한 템플릿으로서 동작하여 인스턴스를 생성하는 것과 생성된 인스턴스를 초기화 하는 것입니다.</font></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 인스턴스 초기화</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(){</span>
+<span class="w">        </span><span class="nx">retrun</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// 인스턴스 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span><span class="w">      </span><span class="c1">// 반지름이 5인 Circle 객체를 생성</span>
+</pre></div>
+</div>
+<p>자바스크립트는 아래의 과정을 통해 암묵적으로 인스턴스를 생성하고<br />
+인스턴스를 초기화한 후 암묵적으로 인스턴스를 반환합니다.</p>
+<br>
+<section id="this">
+<h4>1. 인스턴스 생성과 this 바인딩<a class="headerlink" href="#this" title="Link to this heading">#</a></h4>
+<p>먼저 암묵적으로 빈 객체가 생성됩니다.<br />
+이 빈 객체가 생성자 함수가 생성한 인스턴스입니다.</p>
+<p>그리고 암묵적으로 생성된 빈 객체, 즉 인스턴스는 this에 바인딩됩니다.<br />
+이 처리는 런타임 이전에 동작합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. 암묵적으로 인스턴스가 생성되고 this에 바인딩</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w">      </span><span class="c1">// Circle {}</span>
+
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(){</span>
+<span class="w">        </span><span class="nx">retrun</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<br>
+</section>
+<section id="id5">
+<h4>2. 인스턴스 초기화<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>생성자 함수에 기술되어 있는 코드가 한 줄씩 실행되어 this에 바인딩되어 있는 인스턴스가 초기화됩니다.<br />
+즉, this에 바인딩되어 있는 인스턴스에 프로퍼티나 메소드를 추가하고 생성자 인수가 인수로 전달받은 초기값을 인스턴스 프로퍼티에 할당하여 초기화하거나 고정값을 할당합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. 암묵적으로 인스턴스가 생성되고 this에 바인딩</span>
+<span class="w">   </span>
+<span class="w">    </span><span class="c1">// 2. this에 바인딩되어 있는 인스턴스를 초기화</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(){</span>
+<span class="w">        </span><span class="nx">retrun</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<br>
+</section>
+<section id="id6">
+<h4>3. 인스턴스 반환<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>생성자 함수 내부에서 모든 처리가 끝나면 완성된 인스턴스가 바인딩된 this를 암묵적으로 반환합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. 암묵적으로 인스턴스가 생성되고 this에 바인딩</span>
+<span class="w">   </span>
+<span class="w">    </span><span class="c1">// 2. this에 바인딩되어 있는 인스턴스를 초기화</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(){</span>
+<span class="w">        </span><span class="nx">retrun</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// 3. 완성된 인스턴스가 바인딩된 this를 반환</span>
+<span class="p">}</span>
+
+
+<span class="c1">// 인스턴스 생성, Circle 생성자 함수는 암묵적으로 this를 반환한다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<br>
+<p>만약 this가 아닌 다른 객체를 명시적으로 반환하면<br />
+this가 아닌 return 문에 명시한 객체가 반환됩니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(){</span>
+<span class="w">        </span><span class="nx">retrun</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
+<span class="p">}</span>
+
+<span class="c1">// 인스턴스 생성, Circle 생성자 함수는 명시적으로 반환한 객체를 반환한다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle</span><span class="p">);</span><span class="w">    </span><span class="c1">// {}</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="call-construct">
+<h3>내부 메소드 [[Call]]과 [[Construct]]<a class="headerlink" href="#call-construct" title="Link to this heading">#</a></h3>
+<p>함수 선언문 또는 함수 표현식으로 정의한 함수는<br />
+일반적인 함수로서 호출할 수 있으면서, 생성자 함수로도 호출이 가능합니다.</p>
+<p>함수는 객체이지만 일반 객체와는 다릅니다.<br />
+<strong>일반 객체는 호출할 수 없지만 함수는 호출할 수 있습니다.</strong></p>
+<p>따라서 함수 객체는 일반 객체가 가지고 있는 내부 슬롯과 내부 메소드는 물론,<br />
+함수 객체만을 위한 [[Environment]], [[FormalParameters]] 등의 내부 슬롯과<br />
+[[Call]], [[Construct]] 같은 내부 메소드를 추가로 가지고 있습니다.</p>
+<blockquote>
+<div><p>파이썬으로 치면 클래스의 매직 메소드 같은 느낌</p>
+</div></blockquote>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="c1">// 일반적인 함수로서 호출: [[Call]] 이 호출</span>
+<span class="nx">foo</span><span class="p">();</span>
+
+<span class="c1">// 생성자 함수로서 호출: [[Construct]]가 호출</span>
+<span class="ow">new</span><span class="w"> </span><span class="nx">foo</span><span class="p">();</span>
+</pre></div>
+</div>
+<br>
+<p>다만, 모든 함수 객체는 내부 메소드 [[Call]]을 가지고 있지만,<br />
+[[Construct]]는 그렇지 않다는 특이사항이 있습니다.</p>
+<p><br><br></p>
+</section>
+<section id="constructor-non-constructor">
+<h3>constructor와 non-constructor의 구분<a class="headerlink" href="#constructor-non-constructor" title="Link to this heading">#</a></h3>
+<p>자바스크립트 엔진은 함수 정의를 평가하여 함수 객체를 생성할 때<br />
+함수 정의 방식에 따라 constructor와 non-constructor로 구분합니다.</p>
+<ul class="simple">
+<li><p>constructor: 함수 선언문, 함수 표현식, 클래스(클래스도 함수)</p></li>
+<li><p>non-constructor: 메소드(ES6 메소드 축약 표현), 화살표 함수</p></li>
+</ul>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 일반 함수 정의: 함수 선언문, 함수 표현식</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="c1">// 프로퍼티 x의 값으로 할당된 것은 일반 함수로 정의된 함수이다. 이는 메소드로 인정되지 않는다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">baz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="c1">// 일반 함수로 정의된 함수만이 constructor 이다.</span>
+<span class="ow">new</span><span class="w"> </span><span class="nx">foo</span><span class="p">();</span><span class="w">      </span><span class="c1">// foo {}</span>
+<span class="ow">new</span><span class="w"> </span><span class="nx">bar</span><span class="p">();</span><span class="w">      </span><span class="c1">// bar {}   </span>
+<span class="ow">new</span><span class="w"> </span><span class="nx">baz</span><span class="p">.</span><span class="nx">x</span><span class="p">();</span><span class="w">    </span><span class="c1">// x {}</span>
+
+<span class="c1">// 화살표 함수 정의</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">arrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{};</span>
+<span class="ow">new</span><span class="w"> </span><span class="nx">arrow</span><span class="p">();</span><span class="w">        </span><span class="c1">// TypeError: arrow is not a constructor</span>
+
+<span class="c1">// 메소드 정의: ES6의 메소드 축약 표현만 메소드로 인정함.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">x</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="ow">new</span><span class="w"> </span><span class="nx">obj</span><span class="p">.</span><span class="nx">x</span><span class="p">();</span><span class="w">    </span><span class="c1">// TypeError: obj.x is not a constructor</span>
+</pre></div>
+</div>
+<p><font color='orange'>함수의 프로퍼티 값으로 사용하면 일반적으로 메소드로 통칭합니다.<br />
+하지만 ESMAScript 사양에서 메소드란, ES6 메소드 축약 표현만을 메소드로 칭합니다.</font></p>
+<p>일반함수, 즉 함수 선언문과 함수 표현식으로 정의된 함수만이 constructor이고<br />
+ES6의 화살표 함수와 메소드 축약 표현으로 정의된 함수는 non-constructor입니다.</p>
+<p><br><br></p>
+</section>
+<section id="new">
+<h3>new 연산자<a class="headerlink" href="#new" title="Link to this heading">#</a></h3>
+<p>new 연산자와 함께 호출하는 함수는 반드시 constructor여야 합니다.
+new 연산자 없이 생성자 함수를 호출하면 일반 함수로서 호출됩니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// new 연산자 없이 생성자 함수를 호출하면 일반함수로서 호출됩니다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle1</span><span class="p">);</span><span class="w">    </span><span class="c1">// undefined</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle2</span><span class="p">);</span><span class="w">    </span><span class="c1">// Circle { radius: 5, getDiameter: [Function (anonymous)] }</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="new-target">
+<h3>new.target<a class="headerlink" href="#new-target" title="Link to this heading">#</a></h3>
+<p>생성자 함수가 new 연산자 없이 호출되는 것을 방지하기 위해<br />
+ES6에서는 new.target을 지원합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">new.target</span></code>은 <code class="docutils literal notranslate"><span class="pre">this</span></code>와 유사하게 constructor인 모든 함수 내부에서<br />
+암묵적인 지역 변수와 같이 사용되며 메타 프로퍼티라고도 부릅니다.</p>
+<p>함수 내부에서 <code class="docutils literal notranslate"><span class="pre">new.target</span></code>을 사용하면 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 생성자 함수로서 호출되었는지 확인할 수 있습니다.<br />
+<code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 생성자 함수로서 호출하면 함수 내부의 <code class="docutils literal notranslate"><span class="pre">new.target</span></code>은 함수 자신을 가리킵니다.<br />
+<code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자 없이 일반 함수로서 호출된 함수 내부의 <code class="docutils literal notranslate"><span class="pre">new.target</span></code>은 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>입니다.</p>
+<p>따라서 함수 내부에서 <code class="docutils literal notranslate"><span class="pre">new.target</span></code>을 사용하여
+생성자 함수로서 호출되었는지 여부를 확인하여<br />
+생성자 함수로서 호출되지 않았을 경우, 생성자 함수 호출을 강제할 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 이 함수가 new 연산자와 함께 호출되지 않았다면 new.target은 undefined이다.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="ow">new</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// new 연산자와 함께 생성자 함수를 재귀 호출하여 생성된 인스턴스를 반환한다.</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radiius</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p><strong>※ 스코프 세이프 생성자 패턴 (scope-safe constructor)</strong><br />
+new.target은 ES6에서 도입되었기 때문에 new.target을 사용할 수 없는 상황이라면<br />
+스코프 세이프 생성자 패턴을 사용할 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nx">Circle</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">instanceof</span></code> 연산자는 ‘19. 프로토타입’에서 다룰 것이다.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./이용우"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object">Object 생성자 함수</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">생성자 함수</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">객체 리터럴에 의한 객체 생성 방식의 문제점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">생성자 함수에 의한 객체 생성 방식의 장점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">생성자 함수의 인스턴스 생성 과정</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#this">1. 인스턴스 생성과 this 바인딩</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2. 인스턴스 초기화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3. 인스턴스 반환</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#call-construct">내부 메소드 [[Call]]과 [[Construct]]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructor-non-constructor">constructor와 non-constructor의 구분</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new">new 연산자</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-target">new.target</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

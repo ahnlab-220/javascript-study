@@ -101,7 +101,7 @@ console.log(Object.getOwnPropertyDescriptors(person));
 
 ### 데이터 프로퍼티와 접근자 프로퍼티
 프로퍼티는 데이터 프로퍼티와 접근자 프로퍼티로 구분이 가능하다.
-- 데이트 프로퍼티 (data property)
+- 데이터 프로퍼티 (data property)
     - 키(key)와 값(value)으로 구성된 일반적인 프로퍼티
 - 접근자 프로퍼티 (accessor property)
     - 자체적으로는 값을 갖지 않고 다른 데이터 프로퍼티의 값을 읽거나 저장할 때 호출되는 접근자 함수(accessor function)로 구성된 프로퍼티
@@ -122,7 +122,7 @@ console.log(Object.getOwnPropertyDescriptors(person));
     - 프로퍼티 열거 가능 여부를 나타낸다.
     - `[[Enumerable]]`의 값이 false인 경우 해당 프로퍼티는 `for ... in` 문이나 `Object.keys` 메소드 등으로 열거할 수 없다.
 - `[[Configurable]]`
-    - 프로퍼티의 재정의 가능 여부를 나ㅏㅌ내며 불리언 값을 갖는다.
+    - 프로퍼티의 재정의 가능 여부를 나타내며 불리언 값을 갖는다.
     - `[[Configurable]]` 값이 false인 경우 해당 프로퍼티의 삭제, 프로퍼티 어트리뷰트 값의 변경이 금지된다. 단, `[[Writable]]`이 true인 경우, `[[Value]]`의 변경과 `[[Writable]]`을 false로 변경하는 것을 허용한다.
 
 

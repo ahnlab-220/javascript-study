@@ -1,0 +1,1581 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 19 - 프로토타입 &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_19';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_15.html">Chapter 15 - <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="main.html">이용우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_19.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/이용우/chapter_19.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 19 - 프로토타입</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 19 - 프로토타입</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">객체 지향 프로그래밍</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">상속과 프로토타입</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">프로토타입 객체</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proto"><strong>proto</strong> 접근자 프로퍼티</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype">함수 객체의 prototype 프로퍼티</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructor">프로토타입의 constructor 프로퍼티와 생성자 함수</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">리터럴 표기법에 의해 생성된 객체의 생성자 함수와 프로토타입</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">프로토타입의 생성 시점</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">사용자 정의 생성자 함수와 프로토타입 생성 시점</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">빌트인 생성자 함수와 프로토타입 생성 시점</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">객체 생성 방식과 프로토타입의 결정</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">객체 리터럴에 의해 생성된 객체의 프로토타입</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object">Object 생성자 함수에 의해 생성된 객체의 프로토타입</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">생성자 함수에 의해 생성된 객체의 프로토타입</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">프로토타입 체인</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">오버라이딩과 프로퍼티 섀도잉</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">직접 상속</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object-create">Object.create에 의한 직접 상속</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">객체 리터럴 내부에서 __proto__에 의한 직접 상속</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">프로퍼티 존재 확인</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in">in 연산자</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object-prototype-hasownproperty">Object.prototype.hasOwnProperty 메소드</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">프로토타입 열거</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-in">for … in 문</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object-keys-values-entries">Object.keys/values/entries 메소드</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="chapter-19">
+<h1>Chapter 19 - 프로토타입<a class="headerlink" href="#chapter-19" title="Link to this heading">#</a></h1>
+<p>자바스크립트는 명령형(imperative), 함수형(functional), 프로토타입 기반(prototype-based),<br />
+객체 지향 프로그램이(OOP; Object Oriented Programming)을 지원하는 멀티 페러다임 프로그래밍 언어입니다.</p>
+<p>자바스크립트를 이루고 있는 거의 “모든 것”이 객체입니다.
+원시 타입(primitive type)을 제외한 나머지 값들(함수, 배열, 정규 표현식 등)은 모두 객체입니다.</p>
+<p><br><br></p>
+</section>
+<section id="id1">
+<h1>객체 지향 프로그래밍<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>객체 지향 프로그래밍은 실세계의 실체(사물이나 개념)을 인식하는 철학적 사고를 프로그래밍에 접목하려는 시도에서 시작합니다.<br />
+실체는 특징이나 성질을 나타내는 **속성(attribute/property)**을 가지고 있고,<br />
+이를 통해 실체를 인식하거나 구별할 수 있습니다.</p>
+<p>사람의 “이름”과 “주소”라는 속성을 갖는 <code class="docutils literal notranslate"><span class="pre">person</span></code>이라는 객체를 자바스크립트로 표현하면 아래와 같을 것입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Seoul&#39;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위와 같이 <font color='orange'>속성을 통해 여러 개의 값을 하나의 단위로 구성한 복합적인 자료구조를 객체라고 합니다.</font></p>
+<p><br><br></p>
+<p>조금 더 나아가서 원(Circle)이라는 개념을 객체로 구현해보도록 합시다.<br />
+원에는 반지름이라는 속성이 있고, 이 반지름을 이용해 지름, 둘레, 넓이 등을 구할 수 있습니다.<br />
+이때 반지름은 원의 상태를 나타내는 데이터이고, 원의 지름, 둘레, 넓이를 구하는 것은 동작으로 정의내릴 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">radius</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// 원의 지름: 2r</span>
+<span class="w">    </span><span class="nx">getDiameter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="c1">// 원의 둘레: 2πr</span>
+<span class="w">    </span><span class="nx">getPerimeter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="c1">// 원의 넓이: πrr</span>
+<span class="w">    </span><span class="nx">getArea</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>이처럼 객체 지향 프로그래밍은 객체의 상태(state)를 나타내는 데이터와<br />
+상태 데이터를 조작할 수 있는 동작(behavior)를 하나의 논리적인 단위로 묶어 생각할 수 있습니다.</p>
+<p>각 객체는 고유의 기능을 갖는 독립적인 부품으로 볼 수도 있지만<br />
+자신의 고유한 기능을 수행하면서 다른 객체와 관계성을 가질 수도 있다.</p>
+<p><br><br></p>
+</section>
+<section id="id2">
+<h1>상속과 프로토타입<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<p>상속은 객체지향 프로그래밍의 핵심 개념이며,<br />
+<font color='orange'>어떤 객체의 프로퍼티 또는 메소드를 다른 객체가 상속받아 그대로 사용할 수 있는 것을 말합니다. </font></p>
+<p><font color='orange'>자바스크립트는 프로토타입을 기반으로 상속을 구현하여 불필요한 중복을 제거합니다.</font><br />
+중복을 제거하는 방법은 기존의 코드를 적극적으로 재사용하는 것입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// 반지름이 1인 인스턴스 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+
+<span class="c1">// 반지름이 2인 인스턴스 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+
+<span class="c1">// Circle 생성자 함수는 인스턴스를 생성할 때마다 동일한 동작을 하는 </span>
+<span class="c1">// getArea 메소드를 중복 생성하고 모든 인스턴스가 중복 소유합니다.</span>
+<span class="c1">// getArea 메소드는 하나만 생성하여 모든 인스턴스가 공유해서 사용하는 것이 바람직합니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle</span><span class="p">.</span><span class="nx">getArea</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getArea</span><span class="p">);</span><span class="w">    </span><span class="c1">// false</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle1</span><span class="p">.</span><span class="nx">getArea</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getArea</span><span class="p">());</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">Circle</span></code> 생성자 함수가 생성하는 모든 객체(인스턴스)는 <code class="docutils literal notranslate"><span class="pre">radius</span></code> 프로퍼티와 <code class="docutils literal notranslate"><span class="pre">getArea</span></code> 메소드를 갖습니다.<br />
+<code class="docutils literal notranslate"><span class="pre">radius</span></code> 프로퍼티 값은 일반적으로 인스턴스마다 다르지만 <code class="docutils literal notranslate"><span class="pre">getArea</span></code> 메소드는 모든 인스턴스가 동일한 내용의 메소드를 사용하므로<br />
+단 하나만 생성하여 모든 인스턴스가 공유해서 사용하는 것이 바람직합니다.</p>
+<p><font color='orange'>그런데 <code class="docutils literal notranslate"><span class="pre">Circle</span></code> 생성자 함수는 인스턴스를 생성할 때마다 <code class="docutils literal notranslate"><span class="pre">getArea</span></code> 메소드를 중복해서 생성하고 모든 인스턴스가 중복으로 소유하고 있습니다. </font></p>
+<img width="350" alt="image" src="https://github.com/user-attachments/assets/c7c9bec0-54ec-45c5-8326-0907bb9951ee" />
+<br>
+<p>이처럼 동일한 생성자 함수에 의해 생성된 모든 인스턴스가 동일한 메소드를 중복 소유하는 것은 메모리를 불필요하게 낭비합니다.<br />
+또한 인스턴스를 생성할 때마다 메소드를 생성하므로 퍼포먼스에도 악영향을 줍니다.<br />
+만약 10개의 인스턴스를 생성하면 내용이 동일한 메소드로 10개 성상됩니다.</p>
+<br>
+<p>상속을 통해 불필요한 중복을 제거할 수 있습니다.<br />
+<strong>자바스크립트는 프로토타입(prototype)을 기반으로 상속을 구현합니다.</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Circle 생성자 함수가 생성한 모든 인스턴스가 getArea 메소드를</span>
+<span class="c1">// 공유해서 사용할 수 있도록 프로토토압에 추가합니다.</span>
+<span class="c1">// 프로토타입은 Circle 생성자 함수의 prototype 프로토타입에 바인딩되어 있습니다.</span>
+<span class="nx">Circle</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// 반지름이 1인 인스턴스 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+
+<span class="c1">// 반지름이 2인 인스턴스 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+
+<span class="c1">// Circle 생성자 함수는 인스턴스를 생성할 때마다 동일한 동작을 하는 </span>
+<span class="c1">// getArea 메소드를 중복 생성하고 모든 인스턴스가 중복 소유합니다.</span>
+<span class="c1">// getArea 메소드는 하나만 생성하여 모든 인스턴스가 공유해서 사용하는 것이 바람직합니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle</span><span class="p">.</span><span class="nx">getArea</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getArea</span><span class="p">);</span><span class="w">    </span><span class="c1">// false</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle1</span><span class="p">.</span><span class="nx">getArea</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getArea</span><span class="p">());</span>
+</pre></div>
+</div>
+<img width="550" alt="image" src="https://github.com/user-attachments/assets/b21682ae-e183-40ad-8871-ceb0f324f1d9" />
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">Circle</span></code> 생성자 함수가 생성한 모든 인스턴스는 자신의 프로토타입,<br />
+즉 상위(부모) 객체 역할을 하는 <code class="docutils literal notranslate"><span class="pre">Circle.prototype</span></code>의 모든 프로퍼티와 메소드를 상속받습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">getArea</span></code> 메소드는 단 하나만 생성되어 프로토타입인 <code class="docutils literal notranslate"><span class="pre">Circle.prototype</span></code>의 메소드로 할당되어 있습니다.<br />
+따라서 <code class="docutils literal notranslate"><span class="pre">Circle</span></code> 생성자 함수가 생성되는 모든 인스턴스는 <code class="docutils literal notranslate"><span class="pre">getArea</span></code> 메소드를 상속받아 사용할 수 있습니다.</p>
+<p>즉, 자신의 상태를 나타내는 <code class="docutils literal notranslate"><span class="pre">radius</span></code> 프로퍼티만 개별적으로 소유하고 내용이 동일한 메소드는 상속을 통해 공유하여 사용하는 것입니다.<br />
+상속은 코드의 재사용이란 관점에서 매우 유용합니다.<br />
+<font color='orange'>메소드를 프로토타입에 미리 구현해두면 모든 인스턴스는 별도의 구현 없이 상위(부모) 객체인 프로토토압의 자산을 공유하여 사용할 수 있습니다. </font></p>
+<p><br><br></p>
+<section id="id3">
+<h2>프로토타입 객체<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>프로토타입 객체(또는 줄여서 프로토타입)란 객체지향 프로그래밍의 근간을 이루는 객체 간 상속 을 구현하기 위해 사용됩니다.<br />
+프로토타입은 어떤 객체의 상위(부모) 객체의 역할을 하는 객체로서 다른 객체에 공유 프로퍼티(메서드 포함)를 제공합니다.<br />
+프로토타입을 상속받은 하위(자식) 객체는 상위 객체의 프로퍼티를 자신의 프로퍼티처럼 자유롭게 사용할 수 있습니다.</p>
+<p>모든 객체는 [[Prototype]] 이라는 내부 슬롯을 가지며, [[Prototype]]에 저장되는 프로토타입은 객체 생성 방식에 의해 결정됩니다.<br />
+즉, 객체가 생성될 때 객체 생성 방식에 따라 프로토타입이 결정되고 [[Prototype]]에 저장됩니다.</p>
+<blockquote>
+<div><p>예를 들어, 객체 리터럴에 의해 생성된 객체의 프로토타입은 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>이고<br />
+생성자 함수에 의해 생 성된 객체의 프로토타입은 생성자 함수의 prototype 프로퍼티에 바인딩되어 있는 객체다.</p>
+</div></blockquote>
+<p>모든 객체는 하나의 프로토타입을 갖습니다. 그리고 모든 프로토타입은 생성자 함수와 연결되어 있습니다.<br />
+<font color='orange'>즉, 객체와 프로토타입과 생성자 함수는 다음 그림과 같이 서로 연결되어 있습니다.</font></p>
+<p><br><br></p>
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/61ffaf59-7522-4244-bf04-87c0edcca57f" />
+<p>[[Prototype]] 내부 슬롯에는 직접 접근할 수 없지만, 위와 같이 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 통해<br />
+자신의 프로토타입, 즉 자신의 [[Prototype]] 내부 슬롯이 가리키는 프로토타입에 간접적으로 접근할 수 있습니다.</p>
+<p>그리고 프로토타입은 자신의 constructor 프로퍼티를 통해 생성자 함수에 접근할 수 있고,<br />
+생성자 함수는 자신의 prototype 프로퍼티를 통해 프로토타입에 접근할 수 있습니다.</p>
+<p><br><br></p>
+<section id="proto">
+<h3><strong>proto</strong> 접근자 프로퍼티<a class="headerlink" href="#proto" title="Link to this heading">#</a></h3>
+<p>모든 객체는 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 통해 자신의 프로토타입,<br />
+즉 [[Prototype]] 내부 슬롯에 <strong>간접적으로 접근할 수 있습니다.</strong></p>
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/bb50a2ca-1454-4d59-bb06-ef967dcad068" />
+<p><br><br></p>
+<p><font color='tomato'><code class="docutils literal notranslate"><span class="pre">__proto__</span></code>는 접근자 프로퍼티이다.</font></p>
+<p>16.1절 “내부 슬롯과 내부 메서드”에서 살펴보았듯이 내부 슬롯은 프로퍼티가 아닙니다.<br />
+따라서 자바스크립트는 원칙적으로 내부 슬롯과 내부 메서드에 직접적으로 접근하거나 호출할 수 있는 방법을 제공하지 않습니다.</p>
+<p>단, 일부 내부 슬롯과 내부 메서드에 한하여 간접적으로 접근할 수 있는 수단을 제공합니다.</p>
+<p>[[Prototype]] 내부 슬롯이 <em>proto</em>_ 접근자 프로퍼티를 통해 간접적으로 [[Prototype]] 내부 슬롯의 값, 즉 프로토타입에 접근할 수 있습니다.</p>
+<p>16.3.2절 “접근자 프로퍼티”에서 살펴본 것처럼<br />
+접근자 프로퍼티는 자체적으로는 값([[Value]] 프로퍼티 어트리뷰트)을 갖지 않고<br />
+다른 데이터 프로퍼티의 값을 읽거나 저장할 때 사용하는 접근자 함수(accessor function),<br />
+즉 [[Get]], [[Set]] 프로퍼티 어트리뷰트로 구성된 프로퍼티입니다.</p>
+<br>
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/76852c15-7d07-4078-8319-00ff322a8e14" />
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">};</span>
+
+<span class="c1">// getter 함수인 get __proto__ 가 호출되어 obj 객체의 프로토타입을 취득</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">;</span>
+
+<span class="c1">// setter 함수인 set __proto__ 가 호출되어 obj 객체의 프로토타입을 교체</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parent</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span><span class="w">     </span><span class="c1">// 1</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p><font color='tomato'><code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티는 상속을 통해 사용된다.</font></p>
+<p><code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티는 객체가 직접 소유하는 프로퍼티가 아니라 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>의 프로퍼티입니다.<br />
+모든 객체는 상속을 통해 <code class="docutils literal notranslate"><span class="pre">Object.prototype.__proto__</span></code> 접근자 프로퍼티를 사용할 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="w"> </span><span class="p">};</span>
+
+<span class="c1">// person 객체는 __proto__ 프로퍼티를 소유하지 않습니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;__proto__&#39;</span><span class="p">));</span><span class="w">        </span><span class="c1">// false</span>
+
+<span class="c1">// __proto__ 프로퍼티는 모든 객체의 프로토타입 객체인 Object.prototype의 접근자 프로퍼티입니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;__proto__&#39;</span><span class="p">));</span>
+<span class="c1">// {get: f, set: f, enumerable: false, configurable: true}</span>
+
+<span class="c1">// 모든 객체는 Object.prototype의 접근자 프로퍼티 __proto__를 상속받아 사용할 수 있습니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">({}.</span><span class="nx">__proto__</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">     </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<br>
+<blockquote>
+<div><p>※ <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code><br />
+모든 객체는 프로토타입의 계층 구조인 프로토타입 체인에 묶여 있다.<br />
+자바스크립트 엔진은 객체의 프로퍼티(메서드 포함)에 접근하려고 할 때<br />
+해당 객체에 접근하려는 프로퍼티가 없다면 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티가 가리키는 참조를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다.</p>
+<p>프로토타입 체인의 종점, 즉 프로토타입 체인의 최상위 객체는 <code class="docutils literal notranslate"><span class="pre">0bject.prototype</span></code>이며,<br />
+이 객체의 프로퍼티와 메서드는 모든 객체에 상속된다.</p>
+</div></blockquote>
+<p><br><br></p>
+<p><font color='tomato'><code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 통해 프로토타입에 접근하는 이유</font><br />
+[[Prototype]] 내부 슬롯의 값, 즉 프로토타입에 접근하기 위해 접근자 프로퍼티를 사용하는 이유는<br />
+상호 참조에 의해 프로토타입 체인이 생성되는 것을 방지하기 위해서입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="c1">// child의 프로토타입을 parent로 설정</span>
+<span class="nx">child</span><span class="p">.</span><span class="nx">__proto__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">parent</span><span class="p">;</span>
+
+<span class="c1">// parent의 프로토타입을 child로 설정</span>
+<span class="nx">parent</span><span class="p">.</span><span class="nx">__proto__</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">child</span><span class="p">;</span><span class="w">       </span><span class="c1">// TypeError: Cyclic __proto__ value</span>
+</pre></div>
+</div>
+<br>
+<p>위 예제에서는 <code class="docutils literal notranslate"><span class="pre">parent</span></code> 객체를 <code class="docutils literal notranslate"><span class="pre">child</span></code> 객체의 프로토타입으로 설정한 후,<br />
+<code class="docutils literal notranslate"><span class="pre">child</span></code> 객체를 <code class="docutils literal notranslate"><span class="pre">parent</span></code> 객체의 프로토타입으로 설정했습니다.</p>
+<p>이러한 코드가 에러 업싱 정상적으로 처리되면<br />
+서로가 자신의 프로토타입이 되는 비정상적인 프로토타입 체인이 만들어지기 때문에<br />
+<code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티는 에러를 발생시킵니다.</p>
+<img width="250" alt="image" src="https://github.com/user-attachments/assets/418e3e23-f40f-4329-a10a-4ff71e0b6fd4" />
+<blockquote>
+<div><p>서로가 자신의 프로토타입이 되는 비정상적인 프로토타입 체인</p>
+</div></blockquote>
+<p><br><br></p>
+<p>이런 문제 때문에 프로토타입 체인은 단방향 Linked List로 구현되어야 합니다.
+따라서 아무런 체크 없이 무조건적으로 프로토타입을 교체하는 로직이 발생하지 않도록<br />
+<code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 통해 프로토타입에 접근하고 교체하도록 구현되어 있습니다.</p>
+<p><br><br></p>
+<p><font color='tomato'><code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 코드 내에서 직접 사용하는 것은 권장하지 않는다.</font><br />
+코드 내에서 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 직접 사용하는 것은 권장하지 않습니다.<br />
+모든 객체가 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 사용할 수 있는 것은 아니기 때문입니다.</p>
+<p>직접 상속을 통해 아래와 같이 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>을 상속받지 않는 객체를 생성할 수도 있기 때문에<br />
+<code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 사용할 수 없는 경우가 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// obj는 프로토타입 체인의 종점이다. 따라서 Object.__proto__를 상속받을 수 없습니다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="c1">// obj는 Object.__proto__를 상속받을 수 없습니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span><span class="w">     </span><span class="c1">// undefined</span>
+
+<span class="c1">// 따라서 __proto__보다 Object.getPrototypeOf 메소드를 사용하는 것이 바람직하다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">));</span><span class="w">        </span><span class="c1">// null</span>
+</pre></div>
+</div>
+<p>따라서 프로토타입의 참조를 얻고 싶은 경우에는, <code class="docutils literal notranslate"><span class="pre">Obejct.getPrototypeOf</span></code> 메소드를 사용하고,<br />
+프로토타입을 교체하고 싶은 경우에는 <code class="docutils literal notranslate"><span class="pre">Object.setPrototypeO</span> <span class="pre">ㅈf</span></code> 메소드를 사용할 것을 권장합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">};</span>
+
+<span class="c1">// obj 객체의 프로토타입을 취득</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span><span class="w">     </span><span class="c1">// obj.__proto__;</span>
+
+<span class="c1">// obj 객체의 프로토타입을 교체</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="w"> </span><span class="nx">parent</span><span class="p">);</span><span class="w">     </span><span class="c1">// obj.__proto__ = parent;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span><span class="w">     </span><span class="c1">// 1</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="prototype">
+<h2>함수 객체의 prototype 프로퍼티<a class="headerlink" href="#prototype" title="Link to this heading">#</a></h2>
+<p>함수 객체가 소유한 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 생성자 함수가 생성할 인스턴스의 프로토타입을 가리킵니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 함수 객체는 prototype 프로퍼티를 소유한다.</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{}).</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">);</span><span class="w">    </span><span class="c1">// true</span>
+
+<span class="c1">// 일반 객체는 prototype 프로퍼티를 소유하지 않는다.</span>
+<span class="p">({}).</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">);</span><span class="w">   </span><span class="c1">// false</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 생성자 함수가 생성할 객체(인스턴스)의 프로토타입을 가리킵니다.</p>
+<p>따라서 생성자 함수로서 호출할 수 없는 함수, 즉 non-constructor인 화살표 함수와 ES6 메소드 축약 표현으로 정의한 메소드는<br />
+<code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티를 소유하지 않으며 프로토타입도 생성하지 않습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 화살표 함수는 non-constructor 이다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// non-constructor는 prototype 프로퍼티를 소유하지 않는다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">));</span><span class="w">    </span><span class="c1">// false</span>
+
+<span class="c1">// non-constructor는 프로토타입을 생성하지 않는다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+
+<span class="c1">// ES6의 메소드 축약 표현으로 정의한 메소드는 non-constructor다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="c1">// non-constructor는 prototype 프로퍼티를 소유하지 않는다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">));</span><span class="w">   </span><span class="c1">// false</span>
+
+<span class="c1">// non-constructor는 프로토타입을 생성하지 않는다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">     </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<br>
+<p>모든 객체가 가지고 있는 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티와<br />
+함수 객체만이 가지고 있는 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 결국 동일한 프로토타입을 가리킵니다.<br />
+하지만 이들 프로퍼티를 사용하는 주체가 다릅니다.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>구분</p></th>
+<th class="head"><p>소유</p></th>
+<th class="head"><p>값</p></th>
+<th class="head"><p>사용 주체</p></th>
+<th class="head"><p>사용 목적</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티</p></td>
+<td><p>모든 객체</p></td>
+<td><p>프로토타입의 참조</p></td>
+<td><p>모든 객체</p></td>
+<td><p>객체가 자신의 프로토타입에 접근 또는 교체하기 위해 사용</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티</p></td>
+<td><p>constructor</p></td>
+<td><p>프로토타입의 참조</p></td>
+<td><p>생성자 함수</p></td>
+<td><p>생성자 함수가 자신이 생성할 객체(인스턴스)의 프로토타입을 할당하기 위해 사용</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br><br></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+
+<span class="c1">// Person.prototype와 me.__proto__는 동일한 프로토타입을 가리킨다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">me</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span><span class="w">     </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<br>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/2170f869-879a-4b14-8229-87b0132a8484" />
+<br>
+<p><font color='tomato'>모든 인스턴스는 결국 같은 prototype을 사용한다.</font></p>
+<p><br><br></p>
+</section>
+<section id="constructor">
+<h2>프로토타입의 constructor 프로퍼티와 생성자 함수<a class="headerlink" href="#constructor" title="Link to this heading">#</a></h2>
+<p>모든 프로토타입은 <code class="docutils literal notranslate"><span class="pre">constructor</span></code> 프로퍼티를 갖습니다.<br />
+이 <code class="docutils literal notranslate"><span class="pre">constructor</span></code> 프로퍼티는 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티로 자신을 참조하고 있는 생성자 함수를 가리킵니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+
+<span class="c1">// me 객체의 생성자 함수는 Person</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="kr">constructor</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">Person</span><span class="p">);</span><span class="w">     </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/de4a6966-f0af-4dce-913a-6d310d5e02c5" />
+<p><br><br></p>
+</section>
+</section>
+<section id="id4">
+<h1>리터럴 표기법에 의해 생성된 객체의 생성자 함수와 프로토타입<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<p>생성자 함수에 의해 생성된 인스턴스는 프로토타입의 constructor 프로퍼티에 의해 생성자 함수와 연결됩니다.</p>
+<blockquote>
+<div><p>constructor 프로퍼티가 가리키는 생성자 함수는 인스턴스를 생성한 생성자 함수다.</p>
+</div></blockquote>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// obj 객체를 생성한 생성자 함수는 Object이다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Object</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="kr">constructor</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">Object</span><span class="p">);</span><span class="w">        </span><span class="c1">// true</span>
+
+<span class="c1">// add 함수 객체를 생성한 생성자 함수는 Function이다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Function</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;return a + b&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">.</span><span class="kr">constructor</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">Function</span><span class="p">);</span><span class="w">  </span><span class="c1">// true</span>
+
+<span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// me 객체를 생성한 생성자 함수는 Person이다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="kr">constructor</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">Person</span><span class="p">);</span><span class="w">     </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<br>
+<p>하지만 리터럴 표기법에 의한 객체 생성 방식과 같이 명시적으로 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 생성자 함수를 호출하여<br />
+인스턴스를 생성하지 않는 객체 생성 방식도 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 객체 리터럴</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="c1">// 함수 리터럴</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 배열 리터럴</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
+
+<span class="c1">// 정규 표현식 리터럴</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">regexp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/is/ig</span><span class="p">;</span>
+</pre></div>
+</div>
+<br>
+<p>리터럴 표기법에 의해 생성된 객체도 프로토타입이 존재합니다.</p>
+<p><font color='orange'>하지만 리터럴 표기법에 의해 생성된 객체의 경우<br />
+프로토타입의 constructor 프로퍼티가 가리키는 생성자 함수가 반드시 객체를 생성한 생성자 함수라고 단정할 수는 없습니다.</font></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// obj 객체는 Object 생성자 함수로 생성한 객체가 아니라 객체 리터럴로 생성했다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="c1">// 하지만 obj 객체의 생성자 함수는 Object 생성자 함수이다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="kr">constructor</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">Obejct</span><span class="p">);</span><span class="w">    </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p>위 예제의 obj 객체는 Object 생성자 함수로 생성한 객체가 아니라 객체 리터럴에 의해 생성된 객체입니다.<br />
+하지만 obj 객체는 Object 생성자 함수와 constructor 프로퍼티로 연결되어 있습니다.</p>
+<p>그렇다면 객체 리터럴에 의해 생성된 객체는 사실 Object 생성자 함수로 생성되는 것은 아닐까?<br />
+ECMAScript 사양을 살펴봅시다.</p>
+<blockquote>
+<div><p>Object 생성자 함수에 인수를 전달하지 않거나 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">null</span></code>을 인수로 전달하면서 호출하면<br />
+내부적으로는 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>를 호출하여 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>을 프로토타입으로 갖는 빈 객체를 생성합니다.</p>
+</div></blockquote>
+<p>이는 <font color='tomato'>”빈 객체를 생성할 때, 전역 prototype (<code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>)을 가지는 객체가 생성된다.”</font>와 같습니다.</p>
+<p><br><br></p>
+<p>※ 리터럴 표기법에 의해 생성된 객체의 생성자 함수와 프로토타입</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>리터럴 표기법</p></th>
+<th class="head"><p>생성자 함수</p></th>
+<th class="head"><p>프로토타입</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>객체 리터럴</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Object</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>함수 리터럴</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Function</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Function.prototype</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>배열 리터럴</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Array</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Array.prototype</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>정규표현식 리터럴</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RegExp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ExgExp.prototype</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br><br></p>
+</section>
+<section id="id5">
+<h1>프로토타입의 생성 시점<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
+<p>객체는 리터럴 표기법 또는 생성자 함수에 의해 생성되므로 결국 모든 객체는 생성자 함수와 연결되어 있습니다.</p>
+<p><font color='orange'>프로토타입은 생성자 함수가 생성되는 시점에 더불어 생성됩니다.</font><br />
+프로토타입과 생성자 함수는 단독으로 존재하지 않고 언제나 쌍으로 존재하기 때문입니다.</p>
+<p>생성자 함수는 사용자가 직접 정의한 사용자 정의 생성자 함수와 자바스크립트가 기본 제공하는 빌트인 생성자 함수로 구분할 수 있습니다.<br />
+사용자 정의 생성자 함수와 빌트인 생성자 함수를 구분하여 프로토타입 생성 시점에 대해 살펴볼 것입니다.</p>
+<p><br><br></p>
+<section id="id6">
+<h2>사용자 정의 생성자 함수와 프로토타입 생성 시점<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>내부 메소드 <code class="docutils literal notranslate"><span class="pre">[[Construct]]</span></code>를 갖는 함수 객체,<br />
+즉 화살표 함수나 ES6의 메소드 축약 표현으로 정의하지 않고<br />
+일반 함수(함수 선언문, 함수 표현식)로 정의한 함수 객체는 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 생성자 함수로서 호출할 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 함수 정의(constructor)가 평가되어 함수 객체를 생성하는 시점에 프로토타입도 더불어 생성됩니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">      </span><span class="c1">// {constructor: f}</span>
+
+<span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>생성자 함수로서 호출할 수 없는 함수인 <code class="docutils literal notranslate"><span class="pre">non-constructor</span></code>는 프로토타입이 생성되지 않습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 화살표 함수는 non-constructor 입니다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// non-constructor는 프로토타입이 생성되지 않습니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">      </span><span class="c1">// undefined</span>
+
+
+<span class="c1">// 메소드 축약 표현 객체 리터럴은 non-constructor 입니다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">setName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// non-constructor는 프로토타입이 생성되지 않습니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">setName</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">      </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<br>
+<p>“12장 함수 생성 시점과 함수 호이스팅”에서 보았듯이,<br />
+함수 선언문은 런타임 이전에 자바스크립트 엔진에 의해 먼저 실행됩니다.</p>
+<p>따라서 함수 선언문으로 정의된 <code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수는 어떤 코드보다 먼저 평가되어 함수 객체가 됩니다.<br />
+이때 프로토타입도 더불어 생성됩니다.</p>
+<p>생성된 프로토타입은 <code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수의 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티에 바인딩됩니다.</p>
+<img width="350" alt="image" src="https://github.com/user-attachments/assets/9c4bd199-9585-4c6e-8f03-6b80df79e628" />
+<p>생성된 프로토타입은 오직 <code class="docutils literal notranslate"><span class="pre">constructor</span></code> 프로퍼티만 갖는 객체로 보입니다.<br />
+<font color='orange'>프로토타입도 객체이고, 모든 객체는 프로토타입을 가지므로 프로토타입도 자신의 프로토타입을 가집니다.</font></p>
+<blockquote>
+<div><p>생성된 프로토타입의 프로토타입은 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code> 입니다.</p>
+</div></blockquote>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/ddc9c3d7-0098-4c79-afe2-09a4aae74067" />
+<br>
+<p>정리하자면, <strong>사용자 정의 생성자 함수는 자신이 평가되어 함수 객체로 생성되는 시점에 프로토타입도 더불어 생성되며,</strong><br />
+<strong>생성된 프로토타입의 프로토타입은 언제나 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>입니다.</strong></p>
+<p><br><br></p>
+</section>
+<section id="id7">
+<h2>빌트인 생성자 함수와 프로토타입 생성 시점<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Object</span></code>, <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Number</span></code>, <code class="docutils literal notranslate"><span class="pre">Function</span></code>, <code class="docutils literal notranslate"><span class="pre">Array</span></code>, <code class="docutils literal notranslate"><span class="pre">RegExp</span></code>, <code class="docutils literal notranslate"><span class="pre">Date</span></code>, <code class="docutils literal notranslate"><span class="pre">Promise</span></code> 등과 같은 빌트인 생성자 함수도 일반 함수와 마찬가지로 빌트인 생성자 함수가 생성되는 시점에 프로토타입이 생성됩니다.</p>
+<p><font color='orange'>모든 빌트인 생성자 함수는 전역 객체가 생성되는 시점에 생성됩니다.</font></p>
+<p>생성된 프로토타입은 빌트인 생성자 함수의 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티에 바인딩됩니다.</p>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/bcedbf64-7a03-4aaa-8738-ceb0cf270acf" />
+<br>
+<p>이처럼 객체가 생성되기 이전에 생성자 함수와 프로토타입은 이미 객체화되어 존재합니다.<br />
+이후 생성자 함수 또는 리터럴 표기법으로 객체를 생성하면<br />
+프로토타입은 생성된 객체의 <code class="docutils literal notranslate"><span class="pre">[[Prototype]]</span></code> 내부 슬롯에 할당됩니다. 이후 생성된 객체는 프로토타입을 상속받습니다.</p>
+<p><br><br><br></p>
+</section>
+</section>
+<section id="id8">
+<h1>객체 생성 방식과 프로토타입의 결정<a class="headerlink" href="#id8" title="Link to this heading">#</a></h1>
+<p>객체는 아래와 같이 다양한 생성 방법이 있습니다.</p>
+<ul class="simple">
+<li><p>객체 리터럴</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Object</span></code> 생성자 함수</p></li>
+<li><p>생성자 함수</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Object.create</span></code> 메소드</p></li>
+<li><p>클래스(ES6)</p></li>
+</ul>
+<p><br><br></p>
+<p>이처럼 다양한 방식으로 생성된 모든 객체는 각 방식마다 세부적인 객체 생성 방식의 차이는 있으나<br />
+추상 연산 <code class="docutils literal notranslate"><span class="pre">ordinaryobjectCreate</span></code>에 의해 생성된다는 공통점이 있습니다.</p>
+<p>이는 즉, 프로토타입은 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>에 전달되는 인수에 의해 결정됩니다.<br />
+이 인수는 객체가 생성되는 시점에 객체 생성 방식에 의해 결정됩니다.</p>
+<p><br><br></p>
+<section id="id9">
+<h2>객체 리터럴에 의해 생성된 객체의 프로토타입<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>자바스크립트 엔진은 <font color='orange'>리터럴을 평가하여 객체를 생성할 때 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>를 호출합니다.</font></p>
+<p>이때 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>에 전달되는 프로토타입은 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>입니다.<br />
+즉, 객체 리터럴에 의해 생성되는 객체의 프로토타입은 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>위 객체 리터럴이 평가되면 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>에 의해<br />
+다음과 같이 <code class="docutils literal notranslate"><span class="pre">Object</span></code> 생성자 함수와 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>과 생성된 객체 사이에 연결이 만들어집니다.</p>
+<img width="450" alt="image" src="https://github.com/user-attachments/assets/8ddb387b-b878-4c44-91ae-ef769509e6e3" />
+<br>
+<p>이와 같이 객체 리터럴에 의해 생성된 <code class="docutils literal notranslate"><span class="pre">obj</span></code> 객체는 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>을 프로토타입으로 갖게 되며,<br />
+<code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>을 상속받습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">obj</span></code> 객체는 <code class="docutils literal notranslate"><span class="pre">constructor</span></code> 프로퍼티와 <code class="docutils literal notranslate"><span class="pre">hasOwnProperty</span></code> 메소드 등을 소유하지는 않지만<br />
+자신의 프로토타입인 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>의 <code class="docutils literal notranslate"><span class="pre">constructor</span></code> 프로퍼티와 <code class="docutils literal notranslate"><span class="pre">hasOwnProperty</span></code> 메소드를<br />
+자신의 자산인 것처럼 사용 가능합니다.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">obj</span></code> 객체가 자신의 프로토타입인 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code> 객체를 상속받았기 때문이다.</p>
+</div></blockquote>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
+<span class="p">};</span>
+
+
+<span class="c1">// 객체 리터럴에 의해 생성된 obj 객체는 Object.prototype을 상속받습니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="kr">constructor</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">Object</span><span class="p">);</span><span class="w">    </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">));</span><span class="w">       </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="object">
+<h2>Object 생성자 함수에 의해 생성된 객체의 프로토타입<a class="headerlink" href="#object" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Object</span></code> 생성자 함수를 인수 없이 호출하면 빈 객체가 생성됩니다.<br />
+<code class="docutils literal notranslate"><span class="pre">Object</span></code> 생성자 함수를 호출하면 객체 리터럴과 마찬가지로 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>가 호출됩니다.</p>
+<p>이때 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>에 전달되는 프로토타입은 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>입니다.
+즉, <code class="docutils literal notranslate"><span class="pre">Object</span></code> 생성자 함수에 의해 생성되는 객체의 프로토타입은 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Object</span><span class="p">();</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p>위 코드가 실행되면 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>에 의해<br />
+아래와 같이 <code class="docutils literal notranslate"><span class="pre">Object</span></code> 생성자 함수와 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>과 생성된 객체 사이에 연결이 만들어집니다.</p>
+<blockquote>
+<div><p>객체 리터럴에 의해 생성된 객체와 동일한 구조를 갖게 된다.</p>
+</div></blockquote>
+<img width="450" alt="image" src="https://github.com/user-attachments/assets/1bae91c4-6ddd-4b06-a2a5-d2772d38e735" />
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Object</span><span class="p">();</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">// Object 생성자 함수에 의해 생성된 obj 객체는 Object.prototype을 상속받습니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="kr">constructor</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">Object</span><span class="p">);</span><span class="w">        </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">));</span><span class="w">           </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id10">
+<h2>생성자 함수에 의해 생성된 객체의 프로토타입<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 생성자 함수를 호출하여 인스턴스를 생성하면<br />
+다른 객체 생성 방식과 마찬가지로 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>가 호출됩니다.</p>
+<p>즉, 생성자 함수에 의해 생성되는 객체의 프로토타입은<br />
+생성자 함수의 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티에 바인딩되어 있는 객체입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위 코드가 실행되면 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>에 의해<br />
+다음과 같이 생성자 함수와 생성자 함수의 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티에 바인딩되어 있는 객체와 생성된 객체 사이에 연결이 만들어집니다.</p>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/dab4aca2-1dcd-419c-a2af-ef88f453bd62" />
+<br>
+<p>표준 빌트인 객체인 <code class="docutils literal notranslate"><span class="pre">Object</span></code> 생성자 함수와 더불어 생성된 프로토타입 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>은<br />
+다양한 빌트인 메소드(<code class="docutils literal notranslate"><span class="pre">hasOwnProperty</span></code>, <code class="docutils literal notranslate"><span class="pre">propertyIsEnumerable</span></code> 등)를 가지고 있습니다.</p>
+<p>하지만 사용자 정의 생성자 함수와 더불어 생성된 프로토타입 <code class="docutils literal notranslate"><span class="pre">Person.prototype</span></code>의 프로퍼티는 <code class="docutils literal notranslate"><span class="pre">constructor</span></code> 뿐입니다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 프로토타입 메소드</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHello</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi! my name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">you</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Kim&#39;</span><span class="p">);</span>
+
+<span class="nx">me</span><span class="p">.</span><span class="nx">sayHello</span><span class="p">();</span>
+<span class="nx">you</span><span class="p">.</span><span class="nx">sayHello</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수를 통해 생성된 모든 객체는 프로토타입에 추가된 <code class="docutils literal notranslate"><span class="pre">sayHello</span></code> 메소드를 상속받아<br />
+자신의 메소드처럼 사용할 수 있습니다.</p>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/047b165f-d89d-4f48-a52e-ba53b0191c85" />
+<p><br><br></p>
+<p>또한 자바스크립트는 프로토타입 체인을 통해 빌트인 메소드를 사용할 수 있도록 지원합니다.</p>
+<p><br><br></p>
+</section>
+</section>
+<section id="id11">
+<h1>프로토타입 체인<a class="headerlink" href="#id11" title="Link to this heading">#</a></h1>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 프로토타입 메소드</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHello</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi! my name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+
+<span class="c1">// hasOwnPeropery는 Object.prototype의 메소드입니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">));</span><span class="w">     </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수에 의해 생성된 me 객체는 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>의 메서드인 hasownProperty를 호출할 수 있습니다.<br />
+이것은 me 객체가 <code class="docutils literal notranslate"><span class="pre">Person.prototype</span></code>뿐만 아니라 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>도 상속받았다는 것을 의미합니다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">me</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span><span class="w">     </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Person.prototype</span></code>의 프로토타입은 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>입니다.<br />
+프로토타입의 프로토타입은 언제나 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>인 것입니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span><span class="w">       </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/96c2ba78-f20b-401c-b52b-b545502a6d0a" />
+<br>
+<p><font color='orange'>자바스크립트는 객체의 프로퍼티(메소드 포함)에 접근하려 할 때<br />
+해당 객체에 접근하려는 프로퍼티가 없다면 <code class="docutils literal notranslate"><span class="pre">[[Prototype]]</span></code> 내부 슬롯의 참조를 따라<br />
+자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색하는데, 이것을 프로토타입 체인이라고 합니다.</font></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// me 객체는 프로토타입 체인을 따라 hasOwnProperty 메소드를 검색하여 사용합니다.</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><br><br><br></p>
+</section>
+<section id="id12">
+<h1>오버라이딩과 프로퍼티 섀도잉<a class="headerlink" href="#id12" title="Link to this heading">#</a></h1>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 생성자 함수</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 프로토타입 메소드</span>
+<span class="w">    </span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHello</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi, My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// 생성자 함수를 반환</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">Person</span><span class="p">;</span>
+<span class="p">}());</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+
+<span class="c1">// 인스턴스 메소드</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">sayHello</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hey! My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// 인스턴스 메소드가 호출됩니다.</span>
+<span class="c1">// 프로토타입 메소드는 인스턴스 메소드에 의해 오버라이딩 됩니다.</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">sayHello</span><span class="p">();</span><span class="w">      </span><span class="c1">// Hey! My name is Lee</span>
+</pre></div>
+</div>
+<p>생성자 함수로 객체(인스턴스)를 생성한 다음, 인스턴스에 동일 이름의 메소드를 새로 선언하면<br />
+새로이 생성한 메소드로 <strong>오버라이딩</strong> 됩니다.</p>
+<p>그리고 이 현상에 의해 가려진 원래의 메소드가 사라지는 현상을 <strong>프로퍼티 섀도잉</strong>이라 부릅니다.</p>
+<p><br><br></p>
+</section>
+<section id="id13">
+<h1>직접 상속<a class="headerlink" href="#id13" title="Link to this heading">#</a></h1>
+<section id="object-create">
+<h2>Object.create에 의한 직접 상속<a class="headerlink" href="#object-create" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Object.create</span></code> 메서드는 명시적으로 프로토타입을 지정하여 새로운 객체를 생성합니다.<br />
+<code class="docutils literal notranslate"><span class="pre">Object.create</span></code> 메서드도 다른 객체 생성 방식과 마찬가지로 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>를 호출합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Object.create</span></code> 메서드의 <strong>첫 번째 매개변수에는 생성할 객체의 프로토타입으로 지정할 객체를 전달합니다.</strong><br />
+<strong>두 번째 매개변수에는 생성할 객체의 프로퍼티 키와 프로퍼티 디스크립터 객체로 이뤄진 객체를 전달합니다.</strong></p>
+<p>이 객체의 형식은 <code class="docutils literal notranslate"><span class="pre">Object.defineProperties</span></code> 메서드의 두 번째 인수와 동일합니다.<br />
+두 번째 인수는 옵션이므로 생략 가능합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 지정된 프로토타입 및 프로퍼티를 갖는 새로운 객체를 생성하여 반환</span>
+<span class="cm"> * @param {Object} prototype - 생성할 객체의 프로토타입으로 지정할 객체</span>
+<span class="cm"> * @param {Object} [propertiesObject] - 생성할 객체의 프로퍼티를 갖는 객체</span>
+<span class="cm"> * @returns {Object} 지정된 프로토타입 및 프로퍼티를 갖는 새로운 객체</span>
+<span class="cm"> */</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">prototype</span><span class="p">[,</span><span class="w"> </span><span class="nx">propertiesObject</span><span class="p">])</span>
+</pre></div>
+</div>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 프로토타입이 null인 객체를 생성합니다. 생성된 객체는 프로토타입 체인 종점에 위치합니다.</span>
+<span class="c1">// obj → null</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span><span class="w">   </span><span class="c1">// true</span>
+
+<span class="c1">// Object.prototype을 상속받지 못합니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span><span class="w">    </span><span class="c1">// TypeError: obj.toString is not a function</span>
+
+<span class="c1">// obj → Object.prototype → null</span>
+<span class="c1">// obj = {};와 동일합니다.</span>
+<span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">   </span><span class="c1">// true</span>
+
+<span class="c1">// obj → Object.prototype → null</span>
+<span class="c1">// obj = { x: 1 };와 동일합니다.</span>
+<span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">writable</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">enumerable</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">configurable</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span><span class="w">     </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">   </span><span class="c1">// true</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">myProto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">};</span>
+<span class="c1">// 임의의 객체를 직접 상속받는다.</span>
+<span class="c1">// obj → myProto → Object.prototype → null</span>
+<span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">myProto</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span><span class="w">     </span><span class="c1">// 10</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">myProto</span><span class="p">);</span><span class="w">    </span><span class="c1">// true</span>
+
+<span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// obj → Person.prototype → Object.prototype → null</span>
+<span class="c1">// obj = new Person(&#39;Lee&#39;)와 동일합니다.</span>
+<span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">   </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p>위와 같이 <code class="docutils literal notranslate"><span class="pre">Object.create</span></code> 메소드는 첫 번째 매개변수에 전달한 객체의 프로토타입 체인에 속하는 객체를 생성합니다.<br />
+즉, 객체를 생서앟면서 직접적으로 상속을 구현하는 것입니다.</p>
+<p>장점은 아래와 같습니다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자 없이도 객체 생성이 가능합니다.</p></li>
+<li><p>프로토타입을 지정하면서 객체를 생성할 수 있습니다.</p></li>
+<li><p>객체 리터럴에 의해 생성된 객체도 상속받을 수 있습니다.</p></li>
+</ul>
+<br>
+<p>단 빌트인 메소드를 객체가 직접 호출하는 것은 권장하지 않습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 프로토타입이 null인 객체, 즉 프로토타입 체인의 종점에 위치하는 객체를 생성합니다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span><span class="w">   </span><span class="c1">// true</span>
+
+<span class="c1">// obj는 Object.prototype의 빌트인 메소드를 사용할 수 없다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">));</span><span class="w">   </span><span class="c1">// TypeError: obj.hasOwnProperty is not a function</span>
+</pre></div>
+</div>
+<br>
+<p>따라서 Object.prototype의 빌트인 메소드는 아래와 같이 간접적으로 호출하는 것이 좋습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 프로토타입이 null인 객체를 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">// Object.prototype의 빌트인 메소드는 객체로 직접 호출하지 않습니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">));</span><span class="w">    </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id14">
+<h2>객체 리터럴 내부에서 __proto__에 의한 직접 상속<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Object.create</span></code> 메소드에 의한 직접 상속은 여러 장점들이 있지만,<br />
+<strong>두 번째 인자로 프로퍼티를 정의하는 것이 번거롭습니다.</strong></p>
+<p>객체를 일단 생성한 다음에 프로퍼티를 추가하는 방법도 있지만, 이 또한 깔끔하지는 않습니다.
+ES6에서는 객체 리터럴 내부에서 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 사용하여 직접 상속을 구현할 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">myProto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">};</span>
+
+<span class="c1">// 객체 리터럴에 의해 객체를 생성하면서 프로토타입을 지정하여 직접 상속받을 수 있습니다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// 객체를 직접 상속받는다.</span>
+<span class="w">    </span><span class="c1">// obj → myProto → Object.prototype → null</span>
+<span class="w">    </span><span class="nx">__proto__</span><span class="o">:</span><span class="w"> </span><span class="nx">myProto</span>
+<span class="p">};</span>
+
+<span class="cm">/* 위 코드는 아래와 동일합니다.</span>
+<span class="cm">const obj = Object.create(myProto, {</span>
+<span class="cm">    y: { value: 20, writable: true, enumerable: true, configurable: true }</span>
+<span class="cm">});</span>
+<span class="cm">*/</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">obj</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span><span class="w">  </span><span class="c1">// 10, 20</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">myProto</span><span class="p">);</span><span class="w">    </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="id15">
+<h1>프로퍼티 존재 확인<a class="headerlink" href="#id15" title="Link to this heading">#</a></h1>
+<section id="in">
+<h2>in 연산자<a class="headerlink" href="#in" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자는 객체 내 특정 프로퍼티가 존재하는지 여부를 확인합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * key: 프로퍼티 키를 나타내는 문자열</span>
+<span class="cm"> * object: 객체로 평가되는 표현식 </span>
+<span class="cm"> */</span>
+<span class="nx">key</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">object</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Seoul&#39;</span>
+<span class="p">};</span>
+
+<span class="c1">// person 객체에 name 프로퍼티가 존재합니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">person</span><span class="p">);</span><span class="w">  </span><span class="c1">// true</span>
+
+<span class="c1">// person 객체에 age 프로퍼티가 존재하지 않습니다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">person</span><span class="p">);</span><span class="w">  </span><span class="c1">// false</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자는 확인 대상 객체의 프로퍼티 뿐만 아니라<br />
+확인 대상 객체가 상속받은 모든 프로토타입의 프로퍼티를 확인하므로 주의가 필요합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;toString&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">person</span><span class="p">);</span><span class="w">  </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">person</span></code> 객체에는 <code class="docutils literal notranslate"><span class="pre">toString</span></code>이라는 프로퍼티가 없지만 아래의 실행결과는 true 입니다.
+이는 <code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자가 <code class="docutils literal notranslate"><span class="pre">person</span></code> 객체가 속한 프로토타입 체인 상 존재하는<br />
+모든 프로토타입에서 <code class="docutils literal notranslate"><span class="pre">toString</span></code> 프로퍼티를 검색했기 때문입니다.</p>
+<p><br><br></p>
+<p><code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자 대신 ES6에서 도입된 <code class="docutils literal notranslate"><span class="pre">Reflict.has</span></code> 메소드를 사용할 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">perosn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Reflict</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;name&#39;</span><span class="p">));</span><span class="w">   </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Reflict</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;toString&#39;</span><span class="p">));</span><span class="w">   </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="object-prototype-hasownproperty">
+<h2>Object.prototype.hasOwnProperty 메소드<a class="headerlink" href="#object-prototype-hasownproperty" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Object.prototype.hasOwnProperty</span></code> 메소드를 사용해도 객체에 특정 프로퍼티가 존재하는지 확인할 수 있습니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">));</span><span class="w">     </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">));</span><span class="w">      </span><span class="c1">// false</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">Object.prototype.hasOwnProperty</span></code> 메소드는 이름에서 알 수 있듯이<br />
+인수로 전달받은 프로퍼티 키가 객체 고유의 프로퍼티 키인 경우에만 <code class="docutils literal notranslate"><span class="pre">true</span></code>를 반환하고<br />
+상속받은 프로토타입의 프로퍼티 키인 경우 <code class="docutils literal notranslate"><span class="pre">false</span></code>를 반환합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;toString&#39;</span><span class="p">));</span><span class="w">     </span><span class="c1">// false</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="id16">
+<h1>프로토타입 열거<a class="headerlink" href="#id16" title="Link to this heading">#</a></h1>
+<section id="for-in">
+<h2>for … in 문<a class="headerlink" href="#for-in" title="Link to this heading">#</a></h2>
+<p>객체의 모든 프로퍼티를 순회하며 열거하려면 <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span></code> 문을 사용하면 됩니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">perosn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Seoul&#39;</span>
+<span class="p">};</span>
+
+<span class="c1">// for ... in 문의 변수 prop에 person 객체의 프로퍼티 키가 할당됩니다.</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">key</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">person</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;: &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">person</span><span class="p">[</span><span class="nx">key</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="object-keys-values-entries">
+<h2>Object.keys/values/entries 메소드<a class="headerlink" href="#object-keys-values-entries" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span></code> 문은 상속받은 프로퍼티 까지 열거합니다.</p>
+<p>객체 자신의 고유 프로퍼티만 열거하기 위해서는<br />
+<strong><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span></code> 보다는 <code class="docutils literal notranslate"><span class="pre">Object.keys/values/entries</span></code> 메소드를 사용하는 것이 권장됩니다.</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Seoul&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">__proto__</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span><span class="w">       </span><span class="c1">// [&quot;name&quot;, &quot;address&quot;]</span>
+</pre></div>
+</div>
+<br>
+<p>ES8에서 도입된 <code class="docutils literal notranslate"><span class="pre">Object.values</span></code> 메소드는 객체 자신의 열거 가능한 프로퍼티 값을 배열로 반환합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span><span class="w">     </span><span class="c1">// [&quot;Lee&quot;, &quot;Seoul&quot;]</span>
+</pre></div>
+</div>
+<br>
+<p>ES8에서 도입된 <code class="docutils literal notranslate"><span class="pre">Object.entries</span></code> 메소드는 객체 자신의 열거 가능한 프로퍼티 키와 값의 쌍의 배열을 배열에 담아 반환합니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span><span class="w">       </span><span class="c1">// [[&quot;name&quot;, &quot;Lee&quot;], [&quot;address&quot;, &quot;Seoul&quot;]]</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">entires</span><span class="p">(</span><span class="nx">person</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(([</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">))</span>
+<span class="cm">/*</span>
+<span class="cm">name Lee</span>
+<span class="cm">address Seoul</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./이용우"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 19 - 프로토타입</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">객체 지향 프로그래밍</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">상속과 프로토타입</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">프로토타입 객체</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proto"><strong>proto</strong> 접근자 프로퍼티</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype">함수 객체의 prototype 프로퍼티</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructor">프로토타입의 constructor 프로퍼티와 생성자 함수</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">리터럴 표기법에 의해 생성된 객체의 생성자 함수와 프로토타입</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">프로토타입의 생성 시점</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">사용자 정의 생성자 함수와 프로토타입 생성 시점</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">빌트인 생성자 함수와 프로토타입 생성 시점</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">객체 생성 방식과 프로토타입의 결정</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">객체 리터럴에 의해 생성된 객체의 프로토타입</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object">Object 생성자 함수에 의해 생성된 객체의 프로토타입</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">생성자 함수에 의해 생성된 객체의 프로토타입</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">프로토타입 체인</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">오버라이딩과 프로퍼티 섀도잉</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">직접 상속</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object-create">Object.create에 의한 직접 상속</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">객체 리터럴 내부에서 __proto__에 의한 직접 상속</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">프로퍼티 존재 확인</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in">in 연산자</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object-prototype-hasownproperty">Object.prototype.hasOwnProperty 메소드</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">프로토타입 열거</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-in">for … in 문</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object-keys-values-entries">Object.keys/values/entries 메소드</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

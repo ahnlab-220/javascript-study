@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 20 - strict mode &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '공희재/chapter_20';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_15.html">Chapter 15 - <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/main.html">이용우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F공희재/chapter_20.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/공희재/chapter_20.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 20 - strict mode</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strict-mode">1. strict mode란?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. strict mode의 적용</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. 전역에 strict mode를 적용하는 것은 피하자</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4. 함수 단위로 strict mode를 적용하는 것도 피하자.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5. strict mode가 발생시키는 에러</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5-1. 암묵적 전역</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">5-2. 변수, 함수, 매개변수의 삭제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">5-3. 매개변수 이름의 중복</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#with">5-4. with 문의 사용</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">6. strict mode 적용에 의한 변화</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#this">6-1. 일반 함수의 this</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments">6-2. arguments 객체</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-20-strict-mode">
+<h1>Chapter 20 - strict mode<a class="headerlink" href="#chapter-20-strict-mode" title="Link to this heading">#</a></h1>
+<section id="strict-mode">
+<h2>1. strict mode란?<a class="headerlink" href="#strict-mode" title="Link to this heading">#</a></h2>
+<p>자바스크립트는 오타나 문법 지식의 미비로 인한 실수를 저지르기 쉬운 언어다. (e.g., implicit global(암묵적 전역) 등)<br/>
+개발자의 의도와는 다르게 오류가 발생하는 것을 막기 위해 ES5부터 <strong>strict mode</strong>(엄격 모드)가 추가되었다.</p>
+<p>ESLint 같은 린트 도구를 사용해도 strict mode와 유사한 효과를 얻을 수 있다.<br/>
+더군다나 린트 도구는 static analysis(정적 분석) 기능으로 소스코드를 실행하기 전에 미리 스캔해 문법적 오류뿐만 아니라<br/>
+잠재적 오류까지 찾아내고 리포팅해주는 유용한 도구다.<br/>
+(따라서 책에서는 strict mode보다는 <strong>ESLint 같은 린트 도구를 더 선호</strong>한다고 밝히기는 함)</p>
+<p>참고로 ES6부터 도입된 <strong>클래스와 모듈은 기본적으로 strict mode</strong>가 적용된다.</p>
+</section>
+<section id="id1">
+<h2>2. strict mode의 적용<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>strict mode를 적용하려면 <strong>전역의 선두</strong>, 또는 <strong>함수 몸체의 선두</strong>에 <strong><code class="docutils literal notranslate"><span class="pre">'use</span> <span class="pre">strict';</span></code></strong> 한 줄만 추가하면 된다.<br/>
+전역의 선두에 추가하면 스크립트 전체에 strict mode가 적용되고, 함수 몸체의 선두에 추가하면 해당 함수와 중첩 함수에 strict mode가 적용된다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 전역 선두에 추가한 예제</span>
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w">  </span><span class="c1">// ReferenceError: x is not defined</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 코드의 선두에 추가하지 않으면 제대로 동작하지 않는다</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w">  </span><span class="c1">// 에러가 발생하지 않음.</span>
+<span class="w">  </span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>3. 전역에 strict mode를 적용하는 것은 피하자<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>전역에 적용한 strict mode는 아래 예제처럼 스크립트 단위로 적용된다.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// 에러가 발생하지 않음.</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w">  </span><span class="c1">// 1</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// ReferenceError: y is not defined</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>그러나, strict mode 스크립트와 non-strict mode 스크립트를 혼용하는 것은 오류를 발생시킬 수 있다.<br/>
+특히 외부 서드파티 라이브러리를 사용하는 경우, 라이브러리가 non-strict mode인 경우도 있기 때문에<br/>
+전역에 strict mode를 적용하는 것은 어쨌든 <strong>바람직한 행위가 아니다</strong>.</p>
+</section>
+<section id="id3">
+<h2>4. 함수 단위로 strict mode를 적용하는 것도 피하자.<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>함수 안에서 strict mode를 사용하는 것도 권장할만한 행위는 아니다.<br/>
+어떤 함수는 strict mode이고 어떤 함수는 non-strict mode인 것 자체가 바람직하지 않으며 모든 함수에 일일이 strict mode를 적용하는 것은 번거로운 일이다.</p>
+<p>대신, strict mode는 <strong>즉시 실행 함수로 감싼 스크립트 단위로 적용</strong>하는 것이 바람직하다.</p>
+</section>
+<section id="id4">
+<h2>5. strict mode가 발생시키는 에러<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>다음은 strict mode를 적용했을 때, 에러가 발생하는 대표적인 사례다.</p>
+<section id="id5">
+<h3>5-1. 암묵적 전역<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>애초에 var, let, const 등의 키워드로 <strong>선언하지 않은 변수를 참조하면 <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code>를 발생</strong>시킨다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w">  </span><span class="c1">// ReferenceError: x is not defined</span>
+<span class="p">}());</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>5-2. 변수, 함수, 매개변수의 삭제<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>delete 연산자로 변수, 함수, 매개변수를 삭제하면 <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>를 발생시킨다.</p>
+</section>
+<section id="id7">
+<h3>5-3. 매개변수 이름의 중복<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p><strong>중복하는 매개변수 이름을 사용하면 <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>를 발생</strong>시킨다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// SyntaxError: Duplicate parameter name not allowed in this context</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+<span class="p">}());</span>
+</pre></div>
+</div>
+</section>
+<section id="with">
+<h3>5-4. with 문의 사용<a class="headerlink" href="#with" title="Link to this heading">#</a></h3>
+<p>with 문을 사용하면 <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>를 발생시킨다. (사실 with 문은 애초에 사용을 지양해야 한다고 책은 언급한다.)</p>
+</section>
+</section>
+<section id="id8">
+<h2>6. strict mode 적용에 의한 변화<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<section id="this">
+<h3>6-1. 일반 함수의 this<a class="headerlink" href="#this" title="Link to this heading">#</a></h3>
+<p>strict mode에서 함수를 <strong>일반 함수</strong>로서 호출하면, <strong><code class="docutils literal notranslate"><span class="pre">this</span></code>에 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>가 바인딩</strong>된다.<br/>
+일반 함수 내부에서는 this를 사용할 필요가 없기 때문이다. 단, 이때 에러가 발생하지는 않는다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">foo</span><span class="p">();</span>
+
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">Foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w">  </span><span class="c1">// Foo</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="ow">new</span><span class="w"> </span><span class="nx">Foo</span><span class="p">();</span>
+<span class="p">}());</span>
+</pre></div>
+</div>
+</section>
+<section id="arguments">
+<h3>6-2. arguments 객체<a class="headerlink" href="#arguments" title="Link to this heading">#</a></h3>
+<p>strict mode에서는 매개변수에 전달된 인수를 재할당해 변경해도, <strong>arguments 객체에 반영되지 않는다</strong>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// 매개변수에 전달된 인수를 재할당해 변경해도,</span>
+<span class="w">  </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// 변경된 인수가 arguments 객체에 반영되지 않는다.</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span><span class="w">  </span><span class="c1">// { 0: 1, length: 1 }</span>
+<span class="p">}(</span><span class="mf">1</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>끝.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./공희재"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strict-mode">1. strict mode란?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. strict mode의 적용</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. 전역에 strict mode를 적용하는 것은 피하자</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4. 함수 단위로 strict mode를 적용하는 것도 피하자.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5. strict mode가 발생시키는 에러</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5-1. 암묵적 전역</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">5-2. 변수, 함수, 매개변수의 삭제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">5-3. 매개변수 이름의 중복</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#with">5-4. with 문의 사용</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">6. strict mode 적용에 의한 변화</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#this">6-1. 일반 함수의 this</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments">6-2. arguments 객체</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

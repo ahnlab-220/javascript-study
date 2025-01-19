@@ -21,6 +21,7 @@ parts:
   - file: docs/chapter_15
   - file: docs/chapter_16
   - file: docs/chapter_17
+  - file: docs/chapter_18
 - caption: 개인 공간
   chapters:
   - file: 공희재/main
@@ -37,6 +38,7 @@ parts:
     - file: 공희재/chapter_14
     - file: 공희재/chapter_15
     - file: 공희재/chapter_17
+    - file: 공희재/chapter_18
   - file: 김현우/main
     sections:
     - file: 김현우/chapter_04

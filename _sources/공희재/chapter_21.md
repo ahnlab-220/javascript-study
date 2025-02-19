@@ -5,6 +5,7 @@
 1. Standard built-in objects 또는 Native objects 또는 Global objects (표준 빌트인 객체)
 2. Host objects (호스트 객체)
 3. User-defined objects (사용자 정의 객체)
+
 차례대로 살펴 보자.
 
 ## 2. Standard built-in objects: 표준 빌트인 객체

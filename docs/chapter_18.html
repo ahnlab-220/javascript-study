@@ -61,6 +61,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="공희재" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html" />
+    <link rel="prev" title="Chapter 17 - 생성자 함수에 의한 객체 생성" href="chapter_17.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -167,7 +167,7 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
@@ -181,6 +181,7 @@
 <li class="toctree-l1"><a class="reference internal" href="chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 18 - 함수와 일급 객체</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
 <ul class="nav bd-sidenav">
@@ -197,6 +198,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_15.html">Chapter 15 - <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드와 블록 레벨 스코프</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -415,13 +417,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">함수 객체의 프로퍼티</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments">arguments 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caller">caller 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#length">length 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">name 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proto"><strong>proto</strong> 접근자 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype">prototype 프로퍼티</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 일급 객체</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 함수 객체의 프로퍼티</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments">2-1. <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caller">2-2. <code class="docutils literal notranslate"><span class="pre">caller</span></code> 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#length">2-3. <code class="docutils literal notranslate"><span class="pre">length</span></code> 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">2-4. <code class="docutils literal notranslate"><span class="pre">name</span></code> 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proto">2-5. <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype">2-6. <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티</a></li>
 </ul>
 </li>
 </ul>
@@ -437,277 +440,116 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="chapter-18">
 <h1>Chapter 18 - 함수와 일급 객체<a class="headerlink" href="#chapter-18" title="Link to this heading">#</a></h1>
-<p>아래의 조건을 만족하는 객체를 일급 객체라고 합니다.</p>
-<ul class="simple">
-<li><p>무명의 리터럴로 생성이 가능하다. (= 런타임에 생성이 가능하다)</p>
-<ul>
-<li><p>코드 내에서 특정 값을 바로 생성하거나 정의할 수 있는 방식</p></li>
-</ul>
-</li>
-<li><p>변수나 자료구조(객체, 배열 등)에 저장할 수 있다.</p></li>
-<li><p>함수의 매개변수에 전달할 수 있다. (= 매개변수로 함수를 받을 수 있다)</p></li>
-<li><p>함수의 반환값으로 사용할 수 있다. (= 리턴값으로 함수를 리턴할 수 있다)</p></li>
-</ul>
-<br>
-<p>자바스크립트의 함수는 위 조건을 모두 만족하므로 일급 객체입니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 1. 함수는 무명의 리터럴로 생성 가능하다.</span>
-<span class="c1">// 2. 함수는 변수에 저장할 수 있다.</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">increase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">++</span><span class="nx">num</span><span class="p">;</span>
-<span class="p">};</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">decrease</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">--</span><span class="nx">num</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="c1">// 2. 함수는 객체에 저장할 수 있다.</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">auxs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">--</span><span class="nx">num</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="c1">// 3. 함수의 매개변수에 전달할 수 있다.</span>
-<span class="c1">// 4. 함수의 반환값으로 사용할 수 있다.</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">makeCounter</span><span class="p">(</span><span class="nx">aux</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">awx</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">num</span><span class="p">;</span>
-<span class="w">    </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="c1">// 3. 함수는 매개변수에게 함수를 전달할 수 있다.</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">increase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">makeCounter</span><span class="p">(</span><span class="nx">auxs</span><span class="p">.</span><span class="nx">increase</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increaser</span><span class="p">());</span><span class="w">   </span><span class="c1">// 1</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increaser</span><span class="p">());</span><span class="w">   </span><span class="c1">// 2</span>
-</pre></div>
-</div>
-<br>
-<p>일급 객체로서 함수가 가지는 가장 큰 특징은<br />
-일반 객체와 같이 함수의 매개변수에 전달할 수 있으며, 함수의 반환값으로도 사용할 수 있다는 것입니다.<br />
-이는 함수형 프로그래밍을 가능하게 하는 자바스크립트의 장점 중 하나입니다.</p>
-<p><br><br></p>
 <section id="id1">
-<h2>함수 객체의 프로퍼티<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>함수는 객체입니다. 따라서 함수도 프로퍼티를 가질 수 있습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">square</span><span class="p">(</span><span class="nx">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">number</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">square</span><span class="p">);</span>
-</pre></div>
-</div>
-<img src="https://github.com/user-attachments/assets/5310582d-f0b8-4dfa-8815-aaa4cc31cb70" width=350>
-<br>
-<p><code class="docutils literal notranslate"><span class="pre">square</span></code> 함수의 모든 프로퍼티에 대해<br />
-프로퍼티 어트리뷰트를 <code class="docutils literal notranslate"><span class="pre">Object.getOwnPropertyDescriptors</span></code> 메소드로 확인해보면 다음과 같습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptors</span><span class="p">(</span><span class="nx">square</span><span class="p">);</span>
-</pre></div>
-</div>
-<img src="https://github.com/user-attachments/assets/9f3e6d8d-3688-4056-8c35-cc56af9fd00b" width=500>
-<br>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// __proto__는 square 함수의 프로퍼티가 아니다.</span>
-<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nx">square</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;__proto__&#39;</span><span class="p">);</span><span class="w">   </span><span class="c1">// undefined</span>
-
-<span class="c1">// __proto__는 Object.prototype 객체의 접근자 프로퍼티이다.</span>
-<span class="c1">// square 함수는 Object.prototype 객체로부터 __proto__ 접근자 프로퍼티를 상속받는다.</span>
-<span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptor</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;__proto__&#39;</span><span class="p">);</span>
-<span class="c1">// {enumerable: false, configurable: true, get: ƒ, set: ƒ}</span>
-</pre></div>
-</div>
-<br>
-<p>이와 같이 <code class="docutils literal notranslate"><span class="pre">arguments</span></code>, <code class="docutils literal notranslate"><span class="pre">caller</span></code>, <code class="docutils literal notranslate"><span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 모두 함수 객체의 데이터 프로퍼티입니다.<br />
-<font color='orange'>이 프로퍼티들은 일반 객체에는 없는 함수 객체 고유의 프로퍼티입니다.</font></p>
-<p>다만, <code class="docutils literal notranslate"><span class="pre">__proto__</span></code>는 접근자 프로퍼티이며, 함수 객체 고유의 프로퍼티가 아니라<br />
-<code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code> 객체의 프로퍼티를 상속받은 것을 알 수 있습니다.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code> 객체의 프로퍼티는 모든 객체가 상속받아 사용할 수 있습니다.<br />
-즉, <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code> 객체의 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티는 모든 객체가 사용할 수 있습니다.</p>
-<blockquote>
-<div><p>상속은 19장 “프로토타입”에서 자세히 다룰 것이다.</p>
-</div></blockquote>
-<p><br><br></p>
+<h2>1. 일급 객체<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>일급 객체란, 자바스크립트에서 다음 같은 조건을 만족하는 객체를 뜻한다.</p>
+<ol class="arabic simple">
+<li><p>무명의 리터럴로 생성할 수 있다. 즉, <strong>런타임에 생성</strong>이 가능하다.</p></li>
+<li><p><strong>변수나 자료구조</strong>(객체, 배열 등)<strong>에 저장</strong>할 수 있다.</p></li>
+<li><p>함수의 <strong>매개변수에 전달</strong>할 수 있다.</p></li>
+<li><p>함수의 <strong>반환값으로 사용</strong>할 수 있다.</p></li>
+</ol>
+<p><strong>자바스크립트의 함수는</strong> 위의 조건을 모두 만족하므로 <strong>일급 객체</strong>다.<br/>
+즉, 함수는 <strong>값을 사용할 수 있는 곳</strong>(변수 할당문, 객체의 프로퍼티 값, 배열의 요소, 함수 호출의 인수, 함수 반환문)이라면<br/>
+<strong>어디서든지 리터럴로 정의</strong>할 수 있으며, <strong>런타임에 함수 객체로 평가</strong>된다.</p>
+<p>이러한 자바스크립트 함수의 특징은, 함수형 프로그래밍을 가능케 하며 자바스크립트의 장점 중 하나다.</p>
+</section>
+<section id="id2">
+<h2>2. 함수 객체의 프로퍼티<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>함수는 객체다. 따라서 함수도 프로퍼티를 가진다.<br/>
+함수 객체의 프로퍼티를 하나씩 살펴보자.</p>
 <section id="arguments">
-<h3>arguments 프로퍼티<a class="headerlink" href="#arguments" title="Link to this heading">#</a></h3>
-<p>함수 객체의 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 프로퍼티 값은 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체입니다.<br />
-<code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체는 함수 호출 시 전달된 인수(<code class="docutils literal notranslate"><span class="pre">argument</span></code>)들의 정보를 가지고 있는 순회 가능한(<code class="docutils literal notranslate"><span class="pre">iterable</span></code>) 유사 배열 객체이며, 함수 내부에서 지역 변수처럼 사용됩니다.</p>
-<p>자바스크립트는 함수의 매개변수와 인수의 개수가 일치하는지 확인하지 않습니다.<br />
-따라서 함수 호출 시 매개변수 개수만큼 인수를 전달하지 않아도 에러가 발생하지 않습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">multiply</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<h3>2-1. <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 프로퍼티<a class="headerlink" href="#arguments" title="Link to this heading">#</a></h3>
+<p>함수 객체의 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 프로퍼티 값은, <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체다.<br/>
+<strong><code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체</strong>는 함수 호출 시 전달된 <strong>인수(arguments)들의 정보</strong>를 담은, <strong>순회 가능한(iterable) 유사 배열 객체</strong>이며,<br/>
+함수 내부에서 지역변수처럼 사용한다. 즉, <strong>함수 외부에서는 참조할 수 없다</strong>.</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/388943be-09ef-42b1-9841-187967fe6595" /></p>
+<p>위 콘솔 사진에서 빨간 네모 표시된 부분이 인수의 정보가 보여지는 부분이다.<br/>
+<code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체는 다음과 같이 매개변수 개수를 확정할 수 없는, <strong>가변 인자 함수를 구현할 때 유용</strong>하다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">sum</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// arguments 객체는 length 프로퍼티가 있는 유사 배열 객체이므로, for문으로 순회할 수 있다.</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multiply</span><span class="p">());</span><span class="w">        </span><span class="c1">// NaN</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multiply</span><span class="p">(</span><span class="mf">1</span><span class="p">));</span><span class="w">       </span><span class="c1">// NaN</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multiply</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span><span class="w">    </span><span class="c1">// 2</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multiply</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span><span class="w"> </span><span class="c1">// 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">())</span><span class="w">      </span><span class="c1">// 0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">))</span><span class="w">    </span><span class="c1">// 3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">))</span><span class="w">  </span><span class="c1">// 6</span>
 </pre></div>
 </div>
-<br>
-<p>다만 초과된 인수가 그냥 버려지는 것은 아닙니다.<br />
-모든 인수는 암묵적으로 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체의 프로퍼티로 보관됩니다.</p>
-<img src="https://github.com/user-attachments/assets/165a3e1e-0322-49f5-9f40-be9eb2ffe31c" width=400>
-<br>
-<p><code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체는 인수를 프로퍼티 값으로 소유하며 프로퍼티 키는 인수의 순서를 나타냅니다.<br />
-<code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체의 <code class="docutils literal notranslate"><span class="pre">callee</span></code> 프로퍼티는 호출되어 함수 자기자신을 가리키고<br />
-<code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체의 <code class="docutils literal notranslate"><span class="pre">length</span></code> 프로퍼티는 인수의 개수를 가리킵니다.</p>
-<br>
-<p>※ arguments 객체의 Symbol(Symbol.iterator) 프로퍼티<br />
-<code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체의 <code class="docutils literal notranslate"><span class="pre">Symbol(Symbol.iterator)</span></code> 프로퍼티는 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체를<br />
-순회 가능한 자료구조인 이터러블(<code class="docutils literal notranslate"><span class="pre">iterable</span></code>)로 만들기 위한 프로퍼티입니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">multiply</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="nx">d</span>
-<span class="w">    </span><span class="c1">// itertor</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">iterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">arguments</span><span class="p">[</span><span class="nb">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">]();</span>
-
-<span class="w">    </span><span class="c1">// iterator의 next() 메소드를 호출하여 이터러블 객체 `arguments`를 순회</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span><span class="w">       </span><span class="c1">// {value: 1, done: false}</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span><span class="w">       </span><span class="c1">// {value: 2, done: false}</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span><span class="w">       </span><span class="c1">// {value: 3, done: false}</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iterator</span><span class="p">.</span><span class="nx">next</span><span class="p">());</span><span class="w">       </span><span class="c1">// {value: undefined, done: true}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">multiply</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
-</pre></div>
-</div>
-<br>
-<p><code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체는 매개변수 개수를 확정할 수 없는 가변 인자 함수를 구현할 때 특히 유용합니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">sum</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">());</span><span class="w">         </span><span class="c1">// 0</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span><span class="w">     </span><span class="c1">// 3</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span><span class="w">  </span><span class="c1">// 6</span>
-</pre></div>
-</div>
-<br>
-<p>arguments 객체는 유사 배열 객체이기 때문에<br />
-배열과 같이 사용하고 싶다면, <code class="docutils literal notranslate"><span class="pre">Function.prototype.call</span></code>, <code class="docutils literal notranslate"><span class="pre">Function.prototype.apply</span></code>와 같이 간접 호출해야 하는 번거로움이 있습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">sum</span><span class="p">(){</span>
-<span class="w">    </span><span class="c1">// arguments 객체를 배열로 반환</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">pre</span><span class="p">,</span><span class="w"> </span><span class="nx">cur</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">pre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">cur</span><span class="p">;</span>
-<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span><span class="w">             </span><span class="c1">// 3</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">));</span><span class="w">    </span><span class="c1">// 15</span>
-</pre></div>
-</div>
-<br>
-<p>이런 번거로움을 해결하기 위해 ES6에서는 Rest 파라미터가 도입되었습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">sum</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">args</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">pre</span><span class="p">,</span><span class="w"> </span><span class="nx">cur</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">pre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">cur</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">));</span>
-</pre></div>
-</div>
-<p><br><br></p>
+<p><code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체는 앞서 말했듯 실제 배열이 아닌, <strong>array-like object(유사 배열 객체)이다</strong>.<br/>
+유사 배열 객체란, length 프로퍼티를 지니며 for문으로 순회할 수 있는 객체를 말한다.<br/>
+(이터러블이 도입된 ES6부터 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체는 유사 배열 객체이면서 <strong>이터러블</strong>(이후 34장 ‘이터러블’ 참고)이기도 하다.)</p>
 </section>
 <section id="caller">
-<h3>caller 프로퍼티<a class="headerlink" href="#caller" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">caller</span></code> 프로퍼티는 ECMAScript 사양에 포함되지 않은 비표준 프로퍼티입니다.<br />
-이후 표준화될 예정이 없는 프로퍼티이므로 사용하지 않고 참고만 하는 것을 추천합니다.</p>
-<p><code class="docutils literal notranslate"><span class="pre">caller</span></code> 프로퍼티는 함수 자신을 호출한 함수를 가리킵니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">(</span><span class="nx">func</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">func</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;caller : &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">bar</span><span class="p">.</span><span class="nx">caller</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">(</span><span class="nx">bar</span><span class="p">));</span><span class="w">      </span><span class="c1">// caller : function foo(func) {...}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bar</span><span class="p">());</span><span class="w">         </span><span class="c1">// caller : null</span>
-</pre></div>
-</div>
-<p><br><br></p>
+<h3>2-2. <code class="docutils literal notranslate"><span class="pre">caller</span></code> 프로퍼티<a class="headerlink" href="#caller" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">caller</span></code> 프로퍼티는 ECMAScript 사양에 포함하지 않는 비표준 프로퍼티이므로 생략한다.</p>
 </section>
 <section id="length">
-<h3>length 프로퍼티<a class="headerlink" href="#length" title="Link to this heading">#</a></h3>
-<p>함수 객체의 <code class="docutils literal notranslate"><span class="pre">length</span></code> 프로퍼티는 함수를 정의할 때 선언한 매개변수의 개수를 가리킵니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w">        </span><span class="c1">// 0</span>
+<h3>2-3. <code class="docutils literal notranslate"><span class="pre">length</span></code> 프로퍼티<a class="headerlink" href="#length" title="Link to this heading">#</a></h3>
+<p>함수 객체의 <code class="docutils literal notranslate"><span class="pre">length</span></code> 프로퍼티는 다음 예제와 같이 <strong>함수를 정의할 때 선언한 매개변수의 개수</strong>를 가리킨다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w">  </span><span class="c1">// 0</span>
 
 <span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bar</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w">        </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w">  </span><span class="c1">// 1</span>
 
-<span class="kd">function</span><span class="w"> </span><span class="nx">bar2</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">baz</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">y</span>
 <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bar2</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w">       </span><span class="c1">// 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w">  </span><span class="c1">// 2</span>
 </pre></div>
 </div>
-<p><br><br></p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체</strong>의 <code class="docutils literal notranslate"><span class="pre">length</span></code> 프로퍼티와, <strong>함수 객체</strong>의 <code class="docutils literal notranslate"><span class="pre">length</span></code> 프로퍼티는 다른 개념인 걸 반드시 숙지하자.<br/>
+전자는 <strong>arguments(인자)의 개수</strong>를 가리키고, 후자는 <strong>parameters(매개변수)의 개수</strong>를 가리킨다.</p>
 </section>
 <section id="name">
-<h3>name 프로퍼티<a class="headerlink" href="#name" title="Link to this heading">#</a></h3>
-<p><font color='orange'>함수 객체의 <code class="docutils literal notranslate"><span class="pre">name</span></code> 프로퍼티는 함수 이름을 나타냅니다.</font><br />
-<code class="docutils literal notranslate"><span class="pre">name</span></code> 프로퍼티는 ES5에서는 익명 함수의 경우 빈 문자열을 값으로 갖지만,<br />
-ES6에서는 함수 객체를 가리키는 식별자를 값으로 갖습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 가명 함수 표현식</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">namedFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">namedFunc</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w">        </span><span class="c1">// foo</span>
+<h3>2-4. <code class="docutils literal notranslate"><span class="pre">name</span></code> 프로퍼티<a class="headerlink" href="#name" title="Link to this heading">#</a></h3>
+<p>함수 객체의 <code class="docutils literal notranslate"><span class="pre">name</span></code> 프로퍼티는 아래 예제처럼 <strong>함수 이름을 나타낸다</strong>. ES6부터 정식 표준이 되었다.<br/>
+주의해야 할 점은, <code class="docutils literal notranslate"><span class="pre">name</span></code> 프로퍼티는 <strong>ES5와 ES6에서 동작을 달리한다</strong>는 점이다.<br/>
+ES5에서는 익명 함수 표현식의 <code class="docutils literal notranslate"><span class="pre">name</span></code> 프로퍼티의 값이 <strong>빈 문자열</strong>이고, ES6에서는 함수 객체를 가리키는 <strong>식별자</strong>다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 기명 함수 표현식</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">namedFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">namedFunc</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w">  </span><span class="c1">// foo</span>
 
 <span class="c1">// 익명 함수 표현식</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">anonymousFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">anonymousFunc</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w">        </span><span class="c1">// anonymousFunc</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">anonymousFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
+<span class="c1">// ES5: name 프로퍼티의 값이 빈 문자열이다.</span>
+<span class="c1">// ES6: name 프로퍼티의 값이 함수 객체를 가리키는 식별자다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">anonymousFunc</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w">  </span><span class="c1">// anonymousFunc</span>
 
-<span class="c1">// 함수 선언문(Function declaration)</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bar</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w">      </span><span class="c1">// bar</span>
+<span class="c1">// 함수 선언문</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bar</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w">  </span><span class="c1">// bar</span>
 </pre></div>
 </div>
-<p><br><br></p>
 </section>
 <section id="proto">
-<h3><strong>proto</strong> 접근자 프로퍼티<a class="headerlink" href="#proto" title="Link to this heading">#</a></h3>
-<p>모든 객체는 <code class="docutils literal notranslate"><span class="pre">[[Prototype]]</span></code> 이라는 내부 슬롯을 가집니다.<br />
-<code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 프로퍼티는 <code class="docutils literal notranslate"><span class="pre">[[Prototype]]</span></code> 내부 슬롯이 가리키는 프로토타입 객체에 접근하기 위해 사용하는 접근자 프로퍼티입니다.<br />
-내부 슬롯에는 직접 접근할 수 없고 간접적인 접근 방식을 제공하는 경우에 한하여 접근할 수 있습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">conse</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">};</span>
-
-<span class="c1">// 객체 리터럴 방식으로 생성한 객체의 프로토토압 객체는 Object.prototype 이다.</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">        </span><span class="c1">// true</span>
-
-<span class="c1">// 객체 리터럴 방식으로 생성한 객체는 프로토타입 객체인 Object.prototype의 프로퍼티를 상속받는다.</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">));</span><span class="w">           </span><span class="c1">// true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;__proto__&#39;</span><span class="p">));</span><span class="w">   </span><span class="c1">// false</span>
-</pre></div>
-</div>
-<p><br><br></p>
+<h3>2-5. <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티<a class="headerlink" href="#proto" title="Link to this heading">#</a></h3>
+<p>모든 객체는 [[Prototype]]이라는 내부 슬롯을 갖는다. [[Prototype]]은 프로토타입 객체를 가리킨다. (프로토타입에 관한 자세한 내용은 19장 ‘프로토타입’ 참고)<br/>
+<code class="docutils literal notranslate"><span class="pre">__proto__</span></code>는 [[Prototype]] 내부 슬롯이 가리키는 프로토타입 객체에 접근하고자 사용하는 <strong>접근자 프로퍼티</strong>다.</p>
+<p>[[Prototype]] 내부 슬롯에는 직접 접근할 수 없고, <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 통해 <strong>간접적으로</strong> 프로토타입 객체에 접근할 수 있다.</p>
 </section>
 <section id="prototype">
-<h3>prototype 프로퍼티<a class="headerlink" href="#prototype" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 생성자 함수로 호출할 수 있는 함수 객체, 즉 <code class="docutils literal notranslate"><span class="pre">constructor</span></code>만이 소유하는 프로퍼티입니다.<br />
-일반 객체와 생성자 함수로 호출할 수 없는 <code class="docutils literal notranslate"><span class="pre">non-constructor</span></code>에는 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티가 없습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 함수 객체는 `prototype` 프로퍼티를 소유한다.</span>
-<span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{}).</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">);</span><span class="w">        </span><span class="c1">// true</span>
+<h3>2-6. <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티<a class="headerlink" href="#prototype" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 <strong>생성자 함수가 생성할 인스턴스의 프로토타입 객체</strong>를 가리킨다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 <strong>constructor만이 소유하는</strong> 특별한 프로퍼티다.<br/>
+따라서 일반 객체와 생성자 함수로 호출할 수 없는 non-constructor에는 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티가 없다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 함수 객체는 prototype 프로퍼티를 갖는다.</span>
+<span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{}).</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// true</span>
 
-<span class="c1">// 일반 객체는 `prototype` 프로퍼티를 소유하지 않는다.</span>
-<span class="p">({}).</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">);</span><span class="w">           </span><span class="c1">// false</span>
+<span class="c1">// 일반 객체는 prototype 프로퍼티를 갖지 않는다.</span>
+<span class="p">({}).</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// false</span>
 </pre></div>
 </div>
-<br>
-<p><code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 함수가 객체를 생성하는 생성자 함수로 호출될 때,<br />
-생성자 함수가 생성할 인스턴스의 프로토타입 객체를 생성합니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">person1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s2">&quot;Lee&quot;</span><span class="p">);</span>
-</pre></div>
-</div>
+<p>끝.</p>
 </section>
 </section>
 </section>
@@ -742,6 +584,24 @@ ES6에서는 함수 객체를 가리키는 식별자를 값으로 갖습니다.<
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter_17.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 17 - 생성자 함수에 의한 객체 생성</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">공희재</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -758,13 +618,14 @@ ES6에서는 함수 객체를 가리키는 식별자를 값으로 갖습니다.<
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">함수 객체의 프로퍼티</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments">arguments 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caller">caller 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#length">length 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">name 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proto"><strong>proto</strong> 접근자 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype">prototype 프로퍼티</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 일급 객체</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 함수 객체의 프로퍼티</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments">2-1. <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caller">2-2. <code class="docutils literal notranslate"><span class="pre">caller</span></code> 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#length">2-3. <code class="docutils literal notranslate"><span class="pre">length</span></code> 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">2-4. <code class="docutils literal notranslate"><span class="pre">name</span></code> 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proto">2-5. <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype">2-6. <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티</a></li>
 </ul>
 </li>
 </ul>

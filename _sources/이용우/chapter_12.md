@@ -461,7 +461,7 @@ documnet.getElementById('myButton').addEventListener('click', function () {
 
 // 콜백 함수를 사용한 비동기 처리
 setTimeout(function () {
-    console,log('1초 경과');
+    console.log('1초 경과');
 }, 1000);
 ```
 

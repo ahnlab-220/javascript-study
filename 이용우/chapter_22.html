@@ -1,0 +1,947 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 22 - this &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_22';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_15.html">Chapter 15 - <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="main.html">이용우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_22.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/이용우/chapter_22.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 22 - this</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 22 - this</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#this">this 키워드</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">함수 호출 방식과 this 바인딩</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">일반 함수 호출</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">메소드 호출</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">생성자 함수 호출</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-prototype-apply-call-bind">Function.prototype.apply/call/bind 메소드에 의한 간접 호출</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="chapter-22-this">
+<h1>Chapter 22 - this<a class="headerlink" href="#chapter-22-this" title="Link to this heading">#</a></h1>
+</section>
+<section id="this">
+<h1>this 키워드<a class="headerlink" href="#this" title="Link to this heading">#</a></h1>
+<p>객체는 상태(state)를 나타내는 프로퍼티와 동작(behavior)을 나타내는 메서드를 하나의 묶음으로 관리한다.</p>
+<p>동작을 나타내는 메소드는 자신이 속한 객체의 상태,<br />
+즉 프로퍼티를 참조하고 변경할 수 있어야 한다.</p>
+<p>이때 메소드가 자신이 속한 객체의 프로퍼티를 참조하려면<br />
+먼저 자신이 속한 객체를 가리키는 식별자를 참조할 수 있어야 한다.</p>
+<p>객체 리터럴 방식으로 생성한 객체의 경우 메소드 내부에서 메소드 자신이 속한 객체를 가리키는 식별자를 재귀적으로 참조할 수 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 프로퍼티: 객체 고유의 상태 데이터</span>
+<span class="w">    </span><span class="nx">radius</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">// 메소드: 상태 데이터를 참조하고 조작하는 동작</span>
+<span class="w">    </span><span class="nx">getDiameter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 이 메소드가 자신이 속한 객체의 프로퍼티를 참조하려면 </span>
+<span class="w">        </span><span class="c1">// 먼저 자신이 속한 객체를 가리키는 식별자를 참조해야 한다.</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">circle</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle</span><span class="p">.</span><span class="nx">getDiameter</span><span class="p">());</span><span class="w"> </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">getDiameter</span></code> 메소드 내에소 메소드 자신이 속한 객체를 가리키는 식별자 <code class="docutils literal notranslate"><span class="pre">circle</span></code>을 참조하고 있다.</p>
+<p>이 참조 표현식이 평가되는 시점은 <code class="docutils literal notranslate"><span class="pre">getDiameter</span></code> 메소드가 호출되어<br />
+함수 몸체가 실행되는 시점이다.</p>
+<br>
+<p>위 예제의 객체 리터럴은 <code class="docutils literal notranslate"><span class="pre">circle</span></code> 변수가 할당되기 직전에 평가된다.<br />
+따라서 <code class="docutils literal notranslate"><span class="pre">etDiameter</span></code> 메소드가 호출되는 시점에는 이미 객체 리터럴의 평가가 완료되어 객체가 생성되었고 <code class="docutils literal notranslate"><span class="pre">circle</span></code> 식별자에 생성된 객체가 할당된 이후다.</p>
+<p>따라서 메소드 내부에서 circle 식별자를 참조할 수 있다.</p>
+<p><font color='orange'>하지만 자기 자신이 속한 객체를 재귀적으로 참조하는 방식은 일반적이지 않으며 바람직하지 않다.</font></p>
+<p><br><br></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 이 시점에는 생성자 함수 자신이 생성할 인스턴스를 가리키는 식별자를 알 수 없다.</span>
+<span class="w">    </span><span class="o">????</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Circle</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="mf">90</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 이 시점에는 생성자 함수 자신이 생성할 인스턴스를 가리키는 식별자를 알 수 없다.</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">s2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">????</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// 생성자 함수로 인스턴스를 생성하려면 먼저 생성자 함수를 정의해야 한다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>생성자 함수 내부에서는 프로퍼티 또는 메소드를 추가하기 위해<br />
+자신이 생성할 인스턴스를 참조할 수 있어야 한다.</p>
+<p>하지만 생성자 함수에 의한 객체 생성 방식은<br />
+먼저 생성자 함수를 정의한 이후 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 생성자 함수를 호출하는 단계가 추가로 필요하다.</p>
+<p>다시 말해, 생성자 함수로 인스턴스를 생성하려면 먼저 생성자 함수가 존재해야 한다.</p>
+<p>생성자 함수를 정의하는 시점에는 아직 인스턴스를 생성하기 이전이므로 생성자 함수가 생성할 인스턴스를 가리키는 식별자를 알 수 없다.</p>
+<blockquote>
+<div><p>이 문제를 해결하기 위해 자바스크립트는 <code class="docutils literal notranslate"><span class="pre">this</span></code> 식별자를 제공한다.</p>
+</div></blockquote>
+<br>
+<p><font color='orange'><code class="docutils literal notranslate"><span class="pre">this</span></code>는 자신이 속한 객체 또는 자신이 생성할 인스턴스를 가리키는 자기 참조 변수다.</font></p>
+<p><code class="docutils literal notranslate"><span class="pre">this</span></code>를 통해 자신이 속한 객체 또는 자신이 생성할 인스턴스의 프로퍼티나 메소드를 참조할 수 있다.</p>
+<p>단, <code class="docutils literal notranslate"><span class="pre">this</span></code>가 가리키는 값, 즉 <code class="docutils literal notranslate"><span class="pre">this</span></code> 바인딩은 함수 호출 방식에 의해 동적으로 결정된다.</p>
+<p><br><br></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 객체 리터럴</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">radius</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">getDiameter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// this는 메소드를 호출한 객체를 가리킨다.</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle</span><span class="p">.</span><span class="nx">getDiameter</span><span class="p">());</span><span class="w"> </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<p>객체 리터럴의 메소드 내부에서의 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 메소드를 호출한 객체, 즉 <code class="docutils literal notranslate"><span class="pre">circle</span></code> 객체를 가리킨다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// this는 생성자 함수가 생성할 인스턴스를 가리킨다.</span>
+<span class="w">   </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span><span class="w"> </span>
+<span class="p">}</span>
+
+<span class="nx">Circle</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// this는 생성자 함수가 생성할 인스턴스를 가리킨다.</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// 인스턴스 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle</span><span class="p">.</span><span class="nx">getDiameter</span><span class="p">());</span><span class="w"> </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<p>생성자 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 생성자 함수가 생성할 인스턴스를 가리킨다.</p>
+<p><br><br></p>
+</section>
+<section id="id1">
+<h1>함수 호출 방식과 this 바인딩<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>this 바인딩은 함수 호출 방식, 즉 함수가 어떻게 호출되었는지에 따라 동적으로 결정된다.</p>
+<p>주의 할 점은 동일한 함수도 아래와 같이 다양한 방식으로 호출이 가능하다는 것이다.</p>
+<ol class="arabic simple">
+<li><p>일반 함수 호출</p></li>
+<li><p>메소드 호출</p></li>
+<li><p>생성자 함수 호출</p></li>
+<li><p>Function.prototype.apply/call/bind 메소드에 의한 간접 호출</p></li>
+</ol>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// this 바인딩은 함수 호출 방식에 따라 동적으로 결정된다</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// 1. 일반 함수 호출</span>
+<span class="c1">// 일반 함수로 호출된 경우 this는 전역 객체 window를 가리킨다.</span>
+<span class="nx">foo</span><span class="p">();</span><span class="w">  </span><span class="c1">// window</span>
+
+<span class="c1">// 2. 메소드 호출</span>
+<span class="c1">// 메소드 내부의 this는 메소드를 호출한 객체를 가리킨다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="p">};</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span><span class="w">  </span><span class="c1">// obj</span>
+
+<span class="c1">// 3. 생성자 함수 호출</span>
+<span class="c1">// 생성자 함수 내부의 this는 생성자 함수가 생성할 인스턴스를 가리킨다.</span>
+<span class="ow">new</span><span class="w"> </span><span class="nx">foo</span><span class="p">();</span><span class="w">  </span><span class="c1">// foo {}</span>
+
+<span class="c1">// 4. Function.prototype.apply/call/bind 메소드에 의한 간접 호출</span>
+<span class="c1">// Function.prototype.apply/call/bind 메소드에 의한 간접 호출한 경우 this는 인수에 의해 결정된다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="w"> </span><span class="p">};</span>
+
+<span class="c1">// foo 함수를 호출하면서 인수로 전달한 객체를 가리킨다.</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">bar</span><span class="p">);</span><span class="w">  </span><span class="c1">// bar</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">bar</span><span class="p">);</span><span class="w">  </span><span class="c1">// bar</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">bar</span><span class="p">)();</span><span class="w">  </span><span class="c1">// bar</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<section id="id2">
+<h2>일반 함수 호출<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>기본적으로 <code class="docutils literal notranslate"><span class="pre">this</span></code>에는 전역 객체가 바인딩된다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;foo의 this: &#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w">  </span><span class="c1">// window</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;bar의 this: &#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w">  </span><span class="c1">// window</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">bar</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">();</span>
+</pre></div>
+</div>
+<br>
+<p>전역 함수나 중첩 함수를 일반 함수로 호출하면 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>에는 전역 객체가 바인딩된다.<br />
+다만 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 객체의 프로퍼티나 메소드를 참조하기 위한 자기 참조 변수이므로<br />
+객체를 생성하지 않는 일반 함수에서 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 의미가 없다.</p>
+<p>따라서 아래와 같이 <code class="docutils literal notranslate"><span class="pre">strict</span> <span class="pre">mode</span></code>가 적용된 일반 함수의 this에는 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>가 바인딩된다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;foo의 this: &#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;bar의 this: &#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">bar</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p>하지만 메소드 내에서 정의한 중첩 함수 또는 메소드에게 전달한 콜백 함수가 일반 함수로 호출되는 경우<br />
+메소드 내의 중첩 함수 또는 콜백 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>가 전역 객체를 바인딩하는 것은 문제가 있다.</p>
+<blockquote>
+<div><p>중첩 함수나 콜백 함수는 외부 함수를 돕는 헬퍼 함수의 역할을 하므로<br />
+외부 함수의 일부 로직을 대신하는 경우가 대부분이다.</p>
+</div></blockquote>
+<br>
+<p>때문에 메소드 내부에서 중첩 함수나 콜백 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code> 바인딩을<br />
+메소드의 <code class="docutils literal notranslate"><span class="pre">this</span></code> 바인딩과 일치시키기 위한 방법은 다음과 같다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// this 바인딩(obj)을 변수 that에 할당</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">that</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// 콜백 함수 내부에서 this 대신 that을 참조</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">that</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span><span class="w">  </span><span class="c1">// 100</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>위 방법 이외에도 자바스크립트는 this를 병시적으로 바인딩할 수 있는<br />
+<code class="docutils literal notranslate"><span class="pre">Function.prototype.bind</span></code>, <code class="docutils literal notranslate"><span class="pre">Function.prototype.call</span></code>, <code class="docutils literal notranslate"><span class="pre">Function.prototype.apply</span></code> 메소드를 제공한다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 콜백 함수에 명시적으로 this를 바인딩</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(){</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span><span class="w">  </span><span class="c1">// 100</span>
+<span class="w">        </span><span class="p">}.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">),</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span>
+</pre></div>
+</div>
+<br>
+<p>또는 화살표 함수를 사용해 this 바인딩을 일치시킬 수도 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 화살표 함수 내부의 this는 상위 스코프의 this를 가리킨다.</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">),</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id3">
+<h2>메소드 호출<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>메소드 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>에는 메소드를 호출한 객체,<br />
+<font color='orange'>즉 메소드를 호출할 때 메소드 이름 앞의 마침표(.) 연산자 앞에 기술한 객체가 바인딩된다.</font></p>
+<p>주의할 것은 메소드 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 메소드를 소유한 객체가 아닌<br />
+메소드를 호출한 객체에 바인딩된다는 것이다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">getName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 메소드 내부이 this는 메소드를 호출한 객체에 바인딩된다.</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 메소드 getName을 호출한 객체는 person이다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span><span class="w">  </span><span class="c1">// Lee</span>
+</pre></div>
+</div>
+<br>
+<p>위 예제의 <code class="docutils literal notranslate"><span class="pre">getName</span></code> 메소드는 <code class="docutils literal notranslate"><span class="pre">person</span></code> 객체의 메소드로 정의되었다.<br />
+메소드는 프로퍼티에 바인딩된 함수이다.</p>
+<p>즉 <code class="docutils literal notranslate"><span class="pre">person</span></code> 객체의 <code class="docutils literal notranslate"><span class="pre">getName</span></code> 프로퍼티가 가리키는 함수 객체는 <code class="docutils literal notranslate"><span class="pre">person</span></code> 객체에 포함된 것이 아니라<br />
+독립적으로 존재하는 별도의 개겣이다.</p>
+<p><font color='orange'><code class="docutils literal notranslate"><span class="pre">getName</span></code> 프로퍼티가 함수 객체를 가리키고 있을 뿐이다.</font></p>
+<img src="https://github.com/user-attachments/assets/37c4ccf3-33f6-4137-9cc7-d9c98efc4128" width="450">
+<br>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">getName</span></code> 프로퍼티가 가리키는 함수 객체,<br />
+즉 <code class="docutils literal notranslate"><span class="pre">getName</span></code> 메소드는 <font color='orange'>다른 객체의 프로퍼티에 할당하는 것으로<br />
+다른 객체의 메소드가 될 수도 있고 일반 변수에 할당하여 일반 함수로 호출될 수도 있다.</font></p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">anotherPerson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span>
+<span class="p">};</span>
+
+<span class="c1">// getName 메소드를 anotherPerson 객체의 메소드로 할당</span>
+<span class="nx">anotherPerson</span><span class="p">.</span><span class="nx">getName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">person</span><span class="p">.</span><span class="nx">getName</span><span class="p">;</span>
+
+<span class="c1">// getName 메소드를 호출한 객체는 anotherPerson이다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">anotherPerson</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span><span class="w">  </span><span class="c1">// Lee</span>
+
+<span class="c1">// getName 메소드를 변수에 할당</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">getName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">person</span><span class="p">.</span><span class="nx">getName</span><span class="p">;</span>
+
+<span class="c1">// getName 메소드를 일반 함수로 호출</span>
+<span class="c1">// 일반 함수로 호출된 getName 함수 내부의 this.name은 브라우저 환경에서 window.name과 같다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getName</span><span class="p">());</span><span class="w">  </span><span class="c1">// &#39;&#39;</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p>프로토타입 메소드 내부에서 사용된 <code class="docutils literal notranslate"><span class="pre">this</span></code>도 일반 메소드와 마찬가지로<br />
+해당 메소드를 호출한 객체에 바인딩된다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+
+<span class="c1">// getName 메소드를 호출한 객체는 me다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span><span class="w">  </span><span class="c1">// Lee</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id4">
+<h2>생성자 함수 호출<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>생성자 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>에는 생성자 함수가 (미래에) 생성할 인스턴스가 바인딩된다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 생성자 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="nx">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 생성자 함수 내부의 this는 생성자 함수가 생성할 인스턴스를 가리킨다.</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">getDiameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// 반지름이 5인 Circle 인스턴스를 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span>
+
+<span class="c1">// 인스턴스 circle의 프로퍼티를 참조</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle</span><span class="p">.</span><span class="nx">getDiameter</span><span class="p">());</span><span class="w">  </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<br>
+<p>만약 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 생성자 함수를 호출하지 않으면<br />
+생성자 함수가 아니라 일반 함수로 동작한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Circle</span><span class="p">(</span><span class="mf">15</span><span class="p">);</span>
+
+<span class="c1">// 일반 함수로 호출된 Circle에는 반환문이 없으므로 암묵적으로 undefined를 반환한다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="function-prototype-apply-call-bind">
+<h2>Function.prototype.apply/call/bind 메소드에 의한 간접 호출<a class="headerlink" href="#function-prototype-apply-call-bind" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">apply</span></code>, <code class="docutils literal notranslate"><span class="pre">call</span></code>, <code class="docutils literal notranslate"><span class="pre">bind</span></code> 메소드는 <code class="docutils literal notranslate"><span class="pre">Function.prototype</span></code>의 메소드다.<br />
+즉, 이들 메소드는 모든 함수가 상속받아 사용할 수 있다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">getThisBinding</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// this로 사용할 객체</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">thisArg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getThisBinding</span><span class="p">());</span><span class="w">  </span><span class="c1">// window</span>
+
+<span class="c1">// getThisBinding 함수를 호출하면서 인수로 전달한 객체를 getThisBinding 함수의 this에 바인딩한다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getThisBinding</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">thisArg</span><span class="p">));</span><span class="w">  </span><span class="c1">// { a: 1 }</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getThisBinding</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">thisArg</span><span class="p">));</span><span class="w">  </span><span class="c1">// { a: 1 }</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">apply</span></code>와 <code class="docutils literal notranslate"><span class="pre">call</span></code> 메소드의 본질적인 기능은 함수를 호출하는 것이다.<br />
+<code class="docutils literal notranslate"><span class="pre">apply</span></code>와 <code class="docutils literal notranslate"><span class="pre">call</span></code> 메소드는 함수를 호출하면서 첫 번째 인수로 전달한 특정 객체를 호출한 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>에 바인딩한다.</p>
+<p><br><br></p>
+<p><code class="docutils literal notranslate"><span class="pre">bind</span></code> 메소드는 메소드의 <code class="docutils literal notranslate"><span class="pre">this</span></code>와<br />
+메소드 내부의 중첩 함수 또는 콜백 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>가 불일치하는 문제를 해결하기 위해 유용하게 사용된다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">foo</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1)</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">callback</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">person</span><span class="p">.</span><span class="nx">foo</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi! my name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 일반 함수로 호출된 콜백 함수 내부의 this.name은 브라우저 환경에서 window.name과 같다.</span>
+<span class="c1">// Hi! my name is undefined</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">person.foo</span></code>의 콜백 함수가 호출되기 이전인 1) 시점에서 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 <code class="docutils literal notranslate"><span class="pre">foo</span></code> 메소드를 호출한 객체,<br />
+즉 <code class="docutils literal notranslate"><span class="pre">person</span></code> 객체를 가리키고 있다.</p>
+<p>하지만 콜백 함수는 일반 함수로 호출되므로 콜백 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 전역 객체를 참조한다.<br />
+따라서 콜백 함수를 일반 함수로 호출하면 <code class="docutils literal notranslate"><span class="pre">this.name</span></code>이 아니라 <code class="docutils literal notranslate"><span class="pre">window.name</span></code>을 참조하게 된다.</p>
+<br>
+<p>이때 위 예제에서 <code class="docutils literal notranslate"><span class="pre">person.foo</span></code>의 콜백 함수는 외부 함수 <code class="docutils literal notranslate"><span class="pre">person.foo</span></code>를 돕는 헬퍼 함수(보조 함수) 역할을 하기 때문에 외부 함수 <code class="docutils literal notranslate"><span class="pre">person.foo</span></code> 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>와 콜백 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>가 상이하면 문맥상 문제가 발생한다.</p>
+<p>따라서 콜백 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>를 외부 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>와 일치시켜야 한다.</p>
+<p>이때 <code class="docutils literal notranslate"><span class="pre">bind</span></code> 메소드를 사용하여 <code class="docutils literal notranslate"><span class="pre">this</span></code>를 일치시킬 수 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">foo</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// bind 메소드로 callback 함수 내부의 this 바인딩을 전달</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">callback</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">),</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">person</span><span class="p">.</span><span class="nx">foo</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi! my name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+
+
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./이용우"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 22 - this</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#this">this 키워드</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">함수 호출 방식과 this 바인딩</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">일반 함수 호출</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">메소드 호출</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">생성자 함수 호출</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-prototype-apply-call-bind">Function.prototype.apply/call/bind 메소드에 의한 간접 호출</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

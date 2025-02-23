@@ -1,0 +1,1032 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 21 - 빌트인 객체 &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_21';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_15.html">Chapter 15 - <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="main.html">이용우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_21.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/이용우/chapter_21.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 21 - 빌트인 객체</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 21 - 빌트인 객체</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">표준 빌트인 객체</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">원시값과 래퍼 객체</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">전역 객체</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">빌트인 전역 프로퍼티</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#infinity">Infinity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nan">NaN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undefined">undefined</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">빌트인 전역 함수</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eval">eval</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isfinite">isFinite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isnan">isNaN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parsefloat">parseFloat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parseint">parseInt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encodeuri-decodeuri">encodeURI / decodeURI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encodeuricomponent-decodeuricomponent">encodeURIComponent / decodeURIComponent</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">암묵적 전역</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="chapter-21">
+<h1>Chapter 21 - 빌트인 객체<a class="headerlink" href="#chapter-21" title="Link to this heading">#</a></h1>
+<p>빌트인 객체는 자바스크립트 엔진에 내장되어 있는 객체를 말한다. 자바스크립트 프로그램은 이 빌트인 객체를 포함하여 실행된다.</p>
+<p>빌트인 객체는 아래와 같이 크게 세 가지로 분류된다.</p>
+<ol class="arabic simple">
+<li><p>표준 빌트인 객체</p></li>
+<li><p>환경에 따라 조금씩 다르게 동작하는 호스트 객체</p></li>
+<li><p>사용자 정의 객체</p></li>
+</ol>
+<p><br><br></p>
+</section>
+<section id="id1">
+<h1>표준 빌트인 객체<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>자바 스크립트는 <code class="docutils literal notranslate"><span class="pre">Object</span></code>, <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Number</span></code>, <code class="docutils literal notranslate"><span class="pre">Boolean</span></code>, <code class="docutils literal notranslate"><span class="pre">Symbol</span></code>, <code class="docutils literal notranslate"><span class="pre">Date</span></code>, <code class="docutils literal notranslate"><span class="pre">RegExp</span></code>, <code class="docutils literal notranslate"><span class="pre">Error</span></code> 등 40여 개의 표준 빌트인 객체를 제공한다.</p>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">Math</span></code>, <code class="docutils literal notranslate"><span class="pre">Reflect</span></code>, <code class="docutils literal notranslate"><span class="pre">JSON</span></code>을 제외한 표준 빌트인 객체는<br />
+아래와 같이 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>를 상속받는다. (인스턴스를 생성할 수 있는 생성자 함수)</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Object</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span><span class="w"> </span><span class="c1">// [object Object]</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Math</span></code>, <code class="docutils literal notranslate"><span class="pre">Reflect</span></code>, <code class="docutils literal notranslate"><span class="pre">JSON</span></code>은 인스턴스를 생성할 수 없는 빌트인 객체이다.</p>
+</div></blockquote>
+<br>
+<p>표준 빌트인 객체인 <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Number</span></code>, <code class="docutils literal notranslate"><span class="pre">Boolean</span></code>,<br />
+<code class="docutils literal notranslate"><span class="pre">Function</span></code>, <code class="docutils literal notranslate"><span class="pre">Array</span></code>, <code class="docutils literal notranslate"><span class="pre">Date</span></code>는 생성자 함수로 호출하여 인스턴스를 생성할 수 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// String 생성자 함수에 의한 String 객체 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">strObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">strObj</span><span class="p">);</span><span class="w"> </span><span class="c1">// object</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">strObj</span><span class="p">);</span><span class="w"> </span><span class="c1">// String { &quot;Lee&quot; }</span>
+
+<span class="c1">// Number 생성자 함수에 의한 Number 객체 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">numObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="mf">123</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">numObj</span><span class="p">);</span><span class="w"> </span><span class="c1">// object</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numObj</span><span class="p">);</span><span class="w"> </span><span class="c1">// Number { 123 }      </span>
+
+<span class="c1">// Boolean 생성자 함수에 의한 Boolean 객체 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">boolObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Boolean</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">boolObj</span><span class="p">);</span><span class="w"> </span><span class="c1">// object</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boolObj</span><span class="p">);</span><span class="w"> </span><span class="c1">// Boolean { true }</span>
+
+<span class="c1">// Function 생성자 함수에 의한 Function 객체(함수) 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Function</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;return x * x&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">func</span><span class="p">);</span><span class="w"> </span><span class="c1">// function</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">func</span><span class="p">(</span><span class="mf">2</span><span class="p">));</span><span class="w"> </span><span class="c1">// 4</span>
+
+<span class="c1">// Array 생성자 함수에 의한 Array 객체(배열) 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">arr</span><span class="p">);</span><span class="w"> </span><span class="c1">// object</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span><span class="w"> </span><span class="c1">// [ 1, 2, 3 ]</span>
+
+<span class="c1">// Date 생성자 함수에 의한 Date 객체 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">date</span><span class="p">);</span><span class="w"> </span><span class="c1">// object</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">);</span><span class="w"> </span><span class="c1">// Mon Feb 10 2025 15:30:00 GMT+0900 (한국 표준시)</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p><strong>생성자 함수인 표준 빌트인 객체</strong>가 생성한 인스턴스의 프로토타입은<br />
+표준 빌트인 객체의 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티에 바인딩되어 있는 객체이다.</p>
+<p>예를 들어, 표준 빌트인 객체인 <code class="docutils literal notranslate"><span class="pre">String</span></code>의 경우,<br />
+<code class="docutils literal notranslate"><span class="pre">String.prototype</span></code>에 바인딩되어 있는 객체가 인스턴스의 프로토타입이 된다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">))</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p>표준 빌트인 객체의 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티에 바인딩되어 있는 객체는<br />
+다양한 기능의 빌트인 프로토타입 메소드를 제공한다.</p>
+<p>그리고 표준 빌트인 객체는 인스턴스 없이도 호출 가능한 빌트인 정적 메소드를 제공한다.</p>
+<br>
+<p>예를 들어, 표준 빌트인 객체인 <code class="docutils literal notranslate"><span class="pre">Number</span></code>의 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티에 바인딩된 객체,<br />
+<code class="docutils literal notranslate"><span class="pre">Number.prototype</span></code>에 바인딩되어 있는 객체는 아래와 같은 빌트인 프로토타입 메소드를 제공한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Number 생성자 함수에 의한 Number 객체 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">numObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="mf">123.456</span><span class="p">);</span>
+
+<span class="c1">// Number.prototype.toFixed</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numObj</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">());</span><span class="w"> </span><span class="c1">// 123</span>
+
+<span class="c1">// Number.prototype.toString</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numObj</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span><span class="w"> </span><span class="c1">// 123.456</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id2">
+<h1>원시값과 래퍼 객체<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<p><strong>원시값인 문자열, 숫자, 불리언 값의 경우</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
+
+<span class="c1">// 문자열 원시값에 대해 마침표 표기법으로 접근하면 자바스크립트 엔진은 암묵적으로 래퍼 객체를 생성한다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// 5</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">());</span><span class="w"> </span><span class="c1">// HELLO</span>
+</pre></div>
+</div>
+<p>원시값은 객체가 아니므로 프로퍼티나 메소드를 가질 수 없지만,<br />
+원시값인 문자열이 위와 같이 마치 객체처럼 동작한다.</p>
+<p>이들 원시값에 대해 마치 객체처럼 마침표 표기법(또는 대괄호 표기법)으로 접근하면<br />
+자바스크립트 엔진이 일시적으로 원시값을 연관된 객체로 변환해주기 때문이다.</p>
+<br>
+<p>즉, 원시값을 객체처럼 사용하면 자바스크립트 엔진은 암묵적으로 연관된 객체를 생성하여<br />
+객체로 프로퍼티에 접근하거나 메소드를 호출하고 다시 원시값으로 되돌린다.</p>
+<br>
+<p>이와 같이 문자열, 숫자, 불리언 값에 대해 객체처럼 접근하면 생성되는 임시 객체를 래퍼 객체라고 한다.</p>
+<p><br><br></p>
+<p>문자열에 대해 마침표 표기법으로 접근하면<br />
+자바스크립트 엔진은 문자열을 객체로 인식하여 임시로 생성한 래퍼 객체에 접근한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// 5</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id3">
+<h1>전역 객체<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<p>전역 객체는 코드가 실행되기 이전 단계에 자바스크립트 엔진에 의해<br />
+어떤 객체보다도 먼저 생성되는 특수 객체이며, 어떤 객체에도 속하지 않은 최상위 객체이다.</p>
+<br>
+<p>전역 객체는 자바스크립트 환경에 따라 지칭하는 이름이 제각각이다.<br />
+예를 들어, 브라우저 환경에서는 <code class="docutils literal notranslate"><span class="pre">window</span></code>, <code class="docutils literal notranslate"><span class="pre">global</span></code> 등으로 불리고,<br />
+Node.js 환경에서는 <code class="docutils literal notranslate"><span class="pre">global</span></code> 객체를 의미한다.</p>
+<br>
+<p>전역 객체는 계층적 구조상 어떤 객체오도 속하지 않은 모든 빌트인 객체의 최상위 객체이다.</p>
+<blockquote>
+<div><p>전역 객체 자신은 어떤 객체의 프로퍼티도 아니며<br />
+객체의 계층적 구조상 표준 빌트인 객체와 호스트 객체를 프로퍼티로 소유한다는 것을 의미한다.</p>
+</div></blockquote>
+<br>
+<p>전역 객체의 특징은 아래와 같다.</p>
+<ol class="arabic">
+<li><p>전역 객체는 개발자가 의도적으로 생성할 수 없다. (전역 객체를 생성할 수 있는 생성자 함수가 제공되지 않는다)</p></li>
+<li><p>전역 객체의 프로퍼티를 참조할 때 window(또는 global)을 생략할 수 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 브라우저 환경</span>
+<span class="nb">window</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;18&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 18</span>
+<span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;18&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 18</span>
+</pre></div>
+</div>
+</li>
+<li><p>전역 객체는 모든 표준 빌트인 객체를 프로퍼티로 가지고 있다.</p></li>
+<li><p>자바스크립트 실행 환경에 따라 추가적으로 프로퍼티와 메소드를 갖는다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">var</span></code> 키워드로 선언한 전역 변수와 선언하지 않은 변수에 값을 할당한 암묵적 전역, 그리고 전역 함수는 전역 객체의 프로퍼티가 된다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">123</span><span class="p">;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c1">// 전역 객체의 프로퍼티는 전역 변수와 전역 함수를 참조할 수 있다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span><span class="w"> </span><span class="c1">// 123</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">bar</span><span class="p">());</span><span class="w"> </span><span class="c1">// 3</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">let</span></code>이나 <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드로 선언한 전역 변수는 전역 객체의 프로퍼티가 아니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">123</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span><span class="w"> </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+</li>
+<li><p>브라우저 환경의 모든 자바스크립트 코드는 하나의 전역 객체 <code class="docutils literal notranslate"><span class="pre">window</span></code>를 공유한다. 이는 분리되어 있는 자바스크립트 코드가 하나의 전역을 공유한다는 의미와 같다.</p></li>
+</ol>
+<p><br><br></p>
+</section>
+<section id="id4">
+<h1>빌트인 전역 프로퍼티<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<p>빌트인 전역 프로퍼티는 전역 객체의 프로퍼티를 의미한다.</p>
+<p><br><br></p>
+<section id="infinity">
+<h2>Infinity<a class="headerlink" href="#infinity" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Infinity</span></code> 프로퍼티는 무한대를 나타내는 숫자값 <code class="docutils literal notranslate"><span class="pre">Infinity</span></code>를 갖는다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="kc">Infinity</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">Infinity</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+
+<span class="c1">// 양의 무한대</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="o">/</span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Infinity</span>
+
+<span class="c1">// 음의 무한대</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">-</span><span class="mf">3</span><span class="o">/</span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// -Infinity</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="nan">
+<h2>NaN<a class="headerlink" href="#nan" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> 프로퍼티는 숫자가 아님을 나타내는 숫자값 <code class="docutils literal notranslate"><span class="pre">NaN</span></code>을 갖는다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="kc">NaN</span><span class="p">);</span><span class="w"> </span><span class="c1">// NaN</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="s1">&#39;xyz&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// NaN</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="s1">&#39;string&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// NaN</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="kc">NaN</span><span class="p">);</span><span class="w"> </span><span class="c1">// number</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="undefined">
+<h2>undefined<a class="headerlink" href="#undefined" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">undefined</span></code> 프로퍼티는 원시값 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>를 갖는다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="kc">undefined</span><span class="p">);</span><span class="w"> </span><span class="c1">// undefined</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">foo</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span><span class="w"> </span><span class="c1">// undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span><span class="w"> </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="id5">
+<h1>빌트인 전역 함수<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
+<p>빌트인 전역 함수는 전역 객체의 메소드다.</p>
+<p><br><br></p>
+<section id="eval">
+<h2>eval<a class="headerlink" href="#eval" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">eval</span></code> 함수는 자바스크립트 코드를 나타내는 문자열을 인자로 전달받는다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 문자열 자체를 자바스크립트 코드로 평가한다.</span>
+<span class="cm"> * @param {string} code - 자바스크립트 코드</span>
+<span class="cm"> * @returns {*} - 자바스크립트 코드의 평가 결과 (코드의 실행 결과)</span>
+<span class="cm"> */</span>
+<span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;1 + 2&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="isfinite">
+<h2>isFinite<a class="headerlink" href="#isfinite" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">isFinite</span></code> 함수는 인자로 전달된 값이 정상적인 유한수인지 검사하여 유한수이면 <code class="docutils literal notranslate"><span class="pre">true</span></code>,<br />
+무한수이면 <code class="docutils literal notranslate"><span class="pre">false</span></code>를 반환한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 전달받은 인수가 유한수인지 확인하고 그 결과를 반환한다.</span>
+<span class="cm"> * @param {number} testValue - 검사 대상 값</span>
+<span class="cm"> * @returns {boolean} - 유한수이면 true, 무한수이면 false</span>
+<span class="cm"> */</span>
+<span class="nb">isFinite</span><span class="p">(</span><span class="nx">testValue</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nb">isFinite</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+<span class="nb">isFinite</span><span class="p">(</span><span class="mf">2e64</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+<span class="nb">isFinite</span><span class="p">(</span><span class="mf">100</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+<span class="nb">isFinite</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w"> </span><span class="c1">// true: null은 0으로 평가된다.</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="isnan">
+<h2>isNaN<a class="headerlink" href="#isnan" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">isNaN</span></code> 함수는 인자로 전달된 값이 <code class="docutils literal notranslate"><span class="pre">NaN</span></code>인지 검사하여<br />
+<code class="docutils literal notranslate"><span class="pre">NaN</span></code>이면 <code class="docutils literal notranslate"><span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">NaN</span></code>이 아니면 <code class="docutils literal notranslate"><span class="pre">false</span></code>를 반환한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 전달받은 인수가 NaN인지 확인하고 그 결과를 반환한다.</span>
+<span class="cm"> * @param {number} testValue - 검사 대상 값</span>
+<span class="cm"> * @returns {boolean} - NaN이면 true, NaN이 아니면 false</span>
+<span class="cm"> */</span>
+<span class="nb">isNaN</span><span class="p">(</span><span class="nx">testValue</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 숫자</span>
+<span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+<span class="nb">isNaN</span><span class="p">(</span><span class="mf">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// false</span>
+<span class="nb">isNaN</span><span class="p">(</span><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="kc">undefined</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+
+<span class="c1">// 문자열</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="parsefloat">
+<h2>parseFloat<a class="headerlink" href="#parsefloat" title="Link to this heading">#</a></h2>
+<p>전달받은 문자열 인수를 부동 소수점 숫자(floating point number)로 변환하여 반환한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 전달받은 문자열 인수를 부동 소수점 숫자로 변환하여 반환한다.</span>
+<span class="cm"> * @param {string} stringValue - 변환할 문자열</span>
+<span class="cm"> * @returns {number} - 변환된 부동 소수점 숫자</span>
+<span class="cm"> */</span>
+<span class="nb">parseFloat</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nb">parseFloat</span><span class="p">(</span><span class="s1">&#39;100&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 100</span>
+<span class="nb">parseFloat</span><span class="p">(</span><span class="s1">&#39;100.99&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 100.99</span>
+
+<span class="c1">// 공백으로 구분된 문자열은 첫 번째 문자열만 변환한다.</span>
+<span class="nb">parseFloat</span><span class="p">(</span><span class="s1">&#39;100 200&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 100</span>
+
+<span class="c1">// 첫 번째 문자열을 숫자로 변환할 수 없다면 NaN을 반환한다.</span>
+<span class="nb">parseFloat</span><span class="p">(</span><span class="s1">&#39;xyz abc&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// NaN</span>
+
+<span class="c1">// 부호를 붙일 수 있다.</span>
+<span class="nb">parseFloat</span><span class="p">(</span><span class="s1">&#39;-100&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// -100</span>
+<span class="nb">parseFloat</span><span class="p">(</span><span class="s1">&#39;+100&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 100</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="parseint">
+<h2>parseInt<a class="headerlink" href="#parseint" title="Link to this heading">#</a></h2>
+<p>전달받은 문자열 인수를 정수로 변환하여 반환한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 전달받은 문자열 인수를 정수로 변환하여 반환한다.</span>
+<span class="cm"> * @param {string} stringValue - 변환할 문자열</span>
+<span class="cm"> * @param {number} [radix] - 진수(진법을 나타내는 기수)</span>
+<span class="cm"> * @returns {number} - 변환된 정수</span>
+<span class="cm"> */</span>
+<span class="nb">parseInt</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">radix</span><span class="p">]);</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;100&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 100</span>
+
+<span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;100&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// 100</span>
+<span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;100&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// 4: 2진수</span>
+<span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;100&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">);</span><span class="w"> </span><span class="c1">// 64: 8진수</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="encodeuri-decodeuri">
+<h2>encodeURI / decodeURI<a class="headerlink" href="#encodeuri-decodeuri" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">encodeURI</span></code> 함수는 완전한 URI를 문자열로 전달받아 이스케이프 처리를 위해 인코딩한다.<br />
+<code class="docutils literal notranslate"><span class="pre">decodeURI</span></code> 함수는 인코딩된 URI를 인수로 전달받아 이스케이프 처리를 위해 디코딩한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 완전한 URI를 문자열로 전달받아 이스케이프 처리를 위해 인코딩한다.</span>
+<span class="cm"> * @param {string} uri - 인코딩할 URI</span>
+<span class="cm"> * @returns {string} - 인코딩된 URI</span>
+<span class="cm"> */</span>
+<span class="nb">encodeURI</span><span class="p">(</span><span class="nx">uri</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>인코딩이란, URI의 문자들을 이스케이프 처리하는 것을 의미한다.<br />
+이스케이프 처리는 네트워크를 통해 정보를 공유할 때<br />
+어떤 시스템에서도 읽을 수 있는 <strong>아스키 문자 셋으로 변환</strong>하는 것이다.</p>
+<p>예를 들어, 특수 문자인 공백 문자는 <code class="docutils literal notranslate"><span class="pre">%20</span></code>, 한글 ‘가’는 <code class="docutils literal notranslate"><span class="pre">%EA%B0%80</span></code>로 인코딩된다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 완전한 URI</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://practice.com?name=이용우?job=programmer&amp;teacher&#39;</span><span class="p">;</span>
+
+<span class="c1">// encodeURI 함수는 완전한 URI를 인수로 전달받아 이스케이프 처리를 위해 인코딩한다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">encoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">encodeURI</span><span class="p">(</span><span class="nx">uri</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">encoded</span><span class="p">);</span><span class="w"> </span><span class="c1">// https://practice.com?name=%EC%9D%B4%EC%9A%A9%EC%9A%B0?job=programmer&amp;teacher</span>
+
+<span class="c1">// decodeURI 함수는 인코딩된 URI를 인수로 전달받아 이스케이프 처리를 위해 디코딩한다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">decoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">decodeURI</span><span class="p">(</span><span class="nx">encoded</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">decoded</span><span class="p">);</span><span class="w"> </span><span class="c1">// https://practice.com?name=이용우?job=programmer&amp;teacher</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="encodeuricomponent-decodeuricomponent">
+<h2>encodeURIComponent / decodeURIComponent<a class="headerlink" href="#encodeuricomponent-decodeuricomponent" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">encodeURIComponent</span></code> 함수는 인수로 전달받은 문자열을<br />
+URI의 구성요소인 쿼리 문자열의 일부로 간주하여 인코딩한다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">decodeURIComponent</span></code> 함수는 인코딩된 문자열을 인수로 전달받아 이스케이프 처리를 위해 디코딩한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 인수로 전달받은 문자열을 URI의 구성요소인 쿼리 문자열의 일부로 간주하여 인코딩한다.</span>
+<span class="cm"> * @param {string} uriComponent - 인코딩할 URI 구성요소</span>
+<span class="cm"> * @returns {string} - 인코딩된 URI 구성요소</span>
+<span class="cm"> */</span>
+<span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">uriComponent</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 인코딩된 문자열을 인수로 전달받아 이스케이프 처리를 위해 디코딩한다.</span>
+<span class="cm"> * @param {string} encodedURIComponent - 디코딩할 인코딩된 URI 구성요소</span>
+<span class="cm"> * @returns {string} - 디코딩된 URI 구성요소</span>
+<span class="cm"> */</span>
+<span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">encodedURIComponent</span><span class="p">);</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">encodeURIComponent</span></code> 함수는 인수로 전달받은 문자열을<br />
+URI의 구성요소인 쿼리 문자열의 일부로 간주하여 인코딩한다.</p>
+<p>따라서 쿼리 스트링 구분자로 사용되는 <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">?</span></code> 까지 인코딩한다.
+반면 <code class="docutils literal notranslate"><span class="pre">encodeURI</span></code> 함수는 매개변수로 전달된 문자열을 완전한 URI 전체라고 간주한다.<br />
+따라서 쿼리 스트리이 구분자로 사용되는 <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">?</span></code> 는 인코딩하지 않는다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// URI의 쿼리 스트링</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">uriComp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;name=이용우&amp;job=programmer&amp;teacher&#39;</span><span class="p">;</span>
+
+<span class="c1">// encodeURIComponent 함수는 인수로 전달받은 문자열을 URI의 구성요소인 쿼리 문자열의 일부로 간주하여 인코딩한다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">encoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">uriComp</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">encoded</span><span class="p">);</span><span class="w"> </span><span class="c1">// name=%EC%9D%B4%EC%9A%A9%EC%9A%B0&amp;job=programmer&amp;teacher</span>
+
+<span class="c1">// decodeURIComponent 함수는 인코딩된 문자열을 인수로 전달받아 이스케이프 처리를 위해 디코딩한다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">decoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">encoded</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">decoded</span><span class="p">);</span><span class="w"> </span><span class="c1">// name=이용우&amp;job=programmer&amp;teacher</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="id6">
+<h1>암묵적 전역<a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 선언하지 않은 식별자에 값을 할당</span>
+<span class="w">    </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
+<span class="p">}</span><span class="w">   </span>
+
+<span class="nx">foo</span><span class="p">();</span>
+
+<span class="c1">// 선언하지 않은 식별자 y를 전역에서 참조할 수 있다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// 20</span>
+</pre></div>
+</div>
+<p>foo 함수 내의 y는 선언하지 않은 식별자이다.<br />
+따라서 <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">20</span></code>이 실행되면 참조 에러가 발생할 것처럼 보인다.</p>
+<p>하지만 선언하지 않은 식별자 y는 마치 전역 변수처럼 동작한다.<br />
+이는 선언하지 않은 식별자에 값을 할당하면 전역 객체의 프로퍼티가 되기 때문이다.</p>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">foo</span></code> 함수가 호출되면 자바스크립트 엔진은 y 변수에 값을 할당하기 위해<br />
+먼저 스코프 체인을 통해 선언된 변수인지를 확인한다.</p>
+<p>이때 foo 함수의 스코프와 전역 스코프 어디에도 y 변수의 선언을 찾을 수 없으므로 참조 에러가 발생한다.<br />
+하지만 자바스크립트 엔진은 <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">20</span></code>을 <code class="docutils literal notranslate"><span class="pre">window.y</span> <span class="pre">=</span> <span class="pre">20</span></code>으로 해석하여 전역 객체에 프로퍼티를 동적으로 생성한다.</p>
+<p>결국 y는 전역 객체의 프로퍼티가 되어 마치 전역 변수처럼 동작하는데,<br />
+이를 암묵적 전역이라고 한다.</p>
+<blockquote>
+<div><p>다만 <code class="docutils literal notranslate"><span class="pre">y</span></code>는 변수 선언 없이 단지 전역 객체의 프로퍼티로 추가되었을 뿐이다.<br />
+따라서 <code class="docutils literal notranslate"><span class="pre">y</span></code>는 변수가 아니다. (변수가 아니므로 변수 호이스팅이 발생하지 않는다)</p>
+</div></blockquote>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 전역 변수 x는 호이스팅이 발생한다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w">     </span><span class="c1">// undefined</span>
+
+<span class="c1">// 전역 변수가 아니라 단지 전역 객체의 프로퍼티인 y는 호이스팅이 발생하지 않는다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span><span class="w">     </span><span class="c1">// ReferenceError: y is not defined</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 선언하지 않은 식별자에 값을 할당</span>
+<span class="w">    </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span><span class="w"> </span><span class="c1">// window.y = 20</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">();</span>
+
+<span class="c1">// 선언하지 않은 식별자 y를 전역에서 참조할 수 있다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// 30  </span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p>또한 변수가 아니라 단지 프로퍼티인 <code class="docutils literal notranslate"><span class="pre">y</span></code>는 <code class="docutils literal notranslate"><span class="pre">delete</span></code> 연산자로 삭제가 가능하다.<br />
+전역 변수는 프로퍼티이지만 <code class="docutils literal notranslate"><span class="pre">delete</span></code> 연산자로 삭제할 수 없다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w">     </span><span class="c1">// 전역 변수</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 선언하지 않은 식별자에 값을 할당</span>
+<span class="w">    </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span><span class="w"> </span><span class="c1">// window.y = 20</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">();</span><span class="w">      </span><span class="c1">// 30</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// 10</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// 20</span>
+
+<span class="ow">delete</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span><span class="w"> </span><span class="c1">// 전역 변수는 삭제되지 않는다.</span>
+<span class="ow">delete</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span><span class="w"> </span><span class="c1">// 프로퍼티는 삭제된다.</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// 10</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./이용우"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 21 - 빌트인 객체</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">표준 빌트인 객체</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">원시값과 래퍼 객체</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">전역 객체</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">빌트인 전역 프로퍼티</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#infinity">Infinity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nan">NaN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undefined">undefined</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">빌트인 전역 함수</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eval">eval</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isfinite">isFinite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isnan">isNaN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parsefloat">parseFloat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parseint">parseInt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encodeuri-decodeuri">encodeURI / decodeURI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encodeuricomponent-decodeuricomponent">encodeURIComponent / decodeURIComponent</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">암묵적 전역</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

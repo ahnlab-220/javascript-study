@@ -29,7 +29,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -545,7 +545,7 @@ document.write(`
 <span class="c1">// Circle 생성자 함수는 인스턴스를 생성할 때마다 동일한 동작을 하는 </span>
 <span class="c1">// getArea 메소드를 중복 생성하고 모든 인스턴스가 중복 소유합니다.</span>
 <span class="c1">// getArea 메소드는 하나만 생성하여 모든 인스턴스가 공유해서 사용하는 것이 바람직합니다.</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle</span><span class="p">.</span><span class="nx">getArea</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getArea</span><span class="p">);</span><span class="w">    </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle1</span><span class="p">.</span><span class="nx">getArea</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getArea</span><span class="p">);</span><span class="w">    </span><span class="c1">// false</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle1</span><span class="p">.</span><span class="nx">getArea</span><span class="p">());</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getArea</span><span class="p">());</span>
@@ -560,7 +560,7 @@ document.write(`
 <br>
 <p>이처럼 동일한 생성자 함수에 의해 생성된 모든 인스턴스가 동일한 메소드를 중복 소유하는 것은 메모리를 불필요하게 낭비합니다.<br />
 또한 인스턴스를 생성할 때마다 메소드를 생성하므로 퍼포먼스에도 악영향을 줍니다.<br />
-만약 10개의 인스턴스를 생성하면 내용이 동일한 메소드로 10개 성상됩니다.</p>
+만약 10개의 인스턴스를 생성하면 내용이 동일한 메소드로 10개 생성됩니다.</p>
 <br>
 <p>상속을 통해 불필요한 중복을 제거할 수 있습니다.<br />
 <strong>자바스크립트는 프로토타입(prototype)을 기반으로 상속을 구현합니다.</strong></p>
@@ -570,7 +570,7 @@ document.write(`
 <span class="p">}</span>
 
 <span class="c1">// Circle 생성자 함수가 생성한 모든 인스턴스가 getArea 메소드를</span>
-<span class="c1">// 공유해서 사용할 수 있도록 프로토토압에 추가합니다.</span>
+<span class="c1">// 공유해서 사용할 수 있도록 프로토타입에 추가합니다.</span>
 <span class="c1">// 프로토타입은 Circle 생성자 함수의 prototype 프로토타입에 바인딩되어 있습니다.</span>
 <span class="nx">Circle</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
@@ -585,7 +585,7 @@ document.write(`
 <span class="c1">// Circle 생성자 함수는 인스턴스를 생성할 때마다 동일한 동작을 하는 </span>
 <span class="c1">// getArea 메소드를 중복 생성하고 모든 인스턴스가 중복 소유합니다.</span>
 <span class="c1">// getArea 메소드는 하나만 생성하여 모든 인스턴스가 공유해서 사용하는 것이 바람직합니다.</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle</span><span class="p">.</span><span class="nx">getArea</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getArea</span><span class="p">);</span><span class="w">    </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle1</span><span class="p">.</span><span class="nx">getArea</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getArea</span><span class="p">);</span><span class="w">    </span><span class="c1">// true</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle1</span><span class="p">.</span><span class="nx">getArea</span><span class="p">());</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">circle2</span><span class="p">.</span><span class="nx">getArea</span><span class="p">());</span>
@@ -599,7 +599,7 @@ document.write(`
 따라서 <code class="docutils literal notranslate"><span class="pre">Circle</span></code> 생성자 함수가 생성되는 모든 인스턴스는 <code class="docutils literal notranslate"><span class="pre">getArea</span></code> 메소드를 상속받아 사용할 수 있습니다.</p>
 <p>즉, 자신의 상태를 나타내는 <code class="docutils literal notranslate"><span class="pre">radius</span></code> 프로퍼티만 개별적으로 소유하고 내용이 동일한 메소드는 상속을 통해 공유하여 사용하는 것입니다.<br />
 상속은 코드의 재사용이란 관점에서 매우 유용합니다.<br />
-<font color='orange'>메소드를 프로토타입에 미리 구현해두면 모든 인스턴스는 별도의 구현 없이 상위(부모) 객체인 프로토토압의 자산을 공유하여 사용할 수 있습니다. </font></p>
+<font color='orange'>메소드를 프로토타입에 미리 구현해두면 모든 인스턴스는 별도의 구현 없이 상위(부모) 객체인 프로토타입의 자산을 공유하여 사용할 수 있습니다. </font></p>
 <p><br><br></p>
 <section id="id3">
 <h2>프로토타입 객체<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
@@ -624,7 +624,7 @@ document.write(`
 <section id="proto">
 <h3><strong>proto</strong> 접근자 프로퍼티<a class="headerlink" href="#proto" title="Link to this heading">#</a></h3>
 <p>모든 객체는 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티를 통해 자신의 프로토타입,<br />
-즉 [[Prototype]] 내부 슬롯에 <strong>간접적으로 접근할 수 있습니다.</strong></p>
+즉 [[Prototype]] 내부 슬롯이 가리키는 프로토타입에 <strong>간접적으로 접근할 수 있습니다.</strong></p>
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/bb50a2ca-1454-4d59-bb06-ef967dcad068" />
 <p><br><br></p>
 <p><font color='tomato'><code class="docutils literal notranslate"><span class="pre">__proto__</span></code>는 접근자 프로퍼티이다.</font></p>
@@ -673,7 +673,7 @@ document.write(`
 모든 객체는 프로토타입의 계층 구조인 프로토타입 체인에 묶여 있다.<br />
 자바스크립트 엔진은 객체의 프로퍼티(메서드 포함)에 접근하려고 할 때<br />
 해당 객체에 접근하려는 프로퍼티가 없다면 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티가 가리키는 참조를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다.</p>
-<p>프로토타입 체인의 종점, 즉 프로토타입 체인의 최상위 객체는 <code class="docutils literal notranslate"><span class="pre">0bject.prototype</span></code>이며,<br />
+<p>프로토타입 체인의 종점, 즉 프로토타입 체인의 최상위 객체는 <code class="docutils literal notranslate"><span class="pre">Object.prototype</span></code>이며,<br />
 이 객체의 프로퍼티와 메서드는 모든 객체에 상속된다.</p>
 </div></blockquote>
 <p><br><br></p>
@@ -693,7 +693,7 @@ document.write(`
 <br>
 <p>위 예제에서는 <code class="docutils literal notranslate"><span class="pre">parent</span></code> 객체를 <code class="docutils literal notranslate"><span class="pre">child</span></code> 객체의 프로토타입으로 설정한 후,<br />
 <code class="docutils literal notranslate"><span class="pre">child</span></code> 객체를 <code class="docutils literal notranslate"><span class="pre">parent</span></code> 객체의 프로토타입으로 설정했습니다.</p>
-<p>이러한 코드가 에러 업싱 정상적으로 처리되면<br />
+<p>이러한 코드가 에러 없이 정상적으로 처리되면<br />
 서로가 자신의 프로토타입이 되는 비정상적인 프로토타입 체인이 만들어지기 때문에<br />
 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티는 에러를 발생시킵니다.</p>
 <img width="250" alt="image" src="https://github.com/user-attachments/assets/418e3e23-f40f-4329-a10a-4ff71e0b6fd4" />
@@ -721,7 +721,7 @@ document.write(`
 </pre></div>
 </div>
 <p>따라서 프로토타입의 참조를 얻고 싶은 경우에는, <code class="docutils literal notranslate"><span class="pre">Obejct.getPrototypeOf</span></code> 메소드를 사용하고,<br />
-프로토타입을 교체하고 싶은 경우에는 <code class="docutils literal notranslate"><span class="pre">Object.setPrototypeO</span> <span class="pre">ㅈf</span></code> 메소드를 사용할 것을 권장합니다.</p>
+프로토타입을 교체하고 싶은 경우에는 <code class="docutils literal notranslate"><span class="pre">Object.setPrototypeOf</span></code> 메소드를 사용할 것을 권장합니다.</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">};</span>
 
@@ -751,16 +751,13 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 생성자 함수가 생성할 객체(인스턴스)의 프로토타입을 가리킵니다.</p>
 <p>따라서 생성자 함수로서 호출할 수 없는 함수, 즉 non-constructor인 화살표 함수와 ES6 메소드 축약 표현으로 정의한 메소드는<br />
 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티를 소유하지 않으며 프로토타입도 생성하지 않습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 화살표 함수는 non-constructor 이다.</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 화살표 함수는 non-constructor 입니다.</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="c1">// non-constructor는 prototype 프로퍼티를 소유하지 않는다.</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">));</span><span class="w">    </span><span class="c1">// false</span>
-
-<span class="c1">// non-constructor는 프로토타입을 생성하지 않는다.</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
 
 <span class="c1">// ES6의 메소드 축약 표현으로 정의한 메소드는 non-constructor다.</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -776,8 +773,7 @@ document.write(`
 </div>
 <br>
 <p>모든 객체가 가지고 있는 <code class="docutils literal notranslate"><span class="pre">__proto__</span></code> 접근자 프로퍼티와<br />
-함수 객체만이 가지고 있는 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 결국 동일한 프로토타입을 가리킵니다.<br />
-하지만 이들 프로퍼티를 사용하는 주체가 다릅니다.</p>
+함수 객체만이 가지고 있는 <code class="docutils literal notranslate"><span class="pre">prototype</span></code> 프로퍼티는 결국 동일한 프로토타입을 가리킵니다.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>구분</p></th>
@@ -1020,7 +1016,7 @@ ECMAScript 사양을 살펴봅시다.</p>
 </ul>
 <p><br><br></p>
 <p>이처럼 다양한 방식으로 생성된 모든 객체는 각 방식마다 세부적인 객체 생성 방식의 차이는 있으나<br />
-추상 연산 <code class="docutils literal notranslate"><span class="pre">ordinaryobjectCreate</span></code>에 의해 생성된다는 공통점이 있습니다.</p>
+추상 연산 <code class="docutils literal notranslate"><span class="pre">ordinaryObjectCreate</span></code>에 의해 생성된다는 공통점이 있습니다.</p>
 <p>이는 즉, 프로토타입은 추상 연산 <code class="docutils literal notranslate"><span class="pre">OrdinaryObjectCreate</span></code>에 전달되는 인수에 의해 결정됩니다.<br />
 이 인수는 객체가 생성되는 시점에 객체 생성 방식에 의해 결정됩니다.</p>
 <p><br><br></p>
@@ -1267,7 +1263,7 @@ ECMAScript 사양을 살펴봅시다.</p>
 </pre></div>
 </div>
 <p>위와 같이 <code class="docutils literal notranslate"><span class="pre">Object.create</span></code> 메소드는 첫 번째 매개변수에 전달한 객체의 프로토타입 체인에 속하는 객체를 생성합니다.<br />
-즉, 객체를 생서앟면서 직접적으로 상속을 구현하는 것입니다.</p>
+즉, 객체를 생성하면서 직접적으로 상속을 구현하는 것입니다.</p>
 <p>장점은 아래와 같습니다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자 없이도 객체 생성이 가능합니다.</p></li>
@@ -1361,12 +1357,12 @@ ES6에서는 객체 리터럴 내부에서 <code class="docutils literal notrans
 모든 프로토타입에서 <code class="docutils literal notranslate"><span class="pre">toString</span></code> 프로퍼티를 검색했기 때문입니다.</p>
 <p><br><br></p>
 <p><code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자 대신 ES6에서 도입된 <code class="docutils literal notranslate"><span class="pre">Reflict.has</span></code> 메소드를 사용할 수 있습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">perosn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span>
 <span class="p">};</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Reflict</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;name&#39;</span><span class="p">));</span><span class="w">   </span><span class="c1">// true</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Reflict</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;toString&#39;</span><span class="p">));</span><span class="w">   </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Reflict</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;toString&#39;</span><span class="p">));</span><span class="w">   </span><span class="c1">// false</span>
 </pre></div>
 </div>
 <p><br><br></p>

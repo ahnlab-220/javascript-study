@@ -86,7 +86,7 @@ const circle2 = new Circle(2);
 // Circle 생성자 함수는 인스턴스를 생성할 때마다 동일한 동작을 하는 
 // getArea 메소드를 중복 생성하고 모든 인스턴스가 중복 소유합니다.
 // getArea 메소드는 하나만 생성하여 모든 인스턴스가 공유해서 사용하는 것이 바람직합니다.
-console.log(circle.getArea === circle2.getArea);    // false
+console.log(circle1.getArea === circle2.getArea);    // false
 
 console.log(circle1.getArea());
 console.log(circle2.getArea());
@@ -106,7 +106,7 @@ console.log(circle2.getArea());
 
 이처럼 동일한 생성자 함수에 의해 생성된 모든 인스턴스가 동일한 메소드를 중복 소유하는 것은 메모리를 불필요하게 낭비합니다.  
 또한 인스턴스를 생성할 때마다 메소드를 생성하므로 퍼포먼스에도 악영향을 줍니다.  
-만약 10개의 인스턴스를 생성하면 내용이 동일한 메소드로 10개 성상됩니다.  
+만약 10개의 인스턴스를 생성하면 내용이 동일한 메소드로 10개 생성됩니다.  
 
 <br>
 
@@ -120,7 +120,7 @@ function Circle(radius) {
 }
 
 // Circle 생성자 함수가 생성한 모든 인스턴스가 getArea 메소드를
-// 공유해서 사용할 수 있도록 프로토토압에 추가합니다.
+// 공유해서 사용할 수 있도록 프로토타입에 추가합니다.
 // 프로토타입은 Circle 생성자 함수의 prototype 프로토타입에 바인딩되어 있습니다.
 Circle.prototype.getArea = function() {
     return Math.PI * this.radius ** 2;
@@ -135,7 +135,7 @@ const circle2 = new Circle(2);
 // Circle 생성자 함수는 인스턴스를 생성할 때마다 동일한 동작을 하는 
 // getArea 메소드를 중복 생성하고 모든 인스턴스가 중복 소유합니다.
 // getArea 메소드는 하나만 생성하여 모든 인스턴스가 공유해서 사용하는 것이 바람직합니다.
-console.log(circle.getArea === circle2.getArea);    // false
+console.log(circle1.getArea === circle2.getArea);    // true
 
 console.log(circle1.getArea());
 console.log(circle2.getArea());
@@ -153,7 +153,7 @@ console.log(circle2.getArea());
 
 즉, 자신의 상태를 나타내는 `radius` 프로퍼티만 개별적으로 소유하고 내용이 동일한 메소드는 상속을 통해 공유하여 사용하는 것입니다.   
 상속은 코드의 재사용이란 관점에서 매우 유용합니다.  
-<font color='orange'>메소드를 프로토타입에 미리 구현해두면 모든 인스턴스는 별도의 구현 없이 상위(부모) 객체인 프로토토압의 자산을 공유하여 사용할 수 있습니다. </font>
+<font color='orange'>메소드를 프로토타입에 미리 구현해두면 모든 인스턴스는 별도의 구현 없이 상위(부모) 객체인 프로토타입의 자산을 공유하여 사용할 수 있습니다. </font>
 
 <br><br>
 
@@ -185,7 +185,7 @@ console.log(circle2.getArea());
 
 ##### __proto__ 접근자 프로퍼티
 모든 객체는 `__proto__` 접근자 프로퍼티를 통해 자신의 프로토타입,  
-즉 [[Prototype]] 내부 슬롯에 **간접적으로 접근할 수 있습니다.**
+즉 [[Prototype]] 내부 슬롯이 가리키는 프로토타입에 **간접적으로 접근할 수 있습니다.**
 
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/bb50a2ca-1454-4d59-bb06-ef967dcad068" />
 
@@ -252,7 +252,7 @@ console.log({}.__proto__ === Object.prototype);     // true
 > 자바스크립트 엔진은 객체의 프로퍼티(메서드 포함)에 접근하려고 할 때  
 > 해당 객체에 접근하려는 프로퍼티가 없다면 `__proto__` 접근자 프로퍼티가 가리키는 참조를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다. 
 > 
-> 프로토타입 체인의 종점, 즉 프로토타입 체인의 최상위 객체는 `0bject.prototype`이며,  
+> 프로토타입 체인의 종점, 즉 프로토타입 체인의 최상위 객체는 `Object.prototype`이며,  
 > 이 객체의 프로퍼티와 메서드는 모든 객체에 상속된다. 
 
 <br><br>
@@ -277,7 +277,7 @@ parent.__proto__ = child;       // TypeError: Cyclic __proto__ value
 위 예제에서는 `parent` 객체를 `child` 객체의 프로토타입으로 설정한 후,  
 `child` 객체를 `parent` 객체의 프로토타입으로 설정했습니다.
 
-이러한 코드가 에러 업싱 정상적으로 처리되면  
+이러한 코드가 에러 없이 정상적으로 처리되면  
 서로가 자신의 프로토타입이 되는 비정상적인 프로토타입 체인이 만들어지기 때문에  
 `__proto__` 접근자 프로퍼티는 에러를 발생시킵니다.
 
@@ -314,7 +314,7 @@ console.log(Object.getPrototypeOf(obj));        // null
 ```
 
 따라서 프로토타입의 참조를 얻고 싶은 경우에는, `Obejct.getPrototypeOf` 메소드를 사용하고,  
-프로토타입을 교체하고 싶은 경우에는 `Object.setPrototypeO ㅈf` 메소드를 사용할 것을 권장합니다.
+프로토타입을 교체하고 싶은 경우에는 `Object.setPrototypeOf` 메소드를 사용할 것을 권장합니다.
 
 ``` js
 const obj = {};
@@ -350,16 +350,13 @@ console.log(obj.x);     // 1
 `prototype` 프로퍼티를 소유하지 않으며 프로토타입도 생성하지 않습니다.
 
 ``` js
-// 화살표 함수는 non-constructor 이다.
+// 화살표 함수는 non-constructor 입니다.
 const Person = name => {
     this.name = name;
 };
 
 // non-constructor는 prototype 프로퍼티를 소유하지 않는다.
 console.log(Person.hasOwnProperty('prototype'));    // false
-
-// non-constructor는 프로토타입을 생성하지 않는다.
-console.log(Person.prototype);  // undefined
 
 // ES6의 메소드 축약 표현으로 정의한 메소드는 non-constructor다.
 const obj = {
@@ -377,7 +374,6 @@ console.log(obj.foo.prototype);     // undefined
 
 모든 객체가 가지고 있는 `__proto__` 접근자 프로퍼티와  
 함수 객체만이 가지고 있는 `prototype` 프로퍼티는 결국 동일한 프로토타입을 가리킵니다.  
-하지만 이들 프로퍼티를 사용하는 주체가 다릅니다.
 
 |구분|소유|값|사용 주체|사용 목적|
 |--|--|--|--|--|
@@ -618,7 +614,7 @@ console.log(person.setName.prototype);      // undefined
 <br><br>
 
 이처럼 다양한 방식으로 생성된 모든 객체는 각 방식마다 세부적인 객체 생성 방식의 차이는 있으나  
-추상 연산 `ordinaryobjectCreate`에 의해 생성된다는 공통점이 있습니다.
+추상 연산 `ordinaryObjectCreate`에 의해 생성된다는 공통점이 있습니다.
 
 이는 즉, 프로토타입은 추상 연산 `OrdinaryObjectCreate`에 전달되는 인수에 의해 결정됩니다.  
 이 인수는 객체가 생성되는 시점에 객체 생성 방식에 의해 결정됩니다.  
@@ -910,7 +906,7 @@ console.log(Object.getPrototypeOf(obj) === Person.prototype);   // true
 ```
 
 위와 같이 `Object.create` 메소드는 첫 번째 매개변수에 전달한 객체의 프로토타입 체인에 속하는 객체를 생성합니다.  
-즉, 객체를 생서앟면서 직접적으로 상속을 구현하는 것입니다.
+즉, 객체를 생성하면서 직접적으로 상속을 구현하는 것입니다.
 
 장점은 아래와 같습니다.
 - `new` 연산자 없이도 객체 생성이 가능합니다.
@@ -1018,12 +1014,12 @@ console.log('toString' in person);  // true
 `in` 연산자 대신 ES6에서 도입된 `Reflict.has` 메소드를 사용할 수 있습니다.
 
 ``` js
-const perosn = {
+const person = {
     name: 'Lee'
 };
 
 console.log(Reflict.has(person, 'name'));   // true
-console.log(Reflict.has(person, 'toString'));   // true
+console.log(Reflict.has(person, 'toString'));   // false
 ```
 
 <br><br>

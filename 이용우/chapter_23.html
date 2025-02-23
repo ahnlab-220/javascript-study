@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Chapter 05 - 표현식과 문 &#8212; 스터디</title>
+    <title>Chapter 23 - 실행 컨텍스트 &#8212; 스터디</title>
   
   
   
@@ -57,12 +57,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_05';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_23';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 06 - 데이터 타입" href="chapter_06.html" />
-    <link rel="prev" title="Chapter 04 - 변수" href="chapter_04.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,6 +123,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -184,7 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../docs/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_04.html">Chapter 04 - 변수</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
@@ -205,9 +205,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="main.html">이용우</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="main.html">이용우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_07.html">Chapter 07 - 연산자</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter_08.html">Chapter 08 - 제어문</a></li>
@@ -293,7 +293,7 @@
       
       
       
-      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_05.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_23.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +323,7 @@
       
       
       
-      <li><a href="../_sources/이용우/chapter_05.md" target="_blank"
+      <li><a href="../_sources/이용우/chapter_23.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -407,7 +407,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chapter 05 - 표현식과 문</h1>
+    <h1>Chapter 23 - 실행 컨텍스트</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,13 +417,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">값</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">리터럴</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">표현식</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">문</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">세미콜론과 세미콜론 자동 삽입 기능</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">표현식인 문과 표현식이 아닌 문</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 23 - 실행 컨텍스트</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">소스코드의 타입</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">소스코드의 평가와 실행</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">실행 컨텍스트의 역할</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">실행 컨텍스트 스택</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">렉시컬 환경</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">실행 컨텍스트와 블록 레벨 스코프</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -434,86 +436,89 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="chapter-05">
-<h1>Chapter 05 - 표현식과 문<a class="headerlink" href="#chapter-05" title="Link to this heading">#</a></h1>
-<section id="id1">
-<h2>값<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>값(value)은 표현식이 평가되어 생성된 결과를 말합니다.<br />
-평가란, 식을 해석해서 값을 생성하거나 참조하는 것을 의미합니다.</p>
-<p>아래 예제의 식은 평가되어 숫자 값 30을 생성합니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="mf">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span><span class="w">   </span><span class="c1">// 30</span>
-</pre></div>
-</div>
-<br>
-<p>변수는 <strong>하나의 값</strong>을 저장하기 위한 메모리 공간 자체,<br />
-혹은 그 메모리를 식별하기 위해 붙인 이름입니다.</p>
-<p>따라서 변수에 할당되는 것은 값입니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>값은 다양한 방법으로 생성할 수 있습니다.<br />
-위 예제처럼 식으로 생성할 수도 있지만, 가장 기본적인 방법은 리터럴을 사용하는 것이다.</p>
+  <section id="chapter-23">
+<h1>Chapter 23 - 실행 컨텍스트<a class="headerlink" href="#chapter-23" title="Link to this heading">#</a></h1>
+<p>실행 컨텍스트(execution context)는 자바스크립트의 동작 원리를 담고 있는 핵심 개념이다.</p>
+<blockquote>
+<div><p>실행 컨텍스트를 바르게 이해하면 자바스크립트가 스코프를 기반으로<br />
+식별자와 바인딩된 값(식별자 바인딩)을 관리하는 방식과 호이스팅이 발생하는 이유,<br />
+클로저의 동작 방식, 그리고 테스크 큐와 함께 동작하는<br />
+이벤트 핸들러와 비동기 처리의 동작 방식을 이해할 수 있다.</p>
+</div></blockquote>
 <p><br><br></p>
 </section>
-<section id="id2">
-<h2>리터럴<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>리터럴(literal)은 사람이 이해할 수 있는 문자 혹은 약속된 기호를 사용해 값을 생성하는 표기법입니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="mf">5</span>
-</pre></div>
-</div>
-<p>위 예제의 5는 단순 아라비아 숫자가 아니라 <strong>숫자 리터럴</strong> 입니다.<br />
-사람이 이해할 수 있는 아라비아 숫자를 사용해 숫자 리터럴 3을 코드에 기술하면<br />
-자바스크립트 엔진은 이를 평가해 숫자 3을 생성합니다.</p>
-<br>
-<p>이처럼 <font color='orange'>리터럴은 사람이 이해할 수 있는 문자(아라비아 숫자, 알파벳, 한글 등) 또는<br />
-미리 약속된 기호(‘’, “”, [] 등)로 표기한 코드입니다.</font></p>
-<p>자바스크립트 엔진은 실행되는 시점인 런타임에 리터럴을 평가해 값을 생성합니다.<br />
-즉, 리터럴은 값을 생성하기 위해 미리 약속한 표기법입니다.</p>
+<section id="id1">
+<h1>소스코드의 타입<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>소스코드는 4가지 타입으로 분류할 수 있다.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>리터럴</p></th>
-<th class="head text-left"><p>예시</p></th>
+<tr class="row-odd"><th class="head"><p>소스코드 타입</p></th>
+<th class="head"><p>설명</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p>정수 리터럴</p></td>
-<td class="text-left"><p>100</p></td>
+<tr class="row-even"><td><p>전역 코드(global code)</p></td>
+<td><p>전역에 존재하는 소스코드 (전역에 정의된 함수, 클래스 등 내부 코드는 포함되지 않음)</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>부동소수점 리터럴</p></td>
-<td class="text-left"><p>100.5</p></td>
+<tr class="row-odd"><td><p>함수 코드(function code)</p></td>
+<td><p>함수 내에 존재하는 소스코드 (함수 내에 중첩된 함수, 클래스 등 내부 코드는 포함되지 않음)</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>2진수 리터럴</p></td>
-<td class="text-left"><p>0b01000001</p></td>
+<tr class="row-even"><td><p>eval 코드(eval code)</p></td>
+<td><p>eval 함수로 실행되는 소스코드</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>8진수 리터럴</p></td>
-<td class="text-left"><p>0o101</p></td>
+<tr class="row-odd"><td><p>모듈 코드(module code)</p></td>
+<td><p>모듈 내에 존재하는 소스코드 (모듈 내에 정의된 함수, 클래스 등 내부 코드는 포함되지 않음)</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>16진수 리터럴</p></td>
-<td class="text-left"><p>0x1b</p></td>
+</tbody>
+</table>
+</div>
+<br>
+<p><strong>1) 전역 코드</strong><br />
+전역 코드는 전역 변수를 관리하기 위해 최상위 스코프인 전역 스코프를 생성해야 한다.<br />
+그리고 <code class="docutils literal notranslate"><span class="pre">var</span></code> 키워드로 선언된 전역 변수와 함수 선언문으로 정의된 전역 함수를<br />
+전역 객체의 프로퍼티와 메소드로 바인딩하고 참조하기 위해 전역 객체와 연결되어야 한다.</p>
+<p>이를 위해 전역 코드가 평가되면 전역 실행 컨텍스트가 생성된다.</p>
+<br>
+<p><strong>2) 함수 코드</strong><br />
+함수 코드는 지역 스코프를 생성하고 지역 변수, 매개변수, <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체를 관리해야 한다.<br />
+그리고 생성한 지역 스코프를 전역 스코프에서 시작하는 스코프 체인의 일원으로 연결해야 한다.</p>
+<p>이를 위해 함수 코드가 평가되면 함수 실행 컨텍스트가 생성된다.</p>
+<br>
+<p><strong>3) eval 코드</strong><br />
+eval 코드는 빌트인 전역 함수인 <code class="docutils literal notranslate"><span class="pre">eval</span></code> 함수를 통해 실행되는 소스코드이다.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">eval</span></code> 코드는 strict mode(엄격 모드)에서 자신만의 독자적인 스코프를 생성한다.</p>
+</div></blockquote>
+<p>이를 위해 <code class="docutils literal notranslate"><span class="pre">eval</span></code> 코드가 평가되면 독자적인 <code class="docutils literal notranslate"><span class="pre">eval</span></code> 실행 컨텍스트가 생성된다.</p>
+<br>
+<p><strong>4) 모듈 코드</strong><br />
+모듈 코드는 모듈별로 독립적인 모듈 스코프를 생성한다.<br />
+이를 위해 모듈 코드가 평가되면 모듈 실행 컨텍스트가 생성된다.</p>
+<img src="https://github.com/user-attachments/assets/e397887e-b5d4-43f1-90b5-c76d852d3b3d" width="350">
+<p><br><br></p>
+</section>
+<section id="id2">
+<h1>소스코드의 평가와 실행<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<p>모든 소스코드는 실행에 앞서 평가 과정을 거치며 코드를 실행하기 위한 준비를 한다.</p>
+<blockquote>
+<div><p>자바스크립트 엔진은 소스코드를 “소스코드 평가”와 “소스코드 실행” 과정으로 나누어 처리한다.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>“소스코드 평가” 과정에서는 <strong>실행 컨텍스트를 생성</strong>하고 변수, 함수 등의 선언문만 먼저 실행하여 생성된 변수나 함수 식별자를 키로 실행 컨텍스트를 관리하는 스코프에 등록한다.</p></li>
+<li><p>“소스코드 실행” 과정에서는 선언문을 제외한 소스코드가 순차적으로 실행되기 시작한다. 즉, 런타임이 시작된다. 이때 소스코드 실행에 필요한 정보, 즉 변수나 함수의 참조를 실행 컨텍스트가 관리하는 스코프에서 검색해서 취득한다. <font color='orange'>또한 변수 값의 변경 등 소스코드의 실행 결과는 다시 실행 컨텍스트가 관리하는 스코프에 등록된다.</font></p></li>
+</ul>
+<br>
+<img src="https://github.com/user-attachments/assets/e1b5a9fa-f1fc-4034-81ce-2f543fc74fcf" width="350">
+<br>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>소스코드 평가</p></th>
+<th class="head text-center"><p>소스코드 실행</p></th>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>문자열 리터럴</p></td>
-<td class="text-left"><p>“hello”, ‘world’</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>boolean 리터럴</p></td>
-<td class="text-left"><p>true, false</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>null 리터럴</p></td>
-<td class="text-left"><p>null</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>undefined 리터럴</p></td>
-<td class="text-left"><p>undefined</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>객체 리터럴</p></td>
-<td class="text-left"><p>{name: ‘Lee’, address: ‘Seoul’}</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>배열 리터럴</p></td>
-<td class="text-left"><p>[1, 2, 3]</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>함수 리터럴</p></td>
-<td class="text-left"><p>function() {}</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>정규표현식 리터럴</p></td>
-<td class="text-left"><p>/[A-Z]+/g</p></td>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img width="328" alt="Image" src="https://github.com/user-attachments/assets/e9315377-6478-498d-bf94-55ac2c268234" /></p></td>
+<td class="text-center"><p><img width="335" alt="Image" src="https://github.com/user-attachments/assets/c9ce0805-5a6f-48ff-adce-3682e76920bb" /></p></td>
 </tr>
 </tbody>
 </table>
@@ -521,120 +526,127 @@ document.write(`
 <p><br><br></p>
 </section>
 <section id="id3">
-<h2>표현식<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p><font color='orange'>표현식은 값으로 평가될 수 있는 문(statement)입니다.</font><br />
-즉, 표현식이 평가되면 새로운 값을 생성하거나 값을 참조합니다.</p>
-<p>바로 위에서 살펴본 리터럴은 값으로 평가됩니다. 따라서 리터럴도 표현식입니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">200</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>위 예제의 <code class="docutils literal notranslate"><span class="pre">200</span></code>은 리터럴입니다.<br />
-리터럴 <code class="docutils literal notranslate"><span class="pre">200</span></code>은 자바스크립트 엔진에 의해 평가되어 값을 생성하므로 그 자체로 표현식입니다.</p>
+<h1>실행 컨텍스트의 역할<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<p>자바 스크립트 엔진은 코드를 아래와 같이 평가 및 실행한다.</p>
+<p><strong>1) 전역 코드 평가</strong><br />
+전역 코드를 실행하기에 앞서 먼저 전역 코드 평가 과정을 거치며 전역 코드를 실행하기 위한 준비를 한다.<br />
+소스코드 평가 과정에서는 선언문만 먼저 실행한다.</p>
+<p>따라서 전역 코드의 변수 선언문과 함수 선언문이 먼저 실행되고,<br />
+그 결과 생성된 전역 변수와 전역 함수가 실행 컨텍스트가 관리하는 전역 스코프에 등록된다.</p>
+<blockquote>
+<div><p>이때 <code class="docutils literal notranslate"><span class="pre">var</span></code> 키워드로 선언된 전역 변수와 함수 선언문으로 정의된 전역 함수는 전역 객체의 프로퍼티와 메소드가 된다.</p>
+</div></blockquote>
 <br>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">+</span> <span class="pre">100</span></code>은 리터럴과 연산자로 이루어져 있습니다.<br />
-하지만 <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">+</span> <span class="pre">100</span></code>도 평가되어 숫자 값 <code class="docutils literal notranslate"><span class="pre">200</span></code>을 생성하므로 표현식입니다.</p>
+<p><strong>2) 전역 코드 실행</strong><br />
+전역 코드 평가 과정이 끝나면 런타임이 시작되어 전역 코드가 순차적으로 실행된다.<br />
+이때 전역 변수에 값이 할당되고 함수가 호출된다.<br />
+함수가 호출되면 순차적으로 실행되던 전역 코드의 실행을 일시 중단하고 실행 순서를 변경하여 함수 내부로 진입한다.</p>
 <br>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">score</span><span class="p">;</span><span class="w">  </span><span class="c1">// 200</span>
-</pre></div>
-</div>
-<p>변수 식별자를 참조하면 변수 값으로 평가됩니다.<br />
-식별자 참조는 값을 생성하지는 않지만 값으로 평가되므로 표현식입니다.</p>
-<p><font color='orange'>즉, 값으로 출력될 수 있는 것은 모두 표현식입니다.</font></p>
+<p><strong>3) 함수 코드 평가</strong><br />
+함수 코드를 실행하기에 앞서 먼저 함수 코드 평가 과정을 거치며 함수 코드를 실행하기 위한 준비를 한다.<br />
+소스코드 평가 과정에서는 매개변수와 변수 선언문만 먼저 실행한다.</p>
+<p>그리고 생성된 매개변수와 지역 변수가 실행 컨텍스트가 관리하는 지역 스코프에 등록된다.<br />
+또한 함수 내부에서 지역 변수처럼 사용할 수 있는 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체가 생성되어 실행 컨텍스트가 관리하는 지역 스코프에 등록된다.</p>
+<br>
+<p><strong>4) 함수 코드 실행</strong><br />
+함수 코드 평가 과정이 끝나면 런타임이 시작되어 함수 코드가 순차적으로 실행된다.<br />
+이때 매개변수와 변수에 값이 할당되고 함수가 종료된다.</p>
+<p>또한 함수 호출이 종료되면 함수 호출 이전으로 되돌아가기 위해 현재 실행 중인 코드와<br />
+이전에 실행하던 코드를 구분하여 관리해야 한다.</p>
+<p>이처럼 <font color='orange'>코드가 실행되려면 아래와 같이 스코프, 식별자, 코드 실행 순서 등의 관리가 필요하다.</font></p>
+<ol class="arabic simple">
+<li><p>선언에 의해 생성된 모든 식별자(변수, 함수, 클래스 등)를 스코프를 구분하여 등록하고, 상태 변화(식별자에 바인딩된 값의 변화)를 지속적으로 관리할 수 있어야 한다.</p></li>
+<li><p>스코프는 중첩 관계에 의해 스코프 체인을 형성해야 한다. (스코프 체인을 통해 상위 스코프로 이동하며 식별자를 검색할 수 있어야 한다)</p></li>
+<li><p><font color='tomato'>현재 실행 중인 코드의 실행 순서를 변경할 수 있어야 하며, 다시 되돌아갈 수도 있어야 한다.</font></p></li>
+</ol>
+<br>
+<p>이 모든 것을 관리하는 것이 바로 실행 컨텍스트이다.<br />
+<font color='orange'>실행 컨텍스트는 소스 코드를 실행하는 데 필요한 환경을 제공하고, 코드의 실행 결과를 실제로 관리하는 영역이다. </font></p>
+<blockquote>
+<div><p>식별자(변수, 함수, 클래스 등의 이름)를 등록하고 관리하는 스코프와 실행 순서 관리를 구현한 내부 매커니즘이며,<br />
+모든 코드는 실행 컨텍스트를 통해 실행되고 관리된다.</p>
+</div></blockquote>
+<p>식별자와 스코프는 실행 컨텍스트의 렉시컬 환경(식별자 저장소)으로 관리하고<br />
+<strong>실행 순서는 실행 컨텍스트 스택으로 관리</strong>한다.</p>
 <p><br><br></p>
 </section>
 <section id="id4">
-<h2>문<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<p>문(statement)은 프로그램을 구성하는 기본 단위이자 최소 실행 단위입니다.<br />
-문의 집합으로 이루어진 것이 바로 프로그램이며,<br />
-문을 작성하고 순서에 맞게 나열하는 것이 프로그래밍입니다.</p>
-<p>문은 여러 토큰으로 구분됩니다.<br />
-토큰(token)이란, 문법적인 의미를 가지며,<br />
-문법적으로 더 이상 나눌 수 없는 코드의 기본 요소를 의미합니다.</p>
-<p>예를 들어, 키워드, 식별자, 연산자, 리터럴, 세미콜론(;)이나 마침표(.) 등의 특수 기호는<br />
-문법적인 의미를 가지며, 문법적으로 더 이상 나눌 수 없는 코드의 기본 요소이므로 모두 토큰입니다.</p>
-<img width="353" alt="image" src="https://github.com/user-attachments/assets/73410fc9-0d65-45b9-a646-47a09be62380">
-<p>이런 특징으로, 문은 명령문이라고도 부릅니다.<br />
-문을 실행하게 되면 명령이 실행되고 무슨 일인가 일어나게 됩니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 변수 선언문</span>
-<span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+<h1>실행 컨텍스트 스택<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
 
-<span class="c1">// 할당문</span>
-<span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
-
-<span class="c1">// 함수 선언문</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-
-<span class="c1">// 조건문</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
-
-<span class="c1">// 반복문</span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">consoe</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">z</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">bar</span><span class="p">();</span>
 <span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">();</span>
 </pre></div>
 </div>
+<p>실행 컨텍스트는 스택(stack) 자료구조로 관리된다.<br />
+위 코드를 실행하면 코드가 실행되는 시간의 흐름에 따라<br />
+실행 컨텍스트 스택에는 아래와 같이 실행 컨텍스트가 push되고 pop된다.</p>
+<img width="877" alt="Image" src="https://github.com/user-attachments/assets/c40d19f7-8136-44f5-8607-156685ab9e5c" />
+<br>
+<p>자료구조가 스택이기 때문에 실행 컨텍스트 스택의 최상위에 존재하는 실행 컨텍스트는<br />
+언제나 실행 중인 실행 컨텍스트이다.</p>
+<p>따라서 실행 컨텍스트 스택의 최상위에 존재하는 실행 컨텍스트를<br />
+실행 중인 실행 컨텍스트(running execution context)라 한다.</p>
 <p><br><br></p>
 </section>
 <section id="id5">
-<h2>세미콜론과 세미콜론 자동 삽입 기능<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p>세미콜론(;)은 문의 종료를 나타냅니다.<br />
-즉, 자바스크립트 엔진은 세미콜론으로 문이 종료한 위치를 파악하고 순차적으로 하나씩 문을 실행합니다.<br />
-따라서 문을 끝낼 때는 세미콜론을 붙여야 합니다.<br />
-단, 중괄호로 묶은 코드 블록({ … })은 세미콜론을 붙이지 않습니다.<br />
-예를 들어, if 문, for 문, 함수 등의 코드 블록 뒤에는 세미콜론을 붙이지 않는다.
-코드 블록은 언제나 문의 종료를 의미하는 자체 종결성(self closing)을 가지기 때문입니다.</p>
+<h1>렉시컬 환경<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
+<p>렉시컬 환경(Lexical Environment)은 식별자와 식별자에 바인딩된 값,<br />
+그리고 상위 스코프에 대한 참조를 기록하는 자료구조로 실행 컨텍스트를 구성하는 컴포넌트이다.</p>
+<p><font color='orange'>실행 컨텍스트 스택이 코드의 실행 순서를 관리한다면<br />
+렉시컬 환경은 스코프와 식별자를 관리한다.</font></p>
+<img width="500" alt="Image" src="https://github.com/user-attachments/assets/2cf5ab5f-1540-48d6-a10b-3d44f7557b7e" />
 <br>
-<p>문의 끝에 붙이는 세미콜론은 옵션입니다. <font color='orange'>즉, 세미콜론은 생략 가능합니다.</font><br />
-자바스크립트 엔진은 소스코드를 해석할 때 문의 끝이라고 예측되는 지점에 자동으로 세미콜론을 붙여주는<br />
-세미콜론 자동 삽입 기능(ASI; Automatic Semicolon Insertion)이 암묵적으로 수행되기 때문입니다.</p>
-<p>하지만 세미콜론 자동 삽입 기능이<br />
-아래의 예제와 같이 개발자의 예측이 일치하지 않는 경우가 간혹 있습니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span>
-<span class="w">        </span><span class="p">{}</span>
-<span class="w">    </span><span class="c1">// ASI 동작 결과: return; {};</span>
-<span class="w">    </span><span class="c1">// 개발자의 의도: return {};</span>
-<span class="p">}</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">());</span>
-
-<span class="kd">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{})();</span>
-<span class="c1">// ASI 동작 결과: var bar = function() {}(function() {})();</span>
-<span class="c1">// 개발자의 의도: var bar = function() {}; (function() {})();</span>
-</pre></div>
-</div>
-<p>ESLint와 같은 정적 분석 도구에서도 세미콜론의 사용을 기본으로 하고 있고<br />
-TS39(ECMAScript 기술 위원회)도 세미콜론 사용을 권장하는 분위기이므로<br />
-세미콜론을 붙이도록 합시다.</p>
+<p>렉시컬 환경은 아래와 같이 2가지 컴포넌트로 구성된다.</p>
+<img width="300" alt="Image" src="https://github.com/user-attachments/assets/590d14ac-8b50-4cd3-91d6-7d1c756b5f3c" />
+<p><strong>환경 레코드(Environment Record):</strong><br />
+스코프에 포함된 식별자를 등록하고, 등록된 식별자에 바인딩된 값을 관리하는 저장소이다.</p>
+<p><strong>외부 렉시컬 환경에 대한 참조(Outer Lexical Environment Reference):</strong><br />
+외부 렉시컬 환경에 대한 참조는 상위 스코프를 가리킨다.<br />
+이때 상위 스코프란, 외부 렉시컬 환경, 즉 실행 컨텍스트를 생성한 소스코드를 포함하는 상위 코드의 렉시컬 환경을 의미한다.</p>
+<p>외부 렉시컬 환경에 대한 참조를 통해 단방향 링크드 리스트인 스코프 체인을 구성한다.</p>
+<br>
+<p>실행 컨텍스트 안에 렉시컬 환경이 존재할 수 있고,<br />
+렉시컬 환경은 다른 외부 렉시컬 환경에 대한 참조를 가질 수 있으며,<br />
+이때 외부 렉시컬 환경에 대한 참조는 상위 스코프를 가리킨다.</p>
+<blockquote>
+<div><p>이를 통해 변수 검색 시 단계적으로 상위 스코프까지 탐색이 가능하다.</p>
+</div></blockquote>
 <p><br><br></p>
 </section>
 <section id="id6">
-<h2>표현식인 문과 표현식이 아닌 문<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>표현식은 문의 일부일 수도 있고, 그 자체로도 문이 될 수 있습니다.<br />
-아래 예제를 살펴봅시다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span><span class="w">      </span><span class="c1">// 값으로 출력될 수 없으므로 표현식이 아닙니다.</span>
-<span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w">  </span><span class="c1">// 표현식이면서 완전한 문입니다.</span>
-</pre></div>
-</div>
-<p>표현식인 문과 표현식이 아닌 문을 구별하는 가장 간단하고 명료한 방법은 변수에 할당해보는 것입니다.<br />
-표현식인 문은 값으로 평가되므로 변수에 할당이 가능합니다.</p>
-<p>하지만 표현식이 아닌 문은 값으로 평가할 수 없으므로 변수에 할당하면 에러가 발생합니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
-</pre></div>
-</div>
+<h1>실행 컨텍스트와 블록 레벨 스코프<a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">var</span></code> 키워드로 선언한 변수는 오로지 함수의 코드 블록만 지역 스코프로 인정하는 <strong>함수 레벨 스코프</strong>를 따른다.<br />
+하지만 <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드로 선언한 변수는 모든 코드 블록을 지역 스코프로 인정하는 <strong>블록 레벨 스코프</strong>를 따른다.</p>
 <br>
-<p>※ 완료 값(completion value)<br />
-개발자 도구에서 표현식이 아닌 문을 실행하면 언제나 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>를 출력합니다.<br />
-이를 완료 값이라 하며, 완료 값은 표현식의 평가 결과가 아닙니다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">foo</span><span class="p">;</span><span class="w">        </span><span class="c1">// undefined</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">    </span><span class="c1">// undefined</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// 10</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1</span>
 </pre></div>
 </div>
-</section>
+<p><code class="docutils literal notranslate"><span class="pre">if</span></code> 문의 코드 블록 내에서 <code class="docutils literal notranslate"><span class="pre">let</span></code> 키워드로 변수가 선언되었다.<br />
+따러서 <code class="docutils literal notranslate"><span class="pre">if</span></code> 문의 코드 블록이 실행되면 <code class="docutils literal notranslate"><span class="pre">if</span></code> 문의 코드 블록을 위한 블록 레벨 스코프를 생성해야 한다.</p>
+<p>이를 위해 새로운 렉시컬 환경이 생성되어 전역 렉시컬 환경을 대체한다.<br />
+이때 새롭게 생성된 <code class="docutils literal notranslate"><span class="pre">if</span></code> 문의 코드 블록을 위한 렉시컬 환경의 외부 렉시컬 환경에 대한 참조는<br />
+<code class="docutils literal notranslate"><span class="pre">if</span></code> 문이 실행되기 이전의 전역 렉시컬 환경을 가리킨다.</p>
+<img width="934" alt="Image" src="https://github.com/user-attachments/assets/d30399fc-81f8-4e82-8866-656bfd7d1abd" />
+<p><br><br></p>
+<p><code class="docutils literal notranslate"><span class="pre">if</span></code> 문 코드 블록의 실행이 종료되면<br />
+<code class="docutils literal notranslate"><span class="pre">if</span></code> 문의 코드 블록이 실행되기 이전의 렉시컬 환경으로 되돌아간다.</p>
+<img width="921" alt="Image" src="https://github.com/user-attachments/assets/08e74bc4-9012-45fe-8cd0-fe8f00d6e7b0" />
 </section>
 
     <script type="text/x-thebe-config">
@@ -667,24 +679,6 @@ TS39(ECMAScript 기술 위원회)도 세미콜론 사용을 권장하는 분위�
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="chapter_04.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 04 - 변수</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="chapter_06.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 06 - 데이터 타입</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -701,13 +695,15 @@ TS39(ECMAScript 기술 위원회)도 세미콜론 사용을 권장하는 분위�
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">값</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">리터럴</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">표현식</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">문</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">세미콜론과 세미콜론 자동 삽입 기능</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">표현식인 문과 표현식이 아닌 문</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 23 - 실행 컨텍스트</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">소스코드의 타입</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">소스코드의 평가와 실행</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">실행 컨텍스트의 역할</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">실행 컨텍스트 스택</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">렉시컬 환경</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">실행 컨텍스트와 블록 레벨 스코프</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>

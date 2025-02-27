@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 24 - Closure(클로저) &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '공희재/chapter_24';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_15.html">Chapter 15 - <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/main.html">이용우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EC%9D%B4%EC%9A%A9%EC%9A%B0/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F공희재/chapter_24.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/공희재/chapter_24.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 24 - Closure(클로저)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lexical-scope">1. Lexical Scope: 렉시컬 스코프</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">2. 함수 객체의 내부 슬롯 <code class="docutils literal notranslate"><span class="pre">[[Environment]]</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closure-and-the-lexical-environment">3. Closure and The Lexical Environment: 클로저와 렉시컬 환경</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#closure">Closure 소개</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Closure의 원리</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Closure의 일반적 정의</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Closure 최적화</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4. Closure의 활용</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encapsulation-and-data-hiding">5. Encapsulation and Data Hiding: 캡슐화와 정보 은닉</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6. 자주 발생하는 실수</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-24-closure">
+<h1>Chapter 24 - Closure(클로저)<a class="headerlink" href="#chapter-24-closure" title="Link to this heading">#</a></h1>
+<section id="lexical-scope">
+<h2>1. Lexical Scope: 렉시컬 스코프<a class="headerlink" href="#lexical-scope" title="Link to this heading">#</a></h2>
+<p>자바스크립트 엔진은, 함수를 어디서 호출했는지가 아닌<br/>
+함수를 <strong>어디에 정의했는지</strong>에 따라 상위 스코프를 결정한다.<br/>
+이를 우리는 <strong>Lexical Scope</strong>(렉시컬 스코프, 정적 스코프)라고 한다.</p>
+<p>상위 스코프는, 렉시컬 환경의 “외부 렉시컬 환경을 저장하는 참조 값”을 의미한다.<br/>
+상위 스코프 참조는 함수 정의가 평가되는 시점에, 함수가 정의된 환경(위치)에 의해 결정된다. 이것이 바로 렉시컬 스코프다.</p>
+</section>
+<section id="environment">
+<h2>2. 함수 객체의 내부 슬롯 <code class="docutils literal notranslate"><span class="pre">[[Environment]]</span></code><a class="headerlink" href="#environment" title="Link to this heading">#</a></h2>
+<p>함수가 정의된 위치와 호출되는 위치는 다를 수 있다.<br/>
+따라서 <strong>렉시컬 스코프가 제대로 기능하려면,</strong> 함수는 자신이 어디서 호출되는지는 상관 없이<br/>
+자신이 정의된 위치, 즉 상위 스코프를 <strong>기억</strong>해야 한다.</p>
+<p>이를 위해 함수는 <strong>자신의 내부 슬롯 중 <code class="docutils literal notranslate"><span class="pre">[[Environment]]</span></code>라는 슬롯에 상위 스코프의 참조 값을 저장</strong>한다.</p>
+</section>
+<section id="closure-and-the-lexical-environment">
+<h2>3. Closure and The Lexical Environment: 클로저와 렉시컬 환경<a class="headerlink" href="#closure-and-the-lexical-environment" title="Link to this heading">#</a></h2>
+<section id="closure">
+<h3>Closure 소개<a class="headerlink" href="#closure" title="Link to this heading">#</a></h3>
+<p>다음 예제를 살펴 보자.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">// (1)</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">inner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// (2)</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">inner</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// outer 함수를 호출하면 중첩 함수 inner를 반환한다.</span>
+<span class="c1">// 그리고 outer 함수의 실행 컨텍스트는 실행 컨텍스트 스택에서 pop해 제거된다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">innerFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">outer</span><span class="p">();</span><span class="w">  </span><span class="c1">// (3)</span>
+<span class="nx">innerFunc</span><span class="p">();</span><span class="w">  </span><span class="c1">// (4) 10</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">(3)</span></code>에서 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수는 <code class="docutils literal notranslate"><span class="pre">inner</span></code>를 반환하고 생명 주기를 마감한다.<br/>
+따라서 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수 내부의 <code class="docutils literal notranslate"><span class="pre">x</span></code> 지역 변수는 마치 접근할 수 없는, 더는 유효하지 않은 변수처럼 보인다.</p>
+<p><strong>그러나!!!</strong> <code class="docutils literal notranslate"><span class="pre">(4)</span></code>를 보면 지역변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>가 다시 부활이라도 한 것처럼 동작하고 있음을 알 수 있다.<br/>
+이처럼 외부 함수보다 <strong>중첩 함수가 더 오래 살아있는 경우,</strong> 그 중첩 함수는 외부 함수가 이미 죽었을지라도 <strong>그 외부 함수의 변수를 참조</strong>할 수 있다.<br/>
+<strong>이러한 중첩 함수를 우리는 Closure라고 부른다.</strong></p>
+</section>
+<section id="id1">
+<h3>Closure의 원리<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>이게 어떻게 가능한 걸까?<br/>
+<code class="docutils literal notranslate"><span class="pre">(3)</span></code>에서 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 실행 컨텍스트는 실행 컨텍스트 스택에서 제거되지만,<br/>
+<strong><code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 렉시컬 환경만은 소멸하지 않기 때문</strong>이다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 렉시컬 환경은, <code class="docutils literal notranslate"><span class="pre">inner</span></code> 함수의 <code class="docutils literal notranslate"><span class="pre">[[Environment]]</span></code> 내부 슬롯이 참조하고 있고,<br/>
+<code class="docutils literal notranslate"><span class="pre">inner</span></code> 함수는 전역 변수 <code class="docutils literal notranslate"><span class="pre">innerFunc</span></code>이 참조하고 있으므로 가비지 컬렉션의 대상이 되지 않는다.<br/>
+따라서 중첩 함수 <code class="docutils literal notranslate"><span class="pre">inner</span></code>는 자신의 상위 스코프인 외부 함수 <code class="docutils literal notranslate"><span class="pre">outer</span></code>보다 오래 생존해 <code class="docutils literal notranslate"><span class="pre">outer</span></code>를 참조할 수 있으므로 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수 내부의 식별자를 참조할 수 있게 된 것이다.</p>
+</section>
+<section id="id2">
+<h3>Closure의 일반적 정의<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>사실, 자바스크립트의 모든 함수가 상위 스코프를 기억하므로 이론적으로는 모든 함수가 Closure라고 할 수 있다.<br/>
+<strong>그러나!!!</strong> 일반적으로 우리가 Closure라고 부르는 건 다음과 같이 조건이 따른다.</p>
+<ol class="arabic simple">
+<li><p><strong>중첩 함수</strong>가 <strong>상위 스코프의 식별자를 참조</strong>하고 있고,</p></li>
+<li><p>중첩 함수가 <strong>그 외부 함수보다 더 오래 유지</strong>되는 경우에 한정해 Closure라고 부르는 것이 일반적이다.</p></li>
+</ol>
+<p>참고로 Closure에 의해 참조되는 상위 스코프의 변수(위 예제로 치면 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지역 변수인 <code class="docutils literal notranslate"><span class="pre">x</span></code>)를 우리는 <strong>Free Variable</strong>(자유 변수)라고 부른다.</p>
+</section>
+<section id="id3">
+<h3>Closure 최적화<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>이론적으로 Closure는 상위 스코프를 기억해야 하므로 메모리가 낭비되진 않을까?하고 걱정할 순 있으나 그럴 필요는 없다.<br/>
+이는 모던 자바스크립트 엔진이 <strong>최적화</strong>를 통해 상위 스코프의 식별자 중에서 <strong>기억해야 할 식별자만 골라 기억</strong>하기 때문이다.<br/>
+따라서 Closure는 자바스크립트의 강력한 기능 중 하나로 알려져 있으며, 필요한 경우엔 적극적으로 활용하는 것이 좋다.</p>
+</section>
+</section>
+<section id="id4">
+<h2>4. Closure의 활용<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>Closure는 <strong>State</strong>(상태)를 안전하게 변경하고 유지할 때 많이 사용한다.<br/>
+즉, State를 안전하게 <strong>information hiding</strong>(은닉)하고, <strong>특정 함수에게만 State 변경을 허용</strong>하기 위해 사용한다.</p>
+<p>예제를 살펴 보자.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 카운터 함수. 즉시 실행 함수로 작성했다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">increase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// 카운트 상태 변수</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// 클로저</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 카운트 상태를 1만큼 증가시킨다.</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">++</span><span class="nx">num</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}());</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">  </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">  </span><span class="c1">// 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">  </span><span class="c1">// 3</span>
+</pre></div>
+</div>
+<p>여기서 <code class="docutils literal notranslate"><span class="pre">increase</span></code>에 할당된 즉시 실행 함수는 호출된 직후 소멸되지만,<br/>
+<strong>이 즉시 실행 함수가 반환한 Closure는 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 변수에 할당</strong>된다.</p>
+<p>이때, <strong>이 Closure는</strong> 자신이 정의된 위치, 즉 상위 스코프를 기억하고 있다.<br/>
+즉, <strong>좀 전에 소멸한 즉시 실행 함수의 렉시컬 환경을 기억하고 있다</strong>는 뜻이다.<br/>
+따라서 이 Closure는 Free Variable인 <strong><code class="docutils literal notranslate"><span class="pre">num</span></code>을 언제든, 어디서든 참조하고 변경할 수 있게 되는 것</strong>이다.</p>
+<p>여기서, 이 즉시 실행 함수는 단 한 번만 실행되므로 <code class="docutils literal notranslate"><span class="pre">increase</span></code>가 호출될 때마다 <code class="docutils literal notranslate"><span class="pre">num</span></code> 변수가 재차 초기화될 일은 없다.<br/>
+또한 <strong><code class="docutils literal notranslate"><span class="pre">num</span></code> 변수</strong>는 외부에서 직접 접근할 수 없는,<br/>
+<strong>은닉된 private 변수</strong>로서 기능할 수 있게 됐으므로 더 안정적인 프로그래밍이 가능해졌다.</p>
+<p>이처럼 Closure는, State를 특정 함수에게만 접근을 허용해<br/>
+State 값을 안전하게 유지하고 변경하기 위해 사용할 수 있다.</p>
+</section>
+<section id="encapsulation-and-data-hiding">
+<h2>5. Encapsulation and Data Hiding: 캡슐화와 정보 은닉<a class="headerlink" href="#encapsulation-and-data-hiding" title="Link to this heading">#</a></h2>
+<p>Encapsulation(캡슐화)는 객체의 State를 나타내는 프로퍼티와</br>
+그 프로퍼티를 참조하고 조작하는 Behavior(동작)인 메서드를 하나로 묶는 행위를 뜻한다.</p>
+<p>Data Hiding(정보 은닉)은 외부에 공개할 필요 없는 구현의 일부를 감춰 적절치 못한 접근으로부터 정보를 보호하는 것을 의미하며,</br>
+객체 간의 상호 의존성, 즉 Coupling(결합도)를 낮추는 효과가 있다.</p>
+<p>대부분의 프로그래밍 언어는 <code class="docutils literal notranslate"><span class="pre">public</span></code>, <code class="docutils literal notranslate"><span class="pre">private</span></code>, <code class="docutils literal notranslate"><span class="pre">protected</span></code> 같은 Access Modifier(접근 제한자)를 제공해 공개 범위를 한정할 수 있는데,</br>
+자바스크립트는 이런 Access Modifier를 제공하지 않는다.</br>
+즉, 자바스크립트 객체의 모든 프로퍼티와 메서드는 기본적으로 public하다.</p>
+<p>물론, 다음과 같이 필드 간 공개 범위를 달리하도록 설계를 할 수는 있다. 그러나 이런 패턴도 완전한 정보 은닉을 보장하지는 못한다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span><span class="w">  </span><span class="c1">// public</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">age</span><span class="p">;</span><span class="w">  </span><span class="c1">// private</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>다행히도, 2021년 쯤 private 필드를 정의할 수 있는 새로운 표준 사양이 제안됐다고 한다.</br>
+이는 추후 25.7.4절 ‘private 필드 정의 제안’에서 살펴 보자.</p>
+</section>
+<section id="id5">
+<h2>6. 자주 발생하는 실수<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>생략. 자세한 내용은 책을 참고합시다!</p>
+<p>끝.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./공희재"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lexical-scope">1. Lexical Scope: 렉시컬 스코프</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">2. 함수 객체의 내부 슬롯 <code class="docutils literal notranslate"><span class="pre">[[Environment]]</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closure-and-the-lexical-environment">3. Closure and The Lexical Environment: 클로저와 렉시컬 환경</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#closure">Closure 소개</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Closure의 원리</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Closure의 일반적 정의</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Closure 최적화</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4. Closure의 활용</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encapsulation-and-data-hiding">5. Encapsulation and Data Hiding: 캡슐화와 정보 은닉</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6. 자주 발생하는 실수</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

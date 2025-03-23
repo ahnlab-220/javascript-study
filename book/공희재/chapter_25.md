@@ -123,3 +123,62 @@ Person.sayHi();  // Hi!
 4. 열거할 수 없다. 즉 `for ... in` 문이나 `Object.keys` 메서드 사용 불가
 5. non-constructor다. 따라서 `new` 연산자와 함께 호출 불가.
 
+## 6. 클래스의 인스턴스 생성 과정
+1. 인스턴스 생성과 `this` 바인딩
+   * `new` 연산자와 함께 클래스를 호출하면 암묵적으로 빈 객체가 먼저 생성 후, `this`에 바인딩.
+2. 인스턴스 초기화
+   * constructor 안의 코드가 실행해 `this`에 바인딩된 인스턴스를 초기화.
+3. 인스턴스 반환
+   * `this`를 암묵적으로 반환.
+
+## 7. 프로퍼티
+### 7-1. 인스턴스 프로퍼티
+인스턴스 프로퍼티는 constructor 내부에서 정의하는 속성값들을 뜻한다. constructor 내부에서 정의한 프로퍼티는 언제나 클래스가 생성한 인스턴스의 프로퍼티가 된다.
+```javascript
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+```
+
+### 7-2. Accessor property: 접근자 프로퍼티
+접근자 프로퍼티는 accessor function(접근자 함수)로 구성된 프로퍼티다. 다음과 같이 클래스에서도 사용할 수 있다.
+```javascript
+class Person {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  get fullName() {  // getter 함수
+    return `${this.firstName} ${this.lastName}`;
+  }
+
+  set fullName(name) {  // setter 함수
+    [this.firstName, this.lastName] = name.split(' ');
+  }
+}
+
+const me = new Person('Ungmo', 'Lee');
+me.fullName = 'Heegun Lee';
+console.log(me);  // {firstName: "Heegun", lastName: "Lee"}
+
+console.log(me.fullName);  // Heegun Lee
+```
+setter는 단 하나의 값만 할당받기 때문에, 단 하나의 매개변수만 선언할 수 있다. 클래스의 접근자 프로퍼티 또한 인스턴스 프로퍼티가 아닌, 프로토타입의 프로퍼티가 된다.
+
+### 7-3. 클래스 필드 정의 제안
+
+
+### 7-4. private 필드 정의 제안
+### 7-5. static 필드 정의 제안
+
+## 8. 상속에 의한 클래스 확장
+### 8-1. 클래스 상속과 생성자 함수 상속
+### 8-2. `extends` 키워드
+### 8-3. 동적 상속
+### 8-4. 서브클래스의 constructor
+### 8-5. `super` 키워드
+### 8-6. 상속 클래스의 인스턴스 생성 과정
+### 8-7. 표준 빌트인 생성자 함수 확장

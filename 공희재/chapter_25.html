@@ -436,6 +436,25 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">5-5. 클래스에서 정의한 메서드의 특징</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6. 클래스의 인스턴스 생성 과정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">7. 프로퍼티</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">7-1. 인스턴스 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessor-property">7-2. Accessor property: 접근자 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">7-3. 클래스 필드 정의 제안</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#private">7-4. private 필드 정의 제안</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static">7-5. static 필드 정의 제안</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">8. 상속에 의한 클래스 확장</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">8-1. 클래스 상속과 생성자 함수 상속</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extends">8-2. <code class="docutils literal notranslate"><span class="pre">extends</span></code> 키워드</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8-3. 동적 상속</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">8-4. 서브클래스의 constructor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#super">8-5. <code class="docutils literal notranslate"><span class="pre">super</span></code> 키워드</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">8-6. 상속 클래스의 인스턴스 생성 과정</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">8-7. 표준 빌트인 생성자 함수 확장</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -577,6 +596,100 @@ document.write(`
 </ol>
 </section>
 </section>
+<section id="id7">
+<h2>6. 클래스의 인스턴스 생성 과정<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>인스턴스 생성과 <code class="docutils literal notranslate"><span class="pre">this</span></code> 바인딩</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 클래스를 호출하면 암묵적으로 빈 객체가 먼저 생성 후, <code class="docutils literal notranslate"><span class="pre">this</span></code>에 바인딩.</p></li>
+</ul>
+</li>
+<li><p>인스턴스 초기화</p>
+<ul class="simple">
+<li><p>constructor 안의 코드가 실행해 <code class="docutils literal notranslate"><span class="pre">this</span></code>에 바인딩된 인스턴스를 초기화.</p></li>
+</ul>
+</li>
+<li><p>인스턴스 반환</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">this</span></code>를 암묵적으로 반환.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id8">
+<h2>7. 프로퍼티<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<section id="id9">
+<h3>7-1. 인스턴스 프로퍼티<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>인스턴스 프로퍼티는 constructor 내부에서 정의하는 속성값들을 뜻한다. constructor 내부에서 정의한 프로퍼티는 언제나 클래스가 생성한 인스턴스의 프로퍼티가 된다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="accessor-property">
+<h3>7-2. Accessor property: 접근자 프로퍼티<a class="headerlink" href="#accessor-property" title="Link to this heading">#</a></h3>
+<p>접근자 프로퍼티는 accessor function(접근자 함수)로 구성된 프로퍼티다. 다음과 같이 클래스에서도 사용할 수 있다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span><span class="w"> </span><span class="nx">lastName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstName</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lastName</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">get</span><span class="w"> </span><span class="nx">fullName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// getter 함수</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">set</span><span class="w"> </span><span class="nx">fullName</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// setter 함수</span>
+<span class="w">    </span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Ungmo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">fullName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Heegun Lee&#39;</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">);</span><span class="w">  </span><span class="c1">// {firstName: &quot;Heegun&quot;, lastName: &quot;Lee&quot;}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="nx">fullName</span><span class="p">);</span><span class="w">  </span><span class="c1">// Heegun Lee</span>
+</pre></div>
+</div>
+<p>setter는 단 하나의 값만 할당받기 때문에, 단 하나의 매개변수만 선언할 수 있다. 클래스의 접근자 프로퍼티 또한 인스턴스 프로퍼티가 아닌, 프로토타입의 프로퍼티가 된다.</p>
+</section>
+<section id="id10">
+<h3>7-3. 클래스 필드 정의 제안<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+</section>
+<section id="private">
+<h3>7-4. private 필드 정의 제안<a class="headerlink" href="#private" title="Link to this heading">#</a></h3>
+</section>
+<section id="static">
+<h3>7-5. static 필드 정의 제안<a class="headerlink" href="#static" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="id11">
+<h2>8. 상속에 의한 클래스 확장<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<section id="id12">
+<h3>8-1. 클래스 상속과 생성자 함수 상속<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+</section>
+<section id="extends">
+<h3>8-2. <code class="docutils literal notranslate"><span class="pre">extends</span></code> 키워드<a class="headerlink" href="#extends" title="Link to this heading">#</a></h3>
+</section>
+<section id="id13">
+<h3>8-3. 동적 상속<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+</section>
+<section id="id14">
+<h3>8-4. 서브클래스의 constructor<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+</section>
+<section id="super">
+<h3>8-5. <code class="docutils literal notranslate"><span class="pre">super</span></code> 키워드<a class="headerlink" href="#super" title="Link to this heading">#</a></h3>
+</section>
+<section id="id15">
+<h3>8-6. 상속 클래스의 인스턴스 생성 과정<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+</section>
+<section id="id16">
+<h3>8-7. 표준 빌트인 생성자 함수 확장<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -635,6 +748,25 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static-method">5-3. static method: 정적 메서드</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5-4. 정적 메서드와 프로토타입 메서드의 차이</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">5-5. 클래스에서 정의한 메서드의 특징</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6. 클래스의 인스턴스 생성 과정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">7. 프로퍼티</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">7-1. 인스턴스 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessor-property">7-2. Accessor property: 접근자 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">7-3. 클래스 필드 정의 제안</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#private">7-4. private 필드 정의 제안</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static">7-5. static 필드 정의 제안</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">8. 상속에 의한 클래스 확장</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">8-1. 클래스 상속과 생성자 함수 상속</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extends">8-2. <code class="docutils literal notranslate"><span class="pre">extends</span></code> 키워드</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8-3. 동적 상속</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">8-4. 서브클래스의 constructor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#super">8-5. <code class="docutils literal notranslate"><span class="pre">super</span></code> 키워드</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">8-6. 상속 클래스의 인스턴스 생성 과정</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">8-7. 표준 빌트인 생성자 함수 확장</a></li>
 </ul>
 </li>
 </ul>

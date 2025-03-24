@@ -438,21 +438,21 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6. 클래스의 인스턴스 생성 과정</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">7. 프로퍼티</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">7-1. 인스턴스 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessor-property">7-2. Accessor property: 접근자 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">7-3. 클래스 필드 정의 제안</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instance-properties">7-1. Instance Properties: 인스턴스 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessor-properties">7-2. Accessor Properties: 접근자 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#class-fields">7-3. Class Fields: 클래스 필드 정의 제안</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#private">7-4. private 필드 정의 제안</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static">7-5. static 필드 정의 제안</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">8. 상속에 의한 클래스 확장</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">8-1. 클래스 상속과 생성자 함수 상속</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">8. 상속에 의한 클래스 확장</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">8-1. 클래스 상속과 생성자 함수 상속</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extends">8-2. <code class="docutils literal notranslate"><span class="pre">extends</span></code> 키워드</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8-3. 동적 상속</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">8-4. 서브클래스의 constructor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">8-3. 동적 상속</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">8-4. 서브클래스의 constructor</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#super">8-5. <code class="docutils literal notranslate"><span class="pre">super</span></code> 키워드</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">8-6. 상속 클래스의 인스턴스 생성 과정</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">8-7. 표준 빌트인 생성자 함수 확장</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8-6. 상속 클래스의 인스턴스 생성 과정</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">8-7. 표준 빌트인 생성자 함수 확장</a></li>
 </ul>
 </li>
 </ul>
@@ -618,8 +618,8 @@ document.write(`
 </section>
 <section id="id8">
 <h2>7. 프로퍼티<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
-<section id="id9">
-<h3>7-1. 인스턴스 프로퍼티<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="instance-properties">
+<h3>7-1. Instance Properties: 인스턴스 프로퍼티<a class="headerlink" href="#instance-properties" title="Link to this heading">#</a></h3>
 <p>인스턴스 프로퍼티는 constructor 내부에서 정의하는 속성값들을 뜻한다. constructor 내부에서 정의한 프로퍼티는 언제나 클래스가 생성한 인스턴스의 프로퍼티가 된다.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -629,8 +629,8 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="accessor-property">
-<h3>7-2. Accessor property: 접근자 프로퍼티<a class="headerlink" href="#accessor-property" title="Link to this heading">#</a></h3>
+<section id="accessor-properties">
+<h3>7-2. Accessor Properties: 접근자 프로퍼티<a class="headerlink" href="#accessor-properties" title="Link to this heading">#</a></h3>
 <p>접근자 프로퍼티는 accessor function(접근자 함수)로 구성된 프로퍼티다. 다음과 같이 클래스에서도 사용할 수 있다.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span><span class="w"> </span><span class="nx">lastName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -656,38 +656,201 @@ document.write(`
 </div>
 <p>setter는 단 하나의 값만 할당받기 때문에, 단 하나의 매개변수만 선언할 수 있다. 클래스의 접근자 프로퍼티 또한 인스턴스 프로퍼티가 아닌, 프로토타입의 프로퍼티가 된다.</p>
 </section>
-<section id="id10">
-<h3>7-3. 클래스 필드 정의 제안<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<section id="class-fields">
+<h3>7-3. Class Fields: 클래스 필드 정의 제안<a class="headerlink" href="#class-fields" title="Link to this heading">#</a></h3>
+<p>클래스 필드란, 클래스가 생성할 인스턴스의 프로퍼티를 가리키는 용어다. 자바스크립트의 class body(클래스 몸체)에는 메서드만 선언할 수 있다. 그렇다면 클래스 필드는 어떻게 선언할 수 있단 말인가? 자바스크립트의 원래 성격대로라면 아래 코드는 SyntaxError가 발생해야 정상이다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// 클래스 필드 정의</span>
+<span class="w">  </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>최신 브라우저 (Chrome 72 이상) 또는 최신 Node.js(버전 12 이상)에서 실행하면 SyntaxError가 발생하지 않고 정상 동작한다. 그 이유는 인스턴스 프로퍼티를 마치 Java 같은 클래스 기반 객체지향 언어의 클래스 필드처럼 정의할 수 있는 새로운 표준 사양인 “Class field declarations”가 제안되었기 때문이다. -&gt; <em>2025년 현재는 공식화된 듯함.(<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields">참조: [MDN] Public class fields</a>)</em></p>
+<p>그렇다고 클래스 필드를 정의할 때 아래처럼 <code class="docutils literal notranslate"><span class="pre">this</span></code>에 바인딩하지는 말자. <code class="docutils literal notranslate"><span class="pre">this</span></code>는 클래스의 constructor와 메서드 내에서만 유효하다. 클래스 필드에 함수를 할당하는 짓도 하지 말자. (클래스 필드에 함수를 할당하면 그 함수는 프로토타입 메서드가 아닌 인스턴스 메서드가 되어 버리기 때문에.)</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ❌ 틀린 practice!!!!! ❌</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Blah&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">// SyntaxError: Unexpected token &#39;.&#39;</span>
+<span class="w">  </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Lee&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">// 이건 ㄱㅊ</span>
+
+<span class="w">  </span><span class="c1">// 클래스 필드에 함수를 할당</span>
+<span class="w">  </span><span class="nx">getName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">);</span><span class="w">  </span><span class="c1">// Person {name: &quot;Lee&quot;, getName: f}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span><span class="w">  </span><span class="c1">// Lee</span>
+</pre></div>
+</div>
 </section>
 <section id="private">
 <h3>7-4. private 필드 정의 제안<a class="headerlink" href="#private" title="Link to this heading">#</a></h3>
+<p>이 책이 쓰인 2021년, 클래스 필드를 <code class="docutils literal notranslate"><span class="pre">private</span></code>하게 정의할 수 있는 새로운 표준 사양이 제안되어 있었다. 이 사양에 따르면 아래 예제처럼 클래식 필드 앞에 <code class="docutils literal notranslate"><span class="pre">#</span></code>을 붙이면 private한 필드를 선언할 수 있다. -&gt; <em>2025년 현재 공식화된 것으로 보임 (<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_properties">참조: [MDN] Private properties</a>)</em></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// private 필드 정의</span>
+<span class="w">  </span><span class="n">#name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// private 필드 참조</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">#name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">get</span><span class="w"> </span><span class="nx">name</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">#name</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+
+<span class="c1">// private 필드는 클래스 외부에서 직접 참조할 수 없음.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="n">#name</span><span class="p">);</span><span class="w">  </span><span class="c1">// SyntaxError: Private field &#39;#name&#39; must be declared in an enclosing class</span>
+
+<span class="c1">// 단, 접근자 프로퍼티를 통해 간접적으로 접근할 수 있음.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w">  </span><span class="c1">// Lee</span>
+</pre></div>
+</div>
 </section>
 <section id="static">
 <h3>7-5. static 필드 정의 제안<a class="headerlink" href="#static" title="Link to this heading">#</a></h3>
+<p>static한 필드를 정의하는 문법도 마찬가지로 2025년 현재 공식화된 것으로 보임 (<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static">참조: [MDN] static</a>)</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">MyMath</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// static public 필드 정의</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="nx">PI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">22</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">7</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// static private 필드 정의</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">#num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// static 메서드</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="nx">increment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">++</span><span class="nx">MyMath</span><span class="p">.</span><span class="n">#num</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">MyMath</span><span class="p">.</span><span class="nx">PI</span><span class="p">)</span><span class="w">  </span><span class="c1">// 3.142857142857143</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">MyMath</span><span class="p">.</span><span class="nx">increment</span><span class="p">())</span><span class="w">  </span><span class="c1">// 11</span>
+</pre></div>
+</div>
 </section>
 </section>
-<section id="id11">
-<h2>8. 상속에 의한 클래스 확장<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
-<section id="id12">
-<h3>8-1. 클래스 상속과 생성자 함수 상속<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h2>8. 상속에 의한 클래스 확장<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h3>8-1. 클래스 상속과 생성자 함수 상속<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>상속에 의한 클래스 확장은 새로운 클래스를 extend(확장)해 정의하는 방식을 말하며, 지금까지 배워 온 프로토타입 기반 상속과는 다른 개념임을 숙지하자. 클래스는, 생성자 함수와는 다르게, 상속을 통해 기존 클래스를 확장하는 <code class="docutils literal notranslate"><span class="pre">extends</span></code> 문법을 기본적으로 갖고 있다.</p>
+<img width="50%" src="https://github.com/user-attachments/assets/6f713e74-ee14-4611-9cb6-257d3b5032c2" />
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">age</span><span class="p">,</span><span class="w"> </span><span class="nx">weight</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">age</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">weight</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">eat</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;eat&#39;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">move</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;move&#39;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 상속으로 Animal 클래스를 확장한 Bird 클래스</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Bird</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">fly</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;fly&#39;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">bird</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Bird</span><span class="p">(</span><span class="mf">12</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bird</span><span class="p">);</span><span class="w">  </span><span class="c1">// Bird {age: 12, weight: 5}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bird</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nx">Bird</span><span class="p">);</span><span class="w">  </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bird</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nx">Animal</span><span class="p">);</span><span class="w">  </span><span class="c1">// true</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bird</span><span class="p">.</span><span class="nx">eat</span><span class="p">());</span><span class="w">  </span><span class="c1">// eat</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bird</span><span class="p">.</span><span class="nx">move</span><span class="p">());</span><span class="w">  </span><span class="c1">// move</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bird</span><span class="p">.</span><span class="nx">fly</span><span class="p">());</span><span class="w">  </span><span class="c1">// fly</span>
+</pre></div>
+</div>
 </section>
 <section id="extends">
 <h3>8-2. <code class="docutils literal notranslate"><span class="pre">extends</span></code> 키워드<a class="headerlink" href="#extends" title="Link to this heading">#</a></h3>
+<p>앞서 예제에서 봤듯, <code class="docutils literal notranslate"><span class="pre">extends</span></code> 클래스 간 상속 관계(수퍼클래스-서브클래스)를 설정하는 키워드다. 자바스크립트의 클래스는 이 상속 관계를 구현할 때 프로토타입으로 구현한다.</p>
 </section>
-<section id="id13">
-<h3>8-3. 동적 상속<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<section id="id11">
+<h3>8-3. 동적 상속<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>생략. 책을 참고합시다!</p>
 </section>
-<section id="id14">
-<h3>8-4. 서브클래스의 constructor<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<section id="id12">
+<h3>8-4. 서브클래스의 constructor<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>서브클래스에서 constructor를 생략하면, 서브클래스에서는 다음과 같은 constructor가 암묵적으로 정의된다. 여기서 <code class="docutils literal notranslate"><span class="pre">super()</span></code>는 수퍼클래스의 constructor, 즉 super-constructor를 호출해 인스턴스를 생성한다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">constructor</span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">super</span><span class="p">(...</span><span class="nx">args</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="super">
 <h3>8-5. <code class="docutils literal notranslate"><span class="pre">super</span></code> 키워드<a class="headerlink" href="#super" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">super</span></code> 키워드는 다음 특징을 지닌다.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">super</span></code>를 호출하면 수퍼클래스의 constructor를 호출한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">super</span></code>를 참조하면 수퍼클래스의 메서드를 호출할 수 있다.</p></li>
+</ol>
 </section>
-<section id="id15">
-<h3>8-6. 상속 클래스의 인스턴스 생성 과정<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h3>8-6. 상속 클래스의 인스턴스 생성 과정<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>아래와 같은 코드가 있다고 했을 때, 상속 관계에 있는 두 클래스가 어떻게 협력해 인스턴스를 생성하는지 알아 보자.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 수퍼클래스</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Rectangle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">width</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">height</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">getArea</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`width = </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="si">}</span><span class="sb">, height = </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="c1">// 서브클래스</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">ColorRectangle</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Rectangle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">color</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 메서드 오버라이딩</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sb">`, color = </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">colorRectangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ColorRectangle</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">colorRectangle</span><span class="p">);</span><span class="w">  </span><span class="c1">// ColorRectangle {width: 2, height: 4, color: &#39;red&#39;}</span>
+
+<span class="c1">// 상속으로 getArea 메서드를 호출할 수 있게 됨.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">colorRectangle</span><span class="p">.</span><span class="nx">getArea</span><span class="p">());</span><span class="w">  </span><span class="c1">// 8</span>
+
+<span class="c1">// 상속으로 오버라이딩한 toString 메서드를 호출.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">colorRectangle</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span><span class="w">  </span><span class="c1">// width = 2, height = 4, color = red</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>서브클래스의 <code class="docutils literal notranslate"><span class="pre">super</span></code> 호출</p></li>
+<li><p>수퍼클래스의 인스턴스 생성과 <code class="docutils literal notranslate"><span class="pre">this</span></code> 바인딩</p></li>
+<li><p>수퍼클래스의 인스턴스 초기화</p></li>
+<li><p>서브클래스 constructor로 복귀 후 <code class="docutils literal notranslate"><span class="pre">this</span></code> 바인딩</p></li>
+<li><p>서브클래스의 인스턴스 초기화</p></li>
+<li><p>인스턴스 반환</p></li>
+</ol>
 </section>
-<section id="id16">
-<h3>8-7. 표준 빌트인 생성자 함수 확장<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<section id="id14">
+<h3>8-7. 표준 빌트인 생성자 함수 확장<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">extends</span></code> 키워드 뒤에는 꼭 클래스뿐만 아니라, <code class="docutils literal notranslate"><span class="pre">[[Construct]]</span> <span class="pre">내부</span> <span class="pre">메서드</span></code>를 갖는, 함수 객체로 평가될 수 있는 모든 표현식을 사용할 수 있다. <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Number</span></code>, <code class="docutils literal notranslate"><span class="pre">Array</span></code> 같은 표준 빌트인 객체도 마찬가지로 <code class="docutils literal notranslate"><span class="pre">extends</span></code> 키워드를 사용해 확장할 수 있다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">MyArray</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nb">Array</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ... 생략. 자세한 코드는 책 참고!</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>끝.</p>
 </section>
 </section>
 </section>
@@ -752,21 +915,21 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6. 클래스의 인스턴스 생성 과정</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">7. 프로퍼티</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">7-1. 인스턴스 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessor-property">7-2. Accessor property: 접근자 프로퍼티</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">7-3. 클래스 필드 정의 제안</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instance-properties">7-1. Instance Properties: 인스턴스 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessor-properties">7-2. Accessor Properties: 접근자 프로퍼티</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#class-fields">7-3. Class Fields: 클래스 필드 정의 제안</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#private">7-4. private 필드 정의 제안</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static">7-5. static 필드 정의 제안</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">8. 상속에 의한 클래스 확장</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">8-1. 클래스 상속과 생성자 함수 상속</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">8. 상속에 의한 클래스 확장</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">8-1. 클래스 상속과 생성자 함수 상속</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extends">8-2. <code class="docutils literal notranslate"><span class="pre">extends</span></code> 키워드</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8-3. 동적 상속</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">8-4. 서브클래스의 constructor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">8-3. 동적 상속</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">8-4. 서브클래스의 constructor</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#super">8-5. <code class="docutils literal notranslate"><span class="pre">super</span></code> 키워드</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">8-6. 상속 클래스의 인스턴스 생성 과정</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">8-7. 표준 빌트인 생성자 함수 확장</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8-6. 상속 클래스의 인스턴스 생성 과정</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">8-7. 표준 빌트인 생성자 함수 확장</a></li>
 </ul>
 </li>
 </ul>

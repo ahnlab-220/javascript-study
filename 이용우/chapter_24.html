@@ -1,0 +1,1005 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 24 - 클로저 &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_24';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 25 - 클래스" href="chapter_25.html" />
+    <link rel="prev" title="Chapter 23 - 실행 컨텍스트" href="chapter_23.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_19.html">Chapter 19 - 프로토타입</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_20.html">Chapter 20 - strict mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_21.html">Chapter 21 - 빌트인 객체</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_22.html">Chapter 22 - <code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_15.html">Chapter 15 - <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_20.html">Chapter 20 - strict mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_21.html">Chapter 21 - 빌트인 객체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_22.html">Chapter 22 - <code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_24.html">Chapter 24 - Closure(클로저)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="main.html">이용우</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_19.html">Chapter 19 - 프로토타입</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_20.html">Chapter 20 - strict mode</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_21.html">Chapter 21 - 빌트인 객체</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_22.html">Chapter 22 - this</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_23.html">Chapter 23 - 실행 컨텍스트</a></li>
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Chapter 24 - 클로저</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_25.html">Chapter 25 - 클래스</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_26.html">Chapter 26 - ES6 함수의 추가 기능</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_24.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/이용우/chapter_24.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 24 - 클로저</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 24 - 클로저</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">렉시컬 스코프</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">함수 객체의 내부 슬롯 [[Environment]]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">클로저와 렉시컬 환경</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">클로저의 활용</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">캡슐화와 정보 은닉</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="chapter-24">
+<h1>Chapter 24 - 클로저<a class="headerlink" href="#chapter-24" title="Link to this heading">#</a></h1>
+<p>클로저는 자바스크립트 고유의 개념이 아니다.<br />
+함수를 일급 객체로 취급하는 함수형 프로그래밍 언어에서 자주 사용되는 중요한 특성이다.</p>
+<blockquote>
+<div><p>하스켈(Haskell), 리스프(Lisp), 얼랭(Erlang) 스칼라(Scala)</p>
+</div></blockquote>
+<p>MDN에서는 클로저에 대해 아래와 같이 정의내린다.</p>
+<blockquote>
+<div><p>클로저는 함수와 그 함수가 선언된 렉시컬 환경과의 조합이다.</p>
+</div></blockquote>
+<br>
+<p>여기서 가지고 가야 할 핵심 키워드는 <font color='orange'>”함수가 선언된 렉시컬 환경”</font>이다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">outerFunc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">innerFunc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">innerFunc</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">outerFunc</span><span class="p">();</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">outerFunc</span></code> 내부에서 중첩 함수 <code class="docutils literal notranslate"><span class="pre">innerFunc</span></code>가 정의되고 호출되었다.<br />
+이때 중첩 함수 innerFunc의 상위 스코프는 외부 함수 <code class="docutils literal notranslate"><span class="pre">outerFunc</span></code>의 스코프이다.</p>
+<p>따라서 중첩 함수 <code class="docutils literal notranslate"><span class="pre">innerFunc</span></code> 내부에서는 자신을 포함하고 있는<br />
+외부 함수 <code class="docutils literal notranslate"><span class="pre">outerFunc</span></code>의 x 변수에 접근할 수 있다.</p>
+<blockquote>
+<div><p>이는 자바스크립트가 렉시컬 스코프를 따르는 프로그래밍 언어이기 때문이다.</p>
+</div></blockquote>
+<p><br><br></p>
+</section>
+<section id="id1">
+<h1>렉시컬 스코프<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>렉시컬 스코프는 함수를 어디서 호출하는지가 아니라<br />
+<font color='orange'>함수를 어디에 정의하는지에 따라 상위 스코프를 결정한다.</font></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">bar</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">();</span>
+<span class="nx">bar</span><span class="p">();</span>
+</pre></div>
+</div>
+<br>
+<p>위 예제의 <code class="docutils literal notranslate"><span class="pre">foo</span></code> 함수와 <code class="docutils literal notranslate"><span class="pre">bar</span></code> 함수는 모두 전역에서 정의된 전역 함수이다.<br />
+함수의 상위 스코프는 함수를 어디서 정의했느냐에 따라 결정되므로<br />
+<code class="docutils literal notranslate"><span class="pre">foo</span></code> 함수와 <code class="docutils literal notranslate"><span class="pre">bar</span></code> 함수의 상위 스코프는 전역이다.</p>
+<blockquote>
+<div><p>함수를 어디서 호출하는지는 함수의 상위 스코프 결정에 어떠한 영향도 주지 않는다.</p>
+</div></blockquote>
+<br>
+<p>“실행 컨텍스트”에서 확인한 내용과 같이,<br />
+스코프의 실체는 실행 컨텍스트의 렉시컬 환경이다.</p>
+<p>&lt;font color’orange’&gt;이 렉시컬 환경은 “외부 렉시컬 환경에 대한 참조”를 통해 상위 렉시컬 환경과 연결된다.</font><br />
+이것이 스코프 체인이다.</p>
+<br>
+<p>따라서 “함수의 상위 스코프를 결정한다”는 것은 “렉시컬 환경의 외부 렉시컬 환경에 대한 참조에 저장할 참조값을 결정한다”는 것과 같다. 이것이 상위 스코프이기 때문이다.</p>
+<p>이 개념으로 다시 한번 “렉시컬 스코프”를 정의하면 다음과 같다.</p>
+<blockquote>
+<div><p>렉시컬 환경의 “외부 렉시컬 환경에 대한 참조”에 저장할 참조값, 즉 상위 스코프에 대한 참조는 함수 정의가 평가되는 시점에 함수가 정의된 환경(위치)에 의해 결정된다.</p>
+</div></blockquote>
+<p><br><br></p>
+</section>
+<section id="environment">
+<h1>함수 객체의 내부 슬롯 [[Environment]]<a class="headerlink" href="#environment" title="Link to this heading">#</a></h1>
+<p>함수 객체는 자신의 내부 슬롯 [[Environment]]에 자신이 정의된 환경,<br />
+즉 상위 스코프의 참조를 저장한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 상위 스코프는 함수 정의 환경(위치)에 따라 결정된다.</span>
+<span class="w">    </span><span class="c1">// 함수 호출 위치와 상위 스코프는 관계가 없다.</span>
+<span class="w">    </span><span class="nx">bar</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// 함수 bar는 자신의 상위 스코프, 즉 전역 렉시컬 환경을 [[Environment]]에 저장한다.</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">();</span>
+<span class="nx">bar</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id2">
+<h1>클로저와 렉시컬 환경<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">inner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">inner</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// outer 함수를 호출하면 중첩 함수 inner를 반환한다.</span>
+<span class="c1">// 그리고 outer 함수의 실행 컨텍스트는 실행 컨텍스트 스택에서 pop되어 제거된다.</span>
+<span class="nx">coust</span><span class="w"> </span><span class="nx">innerFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">outer</span><span class="p">();</span>
+<span class="nx">innerFunc</span><span class="p">();</span><span class="w">    </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수를 호출하면 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수는 중첩함수 <code class="docutils literal notranslate"><span class="pre">inner</span></code>를 반환하고 생명 주기를 마감한다.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 실행이 종료되면 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 실행 컨텍스트는 실행 컨텍스트 스택에서 pop된다.</p>
+</div></blockquote>
+<p>이때 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>와 변수 10을 저장하고 있던 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 실행 컨텍스트가 제거되었으므로 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code> 또한 생명 주기를 마감한다.</p>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지경 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>는 더이상 유효하지 않아 보인다.</p>
+<br>
+<p>하지만 위 코드의 실행 결과는 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code> 값인 10이다.<br />
+이미 생명 주기가 종료되어 실행 컨텍스트 스택에서 제거된 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>가 부활한 것 처럼 동작하고 있다.</p>
+<br>
+<p><font color='orange'>이와 같이 외부 함수보다 중첩 함수가 더 오래 유지되는 경우,<br />
+중첩 함수는 이미 종료한 외부 함수의 변수를 참조할 수 있다.  </font></p>
+<p><font color='tomato'>이러한 중첩 함수를 클로저(closure)라고 부른다.</font></p>
+<p><br><br></p>
+</section>
+<section id="id3">
+<h1>클로저의 활용<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<p>클로저는 상태(state)를 안전하게 변경하고 유지하기 위해 사용한다.</p>
+<blockquote>
+<div><p>상태가 의도적으로 변경되지 않도록 상태를 안전하게 은닉하고 특정 함수에게만 상태 변경을 허용하기 위해 사용한다.</p>
+</div></blockquote>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="c1">// 카운트 상태 변경 함수</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">increase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 카운트 상태를 1만큼 증가시킨다.</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">++</span><span class="nx">num</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">    </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">    </span><span class="c1">// 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">    </span><span class="c1">// 3</span>
+</pre></div>
+</div>
+<p>위 코드는 잘 동작하지만 오류를 발생시킬 가능성을 내포하고 있는 좋지 않은 코드이다.<br />
+위 예제가 잘 동작하려면 아래의 전제 조건이 지켜져야 하기 때문이다.</p>
+<ol class="arabic simple">
+<li><p>카운트 상태(num 변수의 값)는 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 함수가 호출되기 전까지 변경되지 않고 유지되어야 한다.</p></li>
+<li><p>이를 위해 카운트 상태(num 변수의 값)는 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 함수만 변경할 수 있어야 한다.</p></li>
+</ol>
+<br>
+<p>하지만 카운트 상태는 전역에서 관리되고 있기 때문에<br />
+누구든지 접근할 수 있고 변경할 수 있다.</p>
+<blockquote>
+<div><p>의도치 않게 상태를 변경시킬 수 있어 오류를 발생시킬 가능성이 있다.</p>
+</div></blockquote>
+<br>
+<p>따라서 카운트 상태(num 변수의 값)를 안전하게 변경하고 유지하기 위해서는<br />
+<code class="docutils literal notranslate"><span class="pre">increase</span></code> 함수만이 <code class="docutils literal notranslate"><span class="pre">num</span></code> 변수를 참조하고 변경할 수 있게 하는 것이 바람직하다.</p>
+<p>이를 위해 변수 <code class="docutils literal notranslate"><span class="pre">num</span></code>을 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 함수의 지역 변수로 바꾸어 의도치 않은 상태 변수를 방지해해보도록 하자.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">increase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 카운트 상태 변수</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 카운트 상태를 1만큼 증가시킴</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">++</span><span class="nx">num</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">    </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">    </span><span class="c1">// 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">    </span><span class="c1">// 3</span>
+</pre></div>
+</div>
+<p>카운트 상태를 안전하게 변경하고 유지하기 위한 전역 변수 <code class="docutils literal notranslate"><span class="pre">num</span></code>을 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 함수의 지역 변수로 변경하여<br />
+의도치 않은 상태 변경을 방지했다.<br />
+이제 <code class="docutils literal notranslate"><span class="pre">num</span></code> 변수의 상태는 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 함수만이 변경할 수 있다.</p>
+<p>하지만 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 함수가 호출될 때마다 지역 변수 <code class="docutils literal notranslate"><span class="pre">num</span></code>은 다시 선언되고 0으로 초기화되기 때문에<br />
+출력 결과는 언제나 1이다.</p>
+<p>다시 말해, 상태가 변경되기 이전의 상태를 유지하지 못한다.<br />
+이전 상태를 유지할 수 있도록 클로저를 사용해보자.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 카운트 상태 변경 함수</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">increase</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 카운트 상태 변수</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 클로저</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">++</span><span class="nx">num</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}());</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">    </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">    </span><span class="c1">// 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increase</span><span class="p">());</span><span class="w">    </span><span class="c1">// 3</span>
+</pre></div>
+</div>
+<p>위 코드가 실행되면 즉시 실행 함수가 호출되고,<br />
+즉시 실행 함수가 반환한 함수가 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 변수에 할당된다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">increase</span></code> 변수에 할당된 함수는 자신이 정의된 위치에 의해 결정된<br />
+<font color='orange'>상위 스코프인 즉시 실행 함수의 렉시컬 환경을 기억하는 클로저이다.</font></p>
+<p><br><br></p>
+<p>즉시 실행 함수는 호출 이후에 소멸되지만,<br />
+즉시 실행 함수가 반환한 클로저는 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 변수에 할당되어 호출된다.</p>
+<p>따라서 즉시 실행함수가 반환한 클로저는<br />
+카운트 상태를 유지하기 위한 <font color='tomato'>자유 변수</font> <code class="docutils literal notranslate"><span class="pre">num</span></code>을 어디서든 참조하고 변경할 수 있다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">outer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 외부 함수의 변수</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">inner</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 내부 함수</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">++</span><span class="nx">count</span><span class="p">;</span><span class="w">  </span><span class="c1">// 외부 함수의 변수를 참조</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">outer</span><span class="p">();</span><span class="w">  </span><span class="c1">// outer는 실행 종료되지만</span>
+<span class="nx">counter</span><span class="p">();</span><span class="w">  </span><span class="c1">// 1 - inner 함수는 여전히 count 변수에 접근 가능</span>
+<span class="nx">counter</span><span class="p">();</span><span class="w">  </span><span class="c1">// 2</span>
+</pre></div>
+</div>
+<p>위 예시는 클로저를 활용한 또 다른 예제이다.</p>
+<p><br><br></p>
+<p>변수 값은 누군가에 의해 언제든지 변경될 수 있어 오류 발생의 근본적인 원인이 될 수 있다.<br />
+외부 상태 변경이나 가변(mutable) 데이터를 피하고 불변성(immutability)을 지향하는 함수형 프로그래밍에서 부수 효과를 최대한 억제하여<br />
+오류를 피하고 프로그램의 안정성을 높이기 위해 클로저는 적극적으로 사용될 수 있다.</p>
+<p>아래는 함수형 프로그래밍에서 클로저를 활용한 간단한 예시이다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 함수를 인수로 전달받고 함수를 반환하는 고차 함수</span>
+<span class="c1">// 이 함수는 카운트 상태를 유지하기 위한 자유 변수 counter를 기억하는 클로저를 반환한다.</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">makeCounter</span><span class="p">(</span><span class="nx">aux</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 자유 변수</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 클로저로 반환</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 인수로 전달받은 보조 함수에 상태 변경을 위임</span>
+<span class="w">        </span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">aux</span><span class="p">(</span><span class="nx">counter</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">counter</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// 보조 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">increase</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">++</span><span class="nx">n</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 보조 함수</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">decrease</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">--</span><span class="nx">n</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">increaser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">makeCounter</span><span class="p">(</span><span class="nx">increase</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increaser</span><span class="p">());</span><span class="w">  </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">increaser</span><span class="p">());</span><span class="w">  </span><span class="c1">// 2</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">decreaser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">makeCounter</span><span class="p">(</span><span class="nx">decrease</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">decreaser</span><span class="p">());</span><span class="w">  </span><span class="c1">// -1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">decreaser</span><span class="p">());</span><span class="w">  </span><span class="c1">// -2</span>
+</pre></div>
+</div>
+<p>위 예제는 외부 함수의 인자도 클로저에 전달되어 클로저가 외부 함수의 변수에 접근할 수 있도록 하여<br />
+카운트 상태를 안전하게 변경하고 유지할 수 있도록 하는 예이다.</p>
+<p><br><br></p>
+</section>
+<section id="id4">
+<h1>캡슐화와 정보 은닉<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<p>대부분의 객체 지향 프로그래밍 언어는 클래스를 정의하고 그 클래스를 구성하는 맴버에 대해<br />
+<code class="docutils literal notranslate"><span class="pre">public</span></code>, <code class="docutils literal notranslate"><span class="pre">private</span></code>, <code class="docutils literal notranslate"><span class="pre">protected</span></code> 등의 접근 제한자를 사용하여 공개 범위를 제한할 수 있다.</p>
+<p>다만 자바스크립트는 접근 제한자를 제공하지 않는다.<br />
+따라서 자바스크립트 객체의 모든 프로퍼티와 메소드는 기본적으로 외부에 공개되어 있다.</p>
+<p>즉, 객체의 모든 프로퍼티와 메소드는 기본적으로 <code class="docutils literal notranslate"><span class="pre">public</span></code>이다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span><span class="w">   </span><span class="c1">// public</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">age</span><span class="p">;</span><span class="w">    </span><span class="c1">// private</span>
+
+<span class="w">    </span><span class="c1">// 인스턴스 메소드</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">sayHi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi! My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">. I am </span><span class="si">${</span><span class="nx">_age</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span><span class="w">    </span><span class="c1">// Hi! My name is Lee. I am 20.</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w">   </span><span class="c1">// Lee</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="nx">_age</span><span class="p">);</span><span class="w">   </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<p>위 예제의 <code class="docutils literal notranslate"><span class="pre">name</span></code> 프로퍼티는 외부에 공개되어 있어서 자유롭게 참조하거나 변경할 수 있다.<br />
+하지만 <code class="docutils literal notranslate"><span class="pre">_age</span></code> 변수는 Person 생성자 함수의 지역 변수이므로 <code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수 외부에서 참조하거나 변경할 수 없다.<br />
+즉, <code class="docutils literal notranslate"><span class="pre">_age</span></code> 변수는 <code class="docutils literal notranslate"><span class="pre">private</span></code> 하다.</p>
+<p>위 예제의 <code class="docutils literal notranslate"><span class="pre">sayHi</span></code> 메소드는 인스턴스 메소드이기 때문에 <code class="docutils literal notranslate"><span class="pre">Person</span></code> 객체가 생성될 때마다 중복 생성된다.<br />
+<code class="docutils literal notranslate"><span class="pre">sayHi</span></code> 메소드를 프로토타입 메소드로 변경하여 <code class="docutils literal notranslate"><span class="pre">sayHi</span></code> 메소드의 중복 생성을 방지해보도록 하자.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span><span class="w">   </span><span class="c1">// public</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">age</span><span class="p">;</span><span class="w">    </span><span class="c1">// private</span>
+
+<span class="p">}</span>
+
+<span class="c1">// 프로토타입 메소드</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi! My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">. I am </span><span class="si">${</span><span class="nx">_age</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>이 경우에 <code class="docutils literal notranslate"><span class="pre">Person.prototype.sayHi</span></code> 메소드 내에서 <code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">_age</span></code>에 참조할 수 없는 문제가 발생한다.</p>
+<p>따라서 이를 해결하기 위해 즉시 실행 함수를 사용하여<br />
+<code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수의 <code class="docutils literal notranslate"><span class="pre">Person.prototype.sayHi</span></code> 메소드를 하나의 함수 내에 모아보도록 하자.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w">    </span><span class="c1">// private</span>
+
+<span class="w">    </span><span class="c1">// 생성자 함수</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span><span class="w">   </span><span class="c1">// public</span>
+<span class="w">        </span><span class="nx">_age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">age</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 프로토타입 메소드</span>
+<span class="w">    </span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi! My name is </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">. I am </span><span class="si">${</span><span class="nx">_age</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// 생성자 함수를 반환</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">Person</span><span class="p">;</span>
+<span class="p">}());</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span><span class="w">    </span><span class="c1">// Hi! My name is Lee. I am 20.</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w">   </span><span class="c1">// Lee</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">me</span><span class="p">.</span><span class="nx">_age</span><span class="p">);</span><span class="w">   </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<p>위와 같은 패턴을 사용하면 접근 제한자를 제공하지 않는 자바스크립트에서도 정보 은닉이 가능한 것처럼 만들 수 있다.</p>
+<p>즉시 실행 함수가 반환하는 <code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수와 <code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수의 인스턴스가 상속받아 호출할<br />
+<code class="docutils literal notranslate"><span class="pre">Person.prototype.sayHi</span></code> 메소드는 즉시 실행 함수가 종료된 이후에 호출된다.</p>
+<p>하지만 <code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수와 <code class="docutils literal notranslate"><span class="pre">sayHi</span></code> 메소드는 이미 종료되어 소멸한<br />
+즉시 실행 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">_age</span></code>를 참조할 수 있는 클로저이다.</p>
+<br>
+<p>하지만 위 코드도 문제는 있다.<br />
+<code class="docutils literal notranslate"><span class="pre">Person</span></code> 생성자 함수가 여러 개의 인스턴스를 생성할 경우<br />
+아래와 같이 <code class="docutils literal notranslate"><span class="pre">_age</span></code> 변수의 상태가 유지되지 않는다는 것이다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">me</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span><span class="w">    </span><span class="c1">// Hi! My name is Lee. I am 20.</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">you</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Kim&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">);</span>
+<span class="nx">you</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span><span class="w">   </span><span class="c1">// Hi! My name is Kim. I am 30.</span>
+
+<span class="c1">// _age 값이 변경되는 것을 볼 수 있음</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span><span class="w">     </span><span class="c1">// Hi! My name is Lee. I am 30.</span>
+</pre></div>
+</div>
+<p>이는 <code class="docutils literal notranslate"><span class="pre">Person.prototype.sayHi</span></code> 메소드가 단 한번 생성되는 클로저이기 때문에 발생하는 현상이다.<br />
+<code class="docutils literal notranslate"><span class="pre">_age</span></code>는 즉시실행함수(IIFE)의 렉시컬 스코프에 있는 단일 변수이다.<br />
+이는 모든 <code class="docutils literal notranslate"><span class="pre">Person</span></code> 인스턴스가 동일한 <code class="docutils literal notranslate"><span class="pre">_age</span></code> 변수를 참조한다는 것과 같다.</p>
+<p>이와 같이 정보 은닉을 완벽하게 지원하지는 않아,<br />
+ES6의 <code class="docutils literal notranslate"><span class="pre">Symbol</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">WeakMap</span></code>을 사용하여 <code class="docutils literal notranslate"><span class="pre">private</span></code>한 프로퍼티를 흉내낼 수 있긴 하지만<br />
+이는 정보 은닉을 완벽하게 지원하는 것은 아니다.</p>
+<blockquote>
+<div><p>다만, 최신 브라우저와 최신 Node.js에서는 이런 문제를 해결하기 위한 방안이 마련되어 있다.<br />
+이는 25장의 “private 필드 정의 제안” 파트에서 다룬다.</p>
+</div></blockquote>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./이용우"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter_23.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 23 - 실행 컨텍스트</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chapter_25.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 25 - 클래스</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 24 - 클로저</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">렉시컬 스코프</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">함수 객체의 내부 슬롯 [[Environment]]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">클로저와 렉시컬 환경</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">클로저의 활용</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">캡슐화와 정보 은닉</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -516,7 +516,8 @@ document.write(`
 <h1>Chapter 26 - ES6 함수의 추가 기능<a class="headerlink" href="#chapter-26-es6" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>1. 함수의 구분<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>ES6 이전까지 자바스크립트의 함수는 별다른 구분 없이 다양한 목적으로 사용되었다. 이는 편리한 것 같지만 실수를 유발시킬 수 있으며 성능 면에서도 손해다. 예제를 살펴 보자.</p>
+<p>ES6 이전까지 자바스크립트의 함수는 별다른 구분 없이 다양한 목적으로 사용되었다.<br/>
+이는 편리한 것 같지만 실수를 유발시킬 수 있으며 성능 면에서도 손해다. 예제를 살펴 보자.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
 <span class="p">};</span>
@@ -532,8 +533,10 @@ document.write(`
 <span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span><span class="w">  </span><span class="c1">// -&gt; 1</span>
 </pre></div>
 </div>
-<p>ES6 이전의 모든 함수는 사용 목적에 따라 명확한 구분이 없으므로 호출 방식에 특별한 제약이 없고 생성자 함수로 호출되지 않아도 프로토타입 객체를 생성한다. 이는 혼란스러우며 실수를 유발할 가능성이 있고, 성능에도 좋지 않다.</p>
-<p>이러한 문제를 해결하기 위해, ES6에서는 함수를 사용 목적에 따라 세 가지 종류로 구분해 정의했다.</p>
+<p>ES6 이전의 모든 함수는 사용 목적에 따라 명확한 구분이 없으므로<br/>
+호출 방식에 특별한 제약이 없고 생성자 함수로 호출되지 않아도 프로토타입 객체를 생성한다.<br/>
+자바스크립트 함수의 이러한 특징은 이해하기 혼란스럽고, 프로그램 성능에도 좋지 않다.</p>
+<p>이러한 문제를 해결하기 위해, <strong>ES6에서는 함수를 사용 목적에 따라 세 가지 종류로 구분</strong>해 정의했다.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>ES6 함수의 구분</strong></p></th>
@@ -569,7 +572,7 @@ document.write(`
 </section>
 <section id="es6-methods">
 <h2>2. ES6 Methods: 메서드<a class="headerlink" href="#es6-methods" title="Link to this heading">#</a></h2>
-<p>ES6 사양에서는 메서드에 대한 정의가 명확하게 규정되었다: 메서드 축약 표현으로 정의된 함수만이 메서드다.</p>
+<p>ES6 사양에서는 메서드에 대한 정의가 명확하게 규정되었다: <strong>메서드 축약 표현으로 정의된 함수만이 ‘메서드’다.</strong></p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span><span class="w"> </span><span class="p">},</span><span class="w">  </span><span class="c1">// ✅ foo는 &#39;메서드&#39;다.</span>
@@ -577,13 +580,15 @@ document.write(`
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>ES6에서 정의한 ‘메서드’는, 인스턴스를 생성할 수 없는 non-constructor이다. 따라서 생성자 함수로서 호출할 수 없게 된다. ES6 메서드는 인스턴스를 생성할 수 없으므로 prototype 프로퍼티가 없고 프로토타입도 생성하지 않는다.</p>
-<p>또한, ES6 메서드는 자신을 바인딩한 객체를 가리키는 슬롯 <code class="docutils literal notranslate"><span class="pre">[[HomeObject]]</span></code>를 갖기 때문에, <code class="docutils literal notranslate"><span class="pre">super</span></code> 키워드를 사용할 수 있다.</p>
+<p>ES6에서 정의한 ‘<strong>메서드</strong>’는, 인스턴스를 생성할 수 없는 non-constructor이다. 따라서 생성자 함수로서 호출할 수 없게 된다.<br/>
+ES6 메서드는 인스턴스를 생성할 수 없으므로 prototype 프로퍼티가 없고 프로토타입도 생성하지 않는다.<br/>
+또한, ES6 메서드는 자신을 바인딩한 객체를 가리키는 슬롯 <code class="docutils literal notranslate"><span class="pre">[[HomeObject]]</span></code>를 갖기 때문에, <code class="docutils literal notranslate"><span class="pre">super</span></code> 키워드를 사용할 수 있다.</p>
 <p>이처럼 ES6 메서드는 본연의 기능인 <code class="docutils literal notranslate"><span class="pre">super</span></code>를 추가하고, 의미적으로 맞지 않는 기능인 constructor는 제거했다.</p>
 </section>
 <section id="arrow-functions">
 <h2>3. Arrow Functions: 화살표 함수<a class="headerlink" href="#arrow-functions" title="Link to this heading">#</a></h2>
-<p>화살표 함수는, 표현만 간략한 게 아니라 내부 동작도 기존 함수의 동작보다 간략하다. 특히, 화살표 함수는 콜백 함수 내부에서 <code class="docutils literal notranslate"><span class="pre">this</span></code>가 전역 객체를 가리키는 문제를 해결하기 위한 대안으로 유용하다.</p>
+<p>화살표 함수는, 기존의 함수와 비교해 표현만 간략한 게 아니라 <strong>내부 동작도 간략</strong>하다.<br/>
+특히, 화살표 함수는 콜백 함수 내부에서 <strong><code class="docutils literal notranslate"><span class="pre">this</span></code>가 전역 객체를 가리키는 문제를 해결</strong>한다.</p>
 <section id="id2">
 <h3>3-1. 화살표 함수 정의<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>생략. 책을 참고합시다~</p>
@@ -591,15 +596,20 @@ document.write(`
 <section id="id3">
 <h3>3-2. 화살표 함수와 일반 함수의 차이<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>화살표 함수는 인스턴스를 생성할 수 없는 non-constructor이다.</p></li>
+<li><p>화살표 함수는 인스턴스를 생성할 수 없는 <strong>non-constructor</strong>이다.</p></li>
 <li><p>화살표 함수는 중복된 매개변수 이름을 선언할 수 없다.</p></li>
-<li><p>화살표 함수는 함수 자체의 <code class="docutils literal notranslate"><span class="pre">this</span></code>, <code class="docutils literal notranslate"><span class="pre">arguments</span></code>, <code class="docutils literal notranslate"><span class="pre">super</span></code>, <code class="docutils literal notranslate"><span class="pre">new.target</span></code> 바인딩을 갖지 않는다.</p></li>
+<li><p>화살표 함수는 함수 자체의 <code class="docutils literal notranslate"><span class="pre">this</span></code>, <code class="docutils literal notranslate"><span class="pre">arguments</span></code>, <code class="docutils literal notranslate"><span class="pre">super</span></code>, <code class="docutils literal notranslate"><span class="pre">new.target</span></code> 바인딩을 <strong>갖지 않는다</strong>.</p></li>
 </ol>
 </section>
 <section id="this">
 <h3>3-3. <code class="docutils literal notranslate"><span class="pre">this</span></code><a class="headerlink" href="#this" title="Link to this heading">#</a></h3>
-<p>화살표 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 일반 함수의 그것과 다르게 동작한다. 화살표 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>가 다르게 동작하는 것은 의도된 설계다: 콜백 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>가, 외부 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>와 달라 혼란을 발생시키는 문제를 해결하기 위함이다.</p>
-<p>22장에서 배웠듯이 <code class="docutils literal notranslate"><span class="pre">this</span></code>의 값은 함수가 어떻게 호출됐는지에 따라 다르게 바인딩된다. 자바스크립트의 이러한 특징은, 콜백 함수를 일반 함수 형태로 호출할 때 골치 아파진다. 일반 함수로 호출하는 모든 함수의 내부에는 <code class="docutils literal notranslate"><span class="pre">this</span></code>가 전역 객체를 가리키지만, 그 함수가 만약 클래스 내부라면 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>를 바인딩하게 된다. 클래스 내부의 모든 코드에는 strict mode가 적용되는 영향을 받기 때문이다.</p>
+<p>화살표 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 일반 함수의 그것과 다르게 동작한다. 이건 의도된 설계다:<br/>
+<strong>콜백 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code>가, 외부 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>와 달라 혼란을 발생시키는 문제를 해결하기 위함</strong>이다.</p>
+<p>22장에서 배웠듯이 <code class="docutils literal notranslate"><span class="pre">this</span></code>의 값은 함수가 어떻게 호출됐는지에 따라 다르게 바인딩된다.<br/>
+자바스크립트의 이러한 특징은, <strong>콜백 함수를 일반 함수 형태로 호출할 때 골치 아파진다</strong>.<br/>
+일반 함수로 호출하는 모든 함수의 내부에는 <code class="docutils literal notranslate"><span class="pre">this</span></code>가 전역 객체를 가리키지만,<br/>
+그 함수가 만약 클래스 내부라면 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>를 바인딩하게 된다.<br/>
+클래스 내부의 모든 코드에는 strict mode가 적용되는 영향을 받기 때문이다.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ❌ Wrong Practice!! ❌</span>
 <span class="kd">class</span><span class="w"> </span><span class="nx">Prefixer</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -614,7 +624,8 @@ document.write(`
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>이런 문제를 우리는 <strong>콜백 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code> 문제</strong>라고 부른다. ES6에서는, 콜백 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code> 문제를 해결하기 위해 화살표 함수를 제안한다.</p>
+<p>이런 문제를 우리는 <strong>콜백 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code> 문제</strong>라고 부른다.<br/>
+ES6에서는, 콜백 함수 내부의 <code class="docutils literal notranslate"><span class="pre">this</span></code> 문제를 해결하기 위해 화살표 함수를 제안한다.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ✅ 위 예제를 화살표 함수로 해결 ✅</span>
 <span class="kd">class</span><span class="w"> </span><span class="nx">Prefixer</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -627,7 +638,10 @@ document.write(`
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>화살표 함수는 함수 자체의 <code class="docutils literal notranslate"><span class="pre">this</span></code> 바인딩을 갖지 않는다. 따라서 화살표 함수 내부에서 <code class="docutils literal notranslate"><span class="pre">this</span></code>를 참조하면 상위 스코프의 <code class="docutils literal notranslate"><span class="pre">this</span></code>를 그대로 참조한다. 우리는 이를 <strong>Lexical This</strong>라고 부른다. Lexical this는 마치 렉시컬 스코프처럼, 화살표 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 함수가 정의된 위치에 의해 결정되는 <code class="docutils literal notranslate"><span class="pre">this</span></code>임을 의미한다.</p>
+<p>화살표 함수는 함수 자체의 <code class="docutils literal notranslate"><span class="pre">this</span></code> 바인딩을 갖지 않는다.<br/>
+따라서 <strong>화살표 함수 내부에서 <code class="docutils literal notranslate"><span class="pre">this</span></code>를 참조하면 상위 스코프의 <code class="docutils literal notranslate"><span class="pre">this</span></code>를 그대로 참조</strong>한다.</p>
+<p>우리는 이를 <strong>Lexical This</strong>라고 부른다.<br/>
+Lexical this는 마치 렉시컬 스코프처럼, 화살표 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>는 <strong>함수가 정의된 위치에 의해 결정</strong>되는 <code class="docutils literal notranslate"><span class="pre">this</span></code>임을 의미한다.</p>
 <p>한 가지 유의할 점은 객체 내 메서드를 정의할 땐 화살표 함수를 사용하지 않아야 한다는 점이다.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ❌ Wrong Practice!! ❌</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -636,7 +650,8 @@ document.write(`
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>위 예제가 틀린 이유는, sayHi 프로퍼티에 할당한 화살표 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>는, 메서드를 호출한 객체인 person을 가리키는 게 아니라, 상위 스코프인 전역 객체를 가리키기 때문이다.</p>
+<p>위 예제가 틀린 이유는, sayHi 프로퍼티에 할당한 화살표 함수의 <code class="docutils literal notranslate"><span class="pre">this</span></code>는,<br/>
+메서드를 호출한 객체인 person을 가리키는 게 아니라, 상위 스코프인 전역 객체를 가리키기 때문이다.</p>
 <p>따라서 <strong>객체의 메서드를 정의할 땐</strong> 아래처럼 ES6 메서드 축약 표현으로 정의한 <strong>ES6 메서드</strong>를 사용하는 것이 좋다.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ✅ 위 예제를 해결 ✅</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -650,18 +665,55 @@ document.write(`
 </section>
 <section id="super">
 <h3>3-4. <code class="docutils literal notranslate"><span class="pre">super</span></code><a class="headerlink" href="#super" title="Link to this heading">#</a></h3>
+<p>화살표 함수는 함수 자체의 super 바인딩을 갖지 않는다.<br/>
+따라서 화살표 함수 안에서 <code class="docutils literal notranslate"><span class="pre">super</span></code>를 참조하면, <code class="docutils literal notranslate"><span class="pre">this</span></code>가 동작하는 것과 마찬가지로 상위 스코프의 <code class="docutils literal notranslate"><span class="pre">super</span></code>를 참조한다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Base</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">sayHi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`Hi! </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">Derived</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Base</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">sayHi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">super</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">()</span><span class="si">}</span><span class="sb"> how are you doing?`</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">derived</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Derived</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">derived</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">());</span><span class="w">  </span><span class="c1">// Hi! Lee how are you doing?</span>
+</pre></div>
+</div>
 </section>
 <section id="arguments">
 <h3>3-5. <code class="docutils literal notranslate"><span class="pre">arguments</span></code><a class="headerlink" href="#arguments" title="Link to this heading">#</a></h3>
+<p>마찬가지로 화살표 함수는 함수 자체의 arguments 바인딩을 갖지 않는다.<br/>
+따라서 화살표 함수 안에서 <code class="docutils literal notranslate"><span class="pre">arguments</span></code>를 참조하면, <code class="docutils literal notranslate"><span class="pre">this</span></code>가 동작하는 것과 마찬가지로 상위 스코프의 <code class="docutils literal notranslate"><span class="pre">arguments</span></code>를 참조한다.</p>
+<p>이처럼 <strong>화살표 함수에서 가변 인자 함수</strong>를 구현해야 할 때는<br/>
+(<code class="docutils literal notranslate"><span class="pre">arguments</span></code>를 쓰지 못하므로) 반드시 <strong>Rest 파라미터</strong>를 사용해야 한다.</p>
 </section>
 </section>
 <section id="rest">
 <h2>4. Rest 파라미터<a class="headerlink" href="#rest" title="Link to this heading">#</a></h2>
 <section id="id4">
 <h3>4-1. 기본 문법<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>Rest 파라미터는 아래처럼 함수에 전달된 인수들의 목록을 <strong>배열</strong>로 받는다.<br/>
+Rest 파라미터는 단 하나만 선언할 수 있으며, 다른 일반 매개변수와 섞어 쓸 수 있다.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">(</span><span class="nx">param</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">rest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">param</span><span class="p">);</span><span class="w">  </span><span class="c1">// 1</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rest</span><span class="p">);</span><span class="w">  </span><span class="c1">// [2, 3, 4, 5]</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
 <section id="rest-arguments">
 <h3>4-2. Rest 파라미터와 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체<a class="headerlink" href="#rest-arguments" title="Link to this heading">#</a></h3>
+<p>Rest 파라미터와 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체 간 가장 큰 차이점은 바로 배열이냐 아니냐에 있다.<br/>
+<code class="docutils literal notranslate"><span class="pre">arguments</span></code> 객체는 유사 배열 객체이므로 반드시 배열로 변환해야만 배열 메서드를 사용할 수 있는 반면,<br/>
+<strong>Rest 파라미터는 배열</strong>이므로 <code class="docutils literal notranslate"><span class="pre">map</span></code>이나 <code class="docutils literal notranslate"><span class="pre">filter</span></code> 같은 배열 메서드를 곧바로 사용할 수 있다.</p>
 </section>
 </section>
 <section id="id5">

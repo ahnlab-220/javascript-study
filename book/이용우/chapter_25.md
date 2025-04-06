@@ -112,7 +112,7 @@ class Person {
 // 인스턴스 생성
 const me = new Person('Lee');
 
-// 인스턴스의 프로퍼티 차몾
+// 인스턴스의 프로퍼티 참조
 console.log(me.name); // Lee
 
 // 프로토타입 메소드 호출
@@ -121,6 +121,8 @@ me.sayHi(); // Hi! My name is Lee
 // 정적 메소드 호출
 Person.sayHello(); // Hello!
 ```
+
+인스턴스를 생성하지 않고 사용할 수 있음
 
 <br><br>
 

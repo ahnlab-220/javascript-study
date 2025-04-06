@@ -490,7 +490,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">함수 객체의 내부 슬롯 [[Environment]]</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">클로저와 렉시컬 환경</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">클로저의 활용</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">캡슐화와 정보 은닉</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">캡슐화와 정보 은닉 (얘가 핵심)</a></li>
 </ul>
 
             </nav>
@@ -514,8 +514,10 @@ document.write(`
 <blockquote>
 <div><p>클로저는 함수와 그 함수가 선언된 렉시컬 환경과의 조합이다.</p>
 </div></blockquote>
+<p><font color='tomato'>렉시컬 스코프 = 정적 스코프</font></p>
 <br>
-<p>여기서 가지고 가야 할 핵심 키워드는 <font color='orange'>”함수가 선언된 렉시컬 환경”</font>이다.</p>
+<br>
+<p>핵심 키워드는 <font color='orange'>”함수가 선언된 렉시컬 환경”</font>이다.</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
 
 <span class="kd">function</span><span class="w"> </span><span class="nx">outerFunc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -570,7 +572,7 @@ document.write(`
 <br>
 <p>“실행 컨텍스트”에서 확인한 내용과 같이,<br />
 스코프의 실체는 실행 컨텍스트의 렉시컬 환경이다.</p>
-<p>&lt;font color’orange’&gt;이 렉시컬 환경은 “외부 렉시컬 환경에 대한 참조”를 통해 상위 렉시컬 환경과 연결된다.</font><br />
+<p><font color='orange'>이 렉시컬 환경은 “외부 렉시컬 환경에 대한 참조”를 통해 상위 렉시컬 환경과 연결된다.</font><br />
 이것이 스코프 체인이다.</p>
 <br>
 <p>따라서 “함수의 상위 스코프를 결정한다”는 것은 “렉시컬 환경의 외부 렉시컬 환경에 대한 참조에 저장할 참조값을 결정한다”는 것과 같다. 이것이 상위 스코프이기 때문이다.</p>
@@ -619,7 +621,7 @@ document.write(`
 
 <span class="c1">// outer 함수를 호출하면 중첩 함수 inner를 반환한다.</span>
 <span class="c1">// 그리고 outer 함수의 실행 컨텍스트는 실행 컨텍스트 스택에서 pop되어 제거된다.</span>
-<span class="nx">coust</span><span class="w"> </span><span class="nx">innerFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">outer</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">innerFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">outer</span><span class="p">();</span>
 <span class="nx">innerFunc</span><span class="p">();</span><span class="w">    </span><span class="c1">// 10</span>
 </pre></div>
 </div>
@@ -629,7 +631,7 @@ document.write(`
 <div><p><code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 실행이 종료되면 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 실행 컨텍스트는 실행 컨텍스트 스택에서 pop된다.</p>
 </div></blockquote>
 <p>이때 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>와 변수 10을 저장하고 있던 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 실행 컨텍스트가 제거되었으므로 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code> 또한 생명 주기를 마감한다.</p>
-<p>따라서 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지경 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>는 더이상 유효하지 않아 보인다.</p>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>는 더이상 유효하지 않아 보인다.</p>
 <br>
 <p>하지만 위 코드의 실행 결과는 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code> 값인 10이다.<br />
 이미 생명 주기가 종료되어 실행 컨텍스트 스택에서 제거된 <code class="docutils literal notranslate"><span class="pre">outer</span></code> 함수의 지역 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>가 부활한 것 처럼 동작하고 있다.</p>
@@ -674,7 +676,7 @@ document.write(`
 <br>
 <p>따라서 카운트 상태(num 변수의 값)를 안전하게 변경하고 유지하기 위해서는<br />
 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 함수만이 <code class="docutils literal notranslate"><span class="pre">num</span></code> 변수를 참조하고 변경할 수 있게 하는 것이 바람직하다.</p>
-<p>이를 위해 변수 <code class="docutils literal notranslate"><span class="pre">num</span></code>을 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 함수의 지역 변수로 바꾸어 의도치 않은 상태 변수를 방지해해보도록 하자.</p>
+<p>이를 위해 변수 <code class="docutils literal notranslate"><span class="pre">num</span></code>을 <code class="docutils literal notranslate"><span class="pre">increase</span></code> 함수의 지역 변수로 바꾸어 의도치 않은 상태 변경을 방지해보도록 하자.</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">increase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// 카운트 상태 변수</span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
@@ -778,7 +780,7 @@ document.write(`
 <p><br><br></p>
 </section>
 <section id="id4">
-<h1>캡슐화와 정보 은닉<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<h1>캡슐화와 정보 은닉 (얘가 핵심)<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
 <p>대부분의 객체 지향 프로그래밍 언어는 클래스를 정의하고 그 클래스를 구성하는 맴버에 대해<br />
 <code class="docutils literal notranslate"><span class="pre">public</span></code>, <code class="docutils literal notranslate"><span class="pre">private</span></code>, <code class="docutils literal notranslate"><span class="pre">protected</span></code> 등의 접근 제한자를 사용하여 공개 범위를 제한할 수 있다.</p>
 <p>다만 자바스크립트는 접근 제한자를 제공하지 않는다.<br />
@@ -946,7 +948,7 @@ ES6의 <code class="docutils literal notranslate"><span class="pre">Symbol</span
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">함수 객체의 내부 슬롯 [[Environment]]</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">클로저와 렉시컬 환경</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">클로저의 활용</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">캡슐화와 정보 은닉</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">캡슐화와 정보 은닉 (얘가 핵심)</a></li>
 </ul>
 
   </nav></div>

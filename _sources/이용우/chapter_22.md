@@ -426,7 +426,7 @@ console.log(getThisBinding.call(thisArg));  // { a: 1 }
 const person = {
     name: 'Lee',
     foo(callback) {
-        // 1)
+        // 1) 콜백 함수 호출
         setTimeout(callback, 100);
     }
 };
@@ -471,9 +471,6 @@ person.foo(function () {
 
 
 
-
-
-```
 
 
 

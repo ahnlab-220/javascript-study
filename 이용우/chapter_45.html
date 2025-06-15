@@ -1,0 +1,1276 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 45 - 프로피스 &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_45';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_19.html">Chapter 19 - 프로토타입</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_20.html">Chapter 20 - strict mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_21.html">Chapter 21 - 빌트인 객체</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_22.html">Chapter 22 - <code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_15.html">Chapter 15 - <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_20.html">Chapter 20 - strict mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_21.html">Chapter 21 - 빌트인 객체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_22.html">Chapter 22 - <code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_24.html">Chapter 24 - Closure(클로저)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="main.html">이용우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_19.html">Chapter 19 - 프로토타입</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_20.html">Chapter 20 - strict mode</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_21.html">Chapter 21 - 빌트인 객체</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_22.html">Chapter 22 - this</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_23.html">Chapter 23 - 실행 컨텍스트</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_24.html">Chapter 24 - 클로저</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_25.html">Chapter 25 - 클래스</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_26.html">Chapter 26 - ES6 함수의 추가 기능</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_45.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/이용우/chapter_45.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 45 - 프로피스</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 45 - 프로피스</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">비동기 처리를 위한 콜백 패턴의 단점</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">콜백 헬</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">에러 처리의 한계</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">프로미스의 생성</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">프로미스의 후속 처리 메소드</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-prototype-then">Promise.prototype.then</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-prototype-catch">Promise.prototype.catch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-prototype-finally">Promise.prototype.finally</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">프로미스 체이닝</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-resolve-promise-reject">Promise.resolve / Promise.reject</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">마이크로태스크 큐</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch">fetch</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get">GET 요청</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post">POST 요청</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#patch">PATCH 요청</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">DELETE 요청</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="chapter-45">
+<h1>Chapter 45 - 프로피스<a class="headerlink" href="#chapter-45" title="Link to this heading">#</a></h1>
+<p><font color='orange'>자바스크립트는 비동기 처리를 위한 하나의 패턴으로 콜백 함수를 사용한다.</font></p>
+<p>하지만 전통적인 콜백 패턴은 콜백 지옥으로 인해 가독성이 나쁘고<br />
+비동기 처리 중 발생한 에러의 처리가 곤란하며 여러 개의 비동기 처리르 한번에 처리하는 데도 한계가 있다.</p>
+<p>ES6에서는 비동기 처리를 위한 또 다른 패턴으로 프로미스(Promise)를 도입했다.<br />
+<font color='orange'>프로미스는 전통적인 콜백 패턴이 가진 단점을 보완혀며 비동기 처리 시점을 명확하게 표현할 수 있다는 장점이 있다.</font></p>
+<p><br><br></p>
+</section>
+<section id="id1">
+<h1>비동기 처리를 위한 콜백 패턴의 단점<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>콜백 헬<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>GET 요청을 위한 함수를 작성해보자.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// GET 요청을 위한 비동기 함수</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">get</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. XMLHttpRequest 객체 생성</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">xhr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// 2. HTTP 요청 초기화</span>
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 3. HTTP 요청 전송</span>
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// 4. HTTP 응답 처리</span>
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">response</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">statusText</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// id가 1인 post를 취득</span>
+<span class="nx">get</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<br>
+<p>위 예제의 get 함수는 서버의 응답 결과를 콘솔에 출력한다.<br />
+get 함수가 서버의 응답 결과를 반환하게 하려면 어떻게 해야 할까?</p>
+<p><font color='orange'>비동기 함수란, 함수 내부에 비동기로 동작하는 코드를 포함한 함수를 의미한다.</font><br />
+비동기 함수를 호출하면 함수 내부의 비동기로 동작하는 코드가 완료되지 않았다 해도 기다리지 않고 즉시 종료한다.<br />
+즉, 비동기 함수 내부의 비동기로 동작하는 코드는 비동기 함수가 종료된 이후에 완료된다.</p>
+<p>따라서 비동기 함수 내부의 비동기로 동작하는 코드에서<br />
+처리 결과를 외부로 반환하거나 상위 스코프의 변수에 할당하면 기대한 대로 동작하지 않는다.</p>
+<br>
+<p>get 함수도 비동기 함수이다.<br />
+get 함수가 비동기 함수인 이유는 get 함수 내부의 <code class="docutils literal notranslate"><span class="pre">onload</span></code> 이벤트 핸들러가 비동기로 동작하기 때문이다.</p>
+<p>get 함수를 호출하면 GET 요청을 전송하고 onload 이벤트 핸들러를 등록한 다음 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>를 반환하고 즉시 종료된다.</p>
+<p>즉, 비동기 함수인 <code class="docutils literal notranslate"><span class="pre">onload</span></code> 이벤트 핸들러는 get 함수가 종료된 이후에 실행된다.<br />
+<font color='orange'>따라서 get 함수의 <code class="docutils literal notranslate"><span class="pre">onload</span></code> 이벤트 핸들러에서 서버의 응답 결과를 반환하거나 상위 스코프의 변수에 할당하면 기대한 대로 동작하지 않는다.</font></p>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">get</span></code> 함수가 서버의 응답 결과를 반환하도록 수정해보자.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">get</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">xhr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 서버의 응답을 반환한다.</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">response</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">statusText</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// id가 1인 post를 취득</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<br>
+<p>xhr.onload 이벤트 핸들러 프로퍼티에 바인딩한 이벤트 핸들러의 반환문은 get 함수의 반환문이 아니다.<br />
+get 함수는 반환문이 생략되었으므로 암묵적으로 undefined를 반환한다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">onload</span></code> 이벤트 핸들러는 get 함수가 호출하지 않기 때문에 암묵적으로 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>를 반환한다.</p>
+<p><font color='tomato'>따라서 onload 이벤트 핸들러의 반환값은 비동기 함수인 get 함수에서 참조할 수 없다.</font></p>
+<blockquote>
+<div><p>이벤트 핸들러에서의 반환(return)은 의미가 없다.</p>
+</div></blockquote>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">).</span><span class="nx">oninput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// 이벤트 핸들러에서의 반환(return)은 의미가 없다.</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<br>
+<p>서버의 응답을 상위 스코프의 변수에 할당하면 어떻게 될까?</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">todos</span><span class="p">;</span>
+
+<span class="c1">// GET 요청을 위한 비동기 함수</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">get</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">xhr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 서버의 응답을 상위 스코프의 변수에 할당한다</span>
+<span class="w">            </span><span class="nx">todos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">response</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">statusText</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// id가 1인 post를 취득</span>
+<span class="nx">get</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">todos</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<p>이것 또한 기대한 대로 결과가 나오지 않는다.<br />
+<code class="docutils literal notranslate"><span class="pre">xhr.onload</span></code> 이벤트 핸들러 프로퍼티에 바인딩한 이벤트 핸들러는<br />
+언제나 <code class="docutils literal notranslate"><span class="pre">console.log</span></code>가 종료한 이후에 호출된다.</p>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">console.log</span></code>가 호출되는 시점에서는 아직 전역 변수 <code class="docutils literal notranslate"><span class="pre">todos</span></code>에 서버의 응답 결과가 할당되지 않았기 때문에 <code class="docutils literal notranslate"><span class="pre">undefined</span></code>가 출력된다.</p>
+<br>
+<blockquote>
+<div><p>비동기 함수는 비동기 처리 결과를 외부에 반환할 수 없고, 상위 스코프의 변수에 할당할 수도 없다.<br />
+따라서 <font color='orange'>비동기 함수의 처리 결과(서버 응답 등)에 대한 후속 처리는<br />
+반드시 비동기 함수 내부에서 수행되어야 한다.</font><br />
+이때 비동기 함수에 비동기 처리 결과에 대한 후속 처리를 수행하는 콜백 함수를 전달하는 것이 일반적이다.
+(콜백 함수는 비동기 함수가 종료된 이후에 반드시 호출된다는 특성을 이용한 것이다)</p>
+</div></blockquote>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// GET 요청을 위한 비동기 함수</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">get</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="nx">successCallback</span><span class="p">,</span><span class="w"> </span><span class="nx">failureCallback</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">xhr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 서버의 응답을 콜백 함수에 전달하면서 호출하여 응답에 대한 후속 처리 수행</span>
+<span class="w">            </span><span class="nx">successCallback</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">response</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 에러 정보를 콜백 함수의 인수에 전달하면서 호출하여 에러 처리</span>
+<span class="w">            </span><span class="nx">failureCallback</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">statusText</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// id가 1인 post를 취득</span>
+<span class="nx">get</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">,</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id3">
+<h2>에러 처리의 한계<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>비동기 처리를 위한 콜백 패턴의 문제점 중 가장 심각한 것이 바로 에러 처리이다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Error!&#39;</span><span class="p">);},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 에러를 캐치하지 못함</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">try</span></code>코드 블록 내에서 호출한 <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> 함수는 1초 후에 콜백 함수가 실행되도록 타이머를 설정하고, 이후 콜백 함수는 에러를 발생시킨다.<br />
+하지만 이 에러는 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 코드 블록에서 캐치되지 않는다.</p>
+<p>비동기 함수인 <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>이 호출되면 <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> 함수의 실행 컨텍스트가 생성되어 콜 스택에 푸쉬되어 실행된다.<br />
+<code class="docutils literal notranslate"><span class="pre">setTimeout</span></code>은 비동기 함수이므로 콜백 함수가 호출되는 것을 기다리지 않고 즉시 종료되어 콜 스택에서 제거된다.</p>
+<p>이후 타이머가 만료되면 <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> 함수의 콜백 함수는 테스크 큐로 Push되고 콜 스택이 비어졌을 때 이벤트 루프에 의해 콜 스택으로 Push되어 실행된다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> 함수의 콜백 함수가 실행될 때, <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> 함수는 이미 콜 스택에서 제거된 상태이다.</p>
+<p>이것은 <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> 함수의 콜백 함수를 호출한 것이 <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> 함수가 아니라는 것을 의미한다.</p>
+<p><br><br></p>
+<blockquote>
+<div><p><strong>테스크 큐(Task Queue)</strong><br />
+비동기 함수의 콜백 함수 또는 이벤트 핸들러가 일시적으로 보관되는 영역</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>이벤트 루프(Event Loop)</strong><br />
+콜 스택에 현재 실행 중인 실행 컨텍스트가 있는지, 테스크 큐에 대기중인 함수(콜백 함수, 이벤트 핸들러 등)가 있는지 반복해서 확인한다.</p>
+</div></blockquote>
+<br>
+<p>에러는 호출자(Caller) 방향으로 전파된다.</p>
+<blockquote>
+<div><p>콜 스택의 아래 방향(실행 중인 실행 컨텍스트가 Push되기 직전에 Push된 실행 컨텍스트 방향)으로 전파된다.</p>
+</div></blockquote>
+<br>
+<p>하지만 <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> 함수의 콜백 함수를 호출한 것은 <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> 함수가 아니므로<br />
+<code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> 함수의 콜백 함수가 발생시킨 에러는 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 블록에서 catch되지 않는다.</p>
+<br>
+<p>이를 극복하기 위해 ES6에서 프로미스(Promise)가 도입되었다.</p>
+<p><br><br></p>
+</section>
+</section>
+<section id="id4">
+<h1>프로미스의 생성<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Promise</span></code> 생성자 함수를 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 호출하면 프로미스(Promise) 객체를 생성한다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Promise</span></code> 생성자 함수는 비동기 처리를 수행하는 콜백함수를 인수로 전달받는데<br />
+이 콜백 함수는 <code class="docutils literal notranslate"><span class="pre">resolve</span></code>와 <code class="docutils literal notranslate"><span class="pre">reject</span></code> 함수를 인수로 전달받는다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 프로미스 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">promise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Promise 함수의 콜백 함수 내부에서 비동기 처리를 수행한다.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="cm">/* 비동기 처리 성공 */</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">resolve</span><span class="p">(</span><span class="cm">/* 비동기 처리 결과 */</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">reject</span><span class="p">(</span><span class="cm">/* 에러 메시지(정보) */</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">Promise</span></code> 생성자 함수가 인수로 전달받은 콜백 함수 내부에서 비동기 처리를 수행한다.<br />
+이때 비동기 처리가 성공하면 <code class="docutils literal notranslate"><span class="pre">resolve</span></code> 함수를 호출하고 실패하면 <code class="docutils literal notranslate"><span class="pre">reject</span></code> 함수를 호출한다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// GET 요청을 위한 비동기 함수</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">promiseGet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">xhr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+
+<span class="w">        </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">resolve</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">response</span><span class="p">));</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="p">));</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">};</span>
+
+<span class="c1">// id가 1인 post를 취득</span>
+<span class="nx">promiseGet</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<br>
+<p>비동기 함수인 <code class="docutils literal notranslate"><span class="pre">promiseGet</span></code>은 함수 내부에서 프로미스를 생성하고 반환한다.<br />
+비동기 처리는 <code class="docutils literal notranslate"><span class="pre">Promise</span></code> 생성자 함수의 인수로 전달받은 콜백 함수 내부에서 수행한다.</p>
+<p>만약 비동기 처리가 성공하면 비동기 처리 결과를 <code class="docutils literal notranslate"><span class="pre">resolve</span></code> 함수에 인수로 전달하면서 호출하고,<br />
+비동기 처리가 실패하면 에러를 <code class="docutils literal notranslate"><span class="pre">reject</span></code> 함수에 인수로 전달하면서 호출한다.</p>
+<br>
+<p>프로미스는 다음과 같이 현재 비동기 처리가 어떻게 진행되고 있는지를 나타내는 상태(state) 정보를 갖는다.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>상태 정보</p></th>
+<th class="head text-center"><p>의미</p></th>
+<th class="head text-center"><p>상태 변경 조건</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>pending</p></td>
+<td class="text-center"><p>비동기 처리 진행중</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">resolve</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">reject</span></code> 함수가 호출되기 전</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>fulfilled</p></td>
+<td class="text-center"><p>비동기 처리 성공</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">resolve</span></code> 함수가 호출된 상태</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>rejected</p></td>
+<td class="text-center"><p>비동기 처리 실패</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">reject</span></code> 함수가 호출된 상태</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">fullfilled</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">rejected</span></code> 상태를 <code class="docutils literal notranslate"><span class="pre">settled</span></code> 상태라고 부른다.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">settled</span></code> 상태는 비동기 처리가 수행된 상태를 의미한다.</p>
+</div></blockquote>
+<br>
+<p>즉,비동기 처리가 진행 중이라면 <code class="docutils literal notranslate"><span class="pre">pending</span></code> 상태이고, 비동기 처리가 수행되었다면 <code class="docutils literal notranslate"><span class="pre">settled</span></code> 상태(fulfilled 또는 rejected)가 된다.</p>
+<br>
+<p><font color='tomato'>프로미스는 비동기 처리 상태와 처리 결과를 관리하는 객체이다.</font></p>
+<p><br><br></p>
+</section>
+<section id="id5">
+<h1>프로미스의 후속 처리 메소드<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
+<p>프로미스의 비동기 처리 상태가 변하면 이에 따른 후속 처리를 해야 한다.</p>
+<ul class="simple">
+<li><p>프로미스가 fulfilled 상태가 되면 프로미스의 처리 결과를 가지고 무언가를 해야한다.</p></li>
+<li><p>프로미스가 rejected 상태가 되면 프로미스의 처리 결과를 가지고 무언가를 해야한다.</p></li>
+</ul>
+<p><font color='orange'>이를 위해 프로미스는 후속 메소드 <code class="docutils literal notranslate"><span class="pre">then</span></code>, <code class="docutils literal notranslate"><span class="pre">catch</span></code>, <code class="docutils literal notranslate"><span class="pre">finally</span></code>를 제공한다.</font></p>
+<br>
+<section id="promise-prototype-then">
+<h2>Promise.prototype.then<a class="headerlink" href="#promise-prototype-then" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">then</span></code> 메소드는 2개의 콜백 함수를 인수로 전달받는다.</p>
+<ul class="simple">
+<li><p>첫 번째 콜백 함수는 프로미스가 fulfilled 상태가 되면 호출한다.
+이때 콜백함수는 프로미스의 비동기 처리 결과를 인수로 전달받는다.</p></li>
+<li><p>두 번째 콜백 함수는 프로미스가 rejected 상태가 되면 호출한다.
+이때 콜백함수는 프로미스의 에러를 인수로 전달받는다.</p></li>
+</ul>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// fulfilled</span>
+<span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;fulfilled&#39;</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">));</span>
+
+<span class="c1">// rejected</span>
+<span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;rejected&#39;</span><span class="p">)))</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">));</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">then</span></code> 메소드는 언제나 프로미스를 반환한다.<br />
+만약 <code class="docutils literal notranslate"><span class="pre">then</span></code> 메소드의 콜백 함수가 프로미스를 반환하면 그 프로미스를 그대로 반환하고,<br />
+콜백 함수가 프로미스가 아닌 값을 반환하면 그 값을 암묵적으로 <code class="docutils literal notranslate"><span class="pre">resolve</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">reject</span></code> 하여 프로미스를 생성해 반환한다.</p>
+<p><br><br></p>
+</section>
+<section id="promise-prototype-catch">
+<h2>Promise.prototype.catch<a class="headerlink" href="#promise-prototype-catch" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">catch</span></code> 메소드는 한 개의 콜백 함수를 인수로 전달받는다.</p>
+<ul class="simple">
+<li><p>콜백 함수는 프로미스가 rejected 상태인 경우만 호출한다.
+이때 콜백함수는 프로미스의 에러를 인수로 전달받는다.</p></li>
+</ul>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;rejected&#39;</span><span class="p">)))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">));</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">catch</span></code> 메소드는 <code class="docutils literal notranslate"><span class="pre">then</span></code>과 마찬가지로 언제나 프로미스를 반환한다.</p>
+<p><br><br></p>
+</section>
+<section id="promise-prototype-finally">
+<h2>Promise.prototype.finally<a class="headerlink" href="#promise-prototype-finally" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">finally</span></code> 메소드는 한 개의 콜백 함수를 인수로 전달받는다.<br />
+<code class="docutils literal notranslate"><span class="pre">finally</span></code> 메소드는 프로미스의 성공(fulfilled) 또는 실패(rejected)와 상관없이 무조건 한 번 호출된다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">finally</span></code> 메소드는 프로미스의 상태와 상관없이 공통적으로 수행해야 할 처리 내용이 있을 때 유용하다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{})</span>
+<span class="w">    </span><span class="p">.</span><span class="k">finally</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;finally&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p>프로미스로 구현한 비동기 함수 <code class="docutils literal notranslate"><span class="pre">get</span></code>을 사용해 후속 처리를 구현해보자.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">promiseGet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">xhr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+
+<span class="w">        </span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">resolve</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">response</span><span class="p">));</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="p">));</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">};</span>
+
+<span class="c1">// promiseGet 함수는 프로미스를 반환한다.</span>
+<span class="nx">promiseGet</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">finally</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="id6">
+<h1>프로미스 체이닝<a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://jsonplaceholder.typicode.com&#39;</span><span class="p">;</span>
+
+<span class="nx">promiseGet</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">/todos/1`</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(({</span><span class="w"> </span><span class="nx">userId</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">promiseGet</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">/users/</span><span class="si">${</span><span class="nx">userId</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>위 예제에서 <code class="docutils literal notranslate"><span class="pre">then</span></code> → <code class="docutils literal notranslate"><span class="pre">then</span></code> → <code class="docutils literal notranslate"><span class="pre">catch</span></code> 순서로 후속 처리 메소드를 호출했다.<br />
+<code class="docutils literal notranslate"><span class="pre">then</span></code>, <code class="docutils literal notranslate"><span class="pre">catch</span></code>, <code class="docutils literal notranslate"><span class="pre">finally</span></code> 후속 처리 메소드는 언제나 프로미스를 반환하므로 연속적으로 호출 가능하다.</p>
+<blockquote>
+<div><p>이를 프로미스 체이닝이라 한다.</p>
+</div></blockquote>
+<br>
+<p>만약 프로미스가 아닌 값을 반환하도록 코드를 작성해도 그 값을 암묵적으로 <code class="docutils literal notranslate"><span class="pre">resolve</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">reject</span></code> 하여 프로미스를 생성해 반환한다.</p>
+<br>
+<p>다만 프로미스도 콜백 패턴을 사용하므로 콜백 함수를 완전히 사용하지 않는 것은 아니다.<br />
+콜백 패턴은 가독성이 좋지 않다. 이 문제는 ES8에서 도입된 <code class="docutils literal notranslate"><span class="pre">async/await</span></code>로 개선할 수 있다.</p>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">await</span></code>를 사용하면 프로미스의 후속처리 메소드 없이<br />
+마치 동기 처리처럼 프로미스가 처리 결과를 반환하도록 구현할 수 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://jsonplaceholder.typicode.com&#39;</span><span class="p">;</span>
+
+<span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// id가 1인 post의 userId를 취득</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">promiseGet</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">/posts/1`</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 취득한 post의 userId로 user 정보를 취득</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">userInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">promiseGet</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">/users/</span><span class="si">${</span><span class="nx">userId</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">userInfo</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">async/await</span></code>도 프로미스를 기반으로 동작하므로 프로미스를 잘 이해하고 있어야 한다.</p>
+<p><br><br></p>
+</section>
+<section id="promise-resolve-promise-reject">
+<h1>Promise.resolve / Promise.reject<a class="headerlink" href="#promise-resolve-promise-reject" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Promise.resolve</span></code>와 <code class="docutils literal notranslate"><span class="pre">Promise.reject</span></code> 메소드는 이미 존재하는 값을 래핑하여 프로미스를 생성하기 위해 사용한다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Promise.resolve</span></code> 메소드는 인수로 전달받은 값을 <code class="docutils literal notranslate"><span class="pre">resolve</span></code>하는 프로미스를 생성한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 배열을 resolve 하는 프로미스를 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">resolvedPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]);</span>
+<span class="nx">resolvedPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">);</span>
+
+<span class="c1">// 위 코드는 아래 코드와 동일하다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">resolvedPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">resolve</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]));</span>
+<span class="nx">resolvedPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">);</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">Promise.rejec</span></code> 메소드는 인수로 전달받은 값을 <code class="docutils literal notranslate"><span class="pre">reject</span></code>하는 프로미스를 생성한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 에러 객체를 reject 하는 프로미스를 생성</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">rejectedPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Error!&#39;</span><span class="p">));</span>
+<span class="nx">rejectedPromise</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span>
+
+<span class="c1">// 위 코드는 아래 코드와 동일하다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">rejectedPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Error!&#39;</span><span class="p">)));</span>
+<span class="nx">rejectedPromise</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id7">
+<h1>마이크로태스크 큐<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+
+<span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">2</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>프로미스 후속 처리 메소드도 비동기로 동작하므로 1 → 2 → 3 순으로 출력될 것 같지만 그렇지 않다.</p>
+<blockquote>
+<div><p>실제로는 2 → 3 → 1 순으로 출력된다.</p>
+</div></blockquote>
+<p>그 이유는 <font color='orange'>후속 처리 메소드의 콜백 함수는 태스크 큐가 아니라 마이크로태스크 큐에 저장되기 때문이다.</font></p>
+<br>
+<p>마이크로태스크 큐는 태스크 큐와는 별도의 큐이다.<br />
+<font color='orange'>마이크로태스크 큐에는 프로미스의 후속 처리 메소드의 콜백 함수가 일시적으로 저장된다.</font></p>
+<p>그 외의 콜백 함수나 이벤트 핸들러는 태스크 큐에 일시 저장된다.</p>
+<br>
+<p>마이크로태스크 큐는 태스크 큐보다 우선순위가 높다.<br />
+<font color='tomato'>즉, 이벤트 루프는 콜 스택이 비면 먼저 마이크로태스크 큐에서 대기하고 있는 함수를 가지고 와서 실행한다.</font></p>
+<p><br><br></p>
+</section>
+<section id="fetch">
+<h1>fetch<a class="headerlink" href="#fetch" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수는 <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code> 객체와 마찬가지로 HTTP 요청 전송 기능을 제공하는 클라이언트 사이드 Web API이다.<br />
+<code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수는 <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code> 객체보다 사용법이 간단하고, 프로미스를 지원하기 때문에 비동기 처리를 위한 콜백 패턴의 단점에서 자유롭다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수에는 HTTP 요청을 전송할 URL과 HTTP 요청 메소드, HTTP 요청 헤더, 페이로드 등을 설정한 객체를 전달한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">promise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="nx">options</span><span class="p">]);</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수는 HTTP 응답을 나타내는 Response 객체를 래핑한 Promise 객체를 반환한다.<br />
+fetch 함수로 GET 요청을 전송해보자.</p>
+<p>fetch 함수의 첫 번째 인자로 URL만 전달하면 GET 요청을 전달한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">));</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수는 HTTP 응답을 나타내는 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 객체를 래핑한 프로미스를 반환하므로<br />
+후속 처리 메소드 <code class="docutils literal notranslate"><span class="pre">then</span></code>을 통해 프로미스가 <code class="docutils literal notranslate"><span class="pre">resolve</span></code>한 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 객체를 전달받을 수 있다.</p>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">Response.prototype</span></code>에는 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 객체에 포함되어 있는 HTTP 응답 몸체를 위한 다양한 메소드를 제공한다.<br />
+예를 들어 <code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수가 반환한 프로미스가 래핑하고 있는 MIME 타입이 <code class="docutils literal notranslate"><span class="pre">application/json</span></code>인 HTTP 응답 몸체를 취득하려면<br />
+<code class="docutils literal notranslate"><span class="pre">Response.prototype.json</span></code> 메소드를 사용한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">json</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">json</span><span class="p">));</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수를 사용할 때는 에러 처리에 유의해야 한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">wrongUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://jsonplaceholder.typicode.com/wrong/1&#39;</span><span class="p">;</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">wrongUrl</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+</pre></div>
+</div>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수에 전달한 URL이 잘못되었거나 서버가 응답하지 않는 경우 프로미스는 실패한다.<br />
+부적절한 URL이 지정되었기 때문에 404 Not Found 에러가 발생하고<br />
+catch 후속 처리 메소드에 의해 <code class="docutils literal notranslate"><span class="pre">error</span></code>가 출력될 것처럼 보이지만 <code class="docutils literal notranslate"><span class="pre">ok</span></code>가 출력된다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수가 반환하는 프로미스는 기본적으로 HTTP 에러가 발생해도 에러를 <code class="docutils literal notranslate"><span class="pre">reject</span></code>하지 않고<br />
+불리언 타입의 ok 상태를 <code class="docutils literal notranslate"><span class="pre">false</span></code>로 설정한 <code class="docutils literal notranslate"><span class="pre">Response</span></code> 객체를 <code class="docutils literal notranslate"><span class="pre">resolve</span></code>한다.</p>
+<blockquote>
+<div><p>오프라인 등의 네트워크 장애나 CORS 에러에 의해 요청이 완료되지 못한 경우에만 프로미스를 <code class="docutils literal notranslate"><span class="pre">reject</span></code>한다.</p>
+</div></blockquote>
+<br>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수를 사용할 때는 아래와 같이<br />
+프로미스가 resolve한 불리언 타입의 <code class="docutils literal notranslate"><span class="pre">ok</span></code> 상태를 확인해 명시적으로 에러를 처리할 필요가 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">wrongUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://jsonplaceholder.typicode.com/wrong/1&#39;</span><span class="p">;</span>
+
+<span class="c1">// 부적절한 URL이 지정되었기 때문에 404 Not Found 에러가 발생한다</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">wrongUrl</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">json</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">json</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<br>
+<p>참고로 <code class="docutils literal notranslate"><span class="pre">axios</span></code>는 모든 HTTP 에러를 reject하는 프로미스를 반환한다.<br />
+따라서 모든에러를 <code class="docutils literal notranslate"><span class="pre">catch</span></code>에서 처리할 수 있어 편리하다.</p>
+<p>모든 <code class="docutils literal notranslate"><span class="pre">axios</span></code>는 인터셉터, 요청 설정 등 <code class="docutils literal notranslate"><span class="pre">fetch</span></code>보다 다양한 기능을 지원한다.</p>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">fetch</span></code> 함수를 통해 HTTP 요청을 보내보자.</p>
+<ul class="simple">
+<li><p>첫 번째 인수로 URL을 전달한다.</p></li>
+<li><p>두 번째 인수로 요청 메소드, 요청 헤더, 페이로드 등을 설정한 객체를 전달한다.</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">post</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="nx">payload</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;content-type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">patch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="nx">payload</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PATCH&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;content-type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="ow">delete</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;DELETE&#39;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<br>
+<section id="get">
+<h2>GET 요청<a class="headerlink" href="#get" title="Link to this heading">#</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">todos</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">todos</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+</pre></div>
+</div>
+<br>
+</section>
+<section id="post">
+<h2>POST 요청<a class="headerlink" href="#post" title="Link to this heading">#</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">completed</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">todos</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">todos</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+</pre></div>
+</div>
+<br>
+</section>
+<section id="patch">
+<h2>PATCH 요청<a class="headerlink" href="#patch" title="Link to this heading">#</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">request</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">completed</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">todos</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">todos</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+</pre></div>
+</div>
+<br>
+</section>
+<section id="delete">
+<h2>DELETE 요청<a class="headerlink" href="#delete" title="Link to this heading">#</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">request</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/todos/1&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">todos</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">todos</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>끝.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./이용우"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 45 - 프로피스</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">비동기 처리를 위한 콜백 패턴의 단점</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">콜백 헬</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">에러 처리의 한계</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">프로미스의 생성</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">프로미스의 후속 처리 메소드</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-prototype-then">Promise.prototype.then</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-prototype-catch">Promise.prototype.catch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-prototype-finally">Promise.prototype.finally</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">프로미스 체이닝</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#promise-resolve-promise-reject">Promise.resolve / Promise.reject</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">마이크로태스크 큐</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch">fetch</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get">GET 요청</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post">POST 요청</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#patch">PATCH 요청</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">DELETE 요청</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

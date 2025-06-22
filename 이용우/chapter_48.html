@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Chapter 32 - String &#8212; 스터디</title>
+    <title>Chapter 48 - 모듈 &#8212; 스터디</title>
   
   
   
@@ -57,12 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_32';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_48';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 33 - Symbol" href="chapter_33.html" />
-    <link rel="prev" title="Chapter 31 - RegExp" href="chapter_31.html" />
+    <link rel="next" title="Chapter 49 - Babel과 Webpack을 이용한 ES6+/ES.NEXT 개발 환경 구축" href="chapter_49.html" />
+    <link rel="prev" title="Chapter 47 - 에러 처리" href="chapter_47.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -306,7 +306,7 @@
 
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Chapter 32 - String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_32.html">Chapter 32 - String</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="chapter_33.html">Chapter 33 - Symbol</a></li>
@@ -383,7 +383,7 @@
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="chapter_48.html">Chapter 48 - 모듈</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Chapter 48 - 모듈</a></li>
 
 
 
@@ -463,7 +463,7 @@
       
       
       
-      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_32.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_48.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -493,7 +493,7 @@
       
       
       
-      <li><a href="../_sources/이용우/chapter_32.md" target="_blank"
+      <li><a href="../_sources/이용우/chapter_48.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -577,7 +577,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chapter 32 - String</h1>
+    <h1>Chapter 48 - 모듈</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -587,24 +587,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 32 - String</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String 생성자 함수</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#length">length 프로퍼티</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">String 메소드</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-indexof">String.prototype.indexOf</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-search">String.prototype.search</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-includes">String.prototype.includes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-startswith">String.prototype.startsWith</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-endswith">String.prototype.endsWith</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-charat">String.prototype.charAt</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-substring">String.prototype.substring</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-slice">String.prototype.slice</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-trim">String.prototype.trim</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-replace">String.prototype.replace</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-repeat">String.prototype.repeat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-split">String.prototype.split</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 48 - 모듈</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">모듈의 일반적 의미</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">자바스크립트와 모듈</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#es6-esm">ES6 모듈(ESM)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">모듈 스코프</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export">export 키워드</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import">import 키워드</a></li>
 </ul>
 </li>
 </ul>
@@ -619,178 +608,206 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="chapter-32-string">
-<h1>Chapter 32 - String<a class="headerlink" href="#chapter-32-string" title="Link to this heading">#</a></h1>
-<p>표준 빌트인 객체인 String은 원시 타입인 문자열을 다룰 때 유용한 프로퍼티와 메소드를 제공한다.</p>
-<section id="string">
-<h2>String 생성자 함수<a class="headerlink" href="#string" title="Link to this heading">#</a></h2>
-<p>String 객체는 생성자 함수 객체이다.<br />
-따라서 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 호출하여 <code class="docutils literal notranslate"><span class="pre">String</span></code> 인스턴스를 생성할 수 있다.</p>
-<p><code class="docutils literal notranslate"><span class="pre">String</span></code> 생성자 함수에 인수를 전달하지 않고 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 호출하면 <code class="docutils literal notranslate"><span class="pre">[[StringData]]</span></code> 내부 슬롯에<br />
-빈 문자열을 할당한 <code class="docutils literal notranslate"><span class="pre">String</span></code> 래퍼 객체를 생성한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">strObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">String</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">strObj</span><span class="p">);</span><span class="w"> </span><span class="c1">// String { length: 0, [[PrimitiveValue]]: &#39;&#39; }</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span><span class="w"> </span><span class="c1">// String {0: &quot;H&quot;, 1: &quot;e&quot;, 2: &quot;l&quot;, 3: &quot;l&quot;, 4: &quot;o&quot;, length: 5, [[PrimitiveValue]]: &quot;Hello&quot;}</span>
+  <section id="chapter-48">
+<h1>Chapter 48 - 모듈<a class="headerlink" href="#chapter-48" title="Link to this heading">#</a></h1>
+</section>
+<section id="id1">
+<h1>모듈의 일반적 의미<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>모듈(module)이란, 어플리케이션을 구성하는 개별적 요소로서 <font color='orange'>재사용 가능한 코드 조각을 의미</font>한다.</p>
+<br>
+<p>일반적으로 모듈은 기능을 기준으로 파일 단위로 분리한다.<br />
+이때 모듈이 성립하려면 모듈은 자신만의 파일 스코프(모듈 스코프)를 가질 수 있어야 한다.</p>
+<p>자신만의 파일 스코프를 갖는 모듈의 리소스(모듈에 포함되어 있는 변수, 함수, 객체 등)는 기본적으로 비공개 상태이다. 다시 말해, 자신만의 파일 스코프를 갖는 모듈의 모든 자산은 캡슐화 되어 다른 모듈에서 접근할 수 없다. 즉, 모듈은 개별적 존재로서 어플리케이션과 분리되어 존재한다.</p>
+<br>
+<p>하지만 어플리케이션과 완전히 분리되어 개별적으로 존재하는 모듈은 재사용이 불가능하므로 존재의 의미가 없다.</p>
+<p>모듈은 어플리케이션이나 다른 모듈에 의해 재사용되어야 의미가 있다.<br />
+따라서 뮤들은 공개가 필요한 자신에 한정하여 명시적으로 선택적 공개가 가능하다.</p>
+<blockquote>
+<div><p>이를 export라고 한다.</p>
+</div></blockquote>
+<br>
+<p>공개(export)된 모듈의 자산은 다른 모듈에서 재사용할 수 있다.<br />
+이때 공개된 모듈의 자산을 사용하는 모듈을 모듈 사용자(module consumer)라고 한다.</p>
+<p>모듈 사용자는 모듈이 공개(export)한 자산 중 일부 또는 전체를 선택해<br />
+자신의 스코프 내로 불러들여 재사용할 수 있다.</p>
+<blockquote>
+<div><p>이를 import라고 한다.</p>
+</div></blockquote>
+<br>
+<p>모듈은 어플리케이션과 분리되어 개별적으로 존재하다가 필요에 따라 다른 모듈에 의해 재사용된다.<br />
+모듈은 기능적으로 분리되어 개별적인 파일로 작성된다.<br />
+따라서 코드의 단위를 명확히 분리하여 어플리케이션을 구성할 수 있고,<br />
+재사용성이 좋아서 개발 효율성과 유지보수성을 높일 수 있다.</p>
+<p><br><br></p>
+</section>
+<section id="id2">
+<h1>자바스크립트와 모듈<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<p>자바스크립트는 웹 페이지의 단순 보조 기능을 처리하기 위한 제한적인 용도로 태어났다.<br />
+이러한 태생적 한계로 인해 다른 프로그래밍 언어와 비교할 때 부족한 부분이 있다.</p>
+<p>대표적인 것이 모듈 시스템을 지원하지 않는다는 것이다.</p>
+<blockquote>
+<div><p>자바스크립트는 모듈이 성립하기 위해 필요한 파일 스코프와 <code class="docutils literal notranslate"><span class="pre">import</span></code>, <code class="docutils literal notranslate"><span class="pre">export</span></code>를 지원하지 않는다.</p>
+</div></blockquote>
+<p>C언어는 <code class="docutils literal notranslate"><span class="pre">#include</span></code>, 자바는 <code class="docutils literal notranslate"><span class="pre">import</span></code> 등 대부분의 프로그래밍 언어는 모듈 기능을 가지고 있다.<br />
+하지만 클라이언트 사이드 자바스크립트는 <code class="docutils literal notranslate"><span class="pre">script</span></code> 태그를 사용하여 외부의 자바스크립트 파일을 로드할 수는 있지만 파일마다 독립적인 파일 스코프를 갖지는 않는다.</p>
+<p>다시 말해, 자바스크립트 파일을 여러 개의 파일로 분리하여 <code class="docutils literal notranslate"><span class="pre">script</span></code> 태그로 로드해도<br />
+부닐된 자바스크립트 파일들은 결국 하나의 자바스크립트 파일 내에 있는 것처럼 동작한다.</p>
+<blockquote>
+<div><p>모든 자바스크립트 파일은 하나의 전역을 공유한다.<br />
+따라서 분리된 자바스크립트 파일들의 전역 변수가 중복되는 등의 문제가 발생할 수 있다.</p>
+</div></blockquote>
+<br>
+<p>자바스크립트를 클라이언트 사이드, 즉 브라우저 환경에 국한하지 않고 범옹적으로 사용하려는 움직임이 생기면서 모듈 시스템은 반드시 해결해야 하는 핵심 과제가 되었다.</p>
+<p>이런 상황에서 제안된 것이 <code class="docutils literal notranslate"><span class="pre">CommonJS</span></code>와 <code class="docutils literal notranslate"><span class="pre">AMD(Asynchronous</span> <span class="pre">Module</span> <span class="pre">Definition)</span></code>이다.</p>
+<p>이로써 자바스크립트의 모듈 시스템은 크게 CommonJS와 AMD로 나뉘었다.<br />
+브라우저 환경에서 모듈을 사용하기 위해서는 CommonJS 또는 AMD를 구현한 모듈 로더 라이브러리를 사용해야 한다.</p>
+<br>
+<p>자바스크립트 런타임 환경인 Node.js는 모듈 시스템의 사실상 표준인 CommonJS를 채택했다.<br />
+따라서 Node.js 환경에서는 파일별로 독립적인 파일 스코프(모듈 스코프)를 갖는다.</p>
+<p><br><br></p>
+</section>
+<section id="es6-esm">
+<h1>ES6 모듈(ESM)<a class="headerlink" href="#es6-esm" title="Link to this heading">#</a></h1>
+<p>이러한 상황에서 ES6에서도 클라이언트 사이드 자바스크립틍서도 동작하는 모듈 기능을 추가했다.<br />
+IE를 제외한 대부분의 브라우저에서 ES6 모듈을 사용할 수 있다.<br />
+ES6 모듈의 사용법은 간단하다. script 태그에 <code class="docutils literal notranslate"><span class="pre">type=&quot;module&quot;</span></code> 어트리뷰트를 추가하면 된다.</p>
+<p>일반적인 자바스크립트 파일이 아닌 ESM임을 명확히 하기 위해<br />
+ESM의 파일 확장자는 <code class="docutils literal notranslate"><span class="pre">mjs</span></code>를 사용할 것을 권장한다.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;lib.mjs&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<section id="id3">
+<h2>모듈 스코프<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>ESM은 독자적인 모듈 스코프를 갖는다.<br />
+ESM이 아닌 일반적인 자바스크립트 파일은 scipt 태그로 분리해서 로드해도 독자적인 모듈 스코프를 갖지 않는다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// foo.js</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">foo</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span><span class="w">  </span><span class="c1">// foo</span>
 </pre></div>
 </div>
 <br>
-</section>
-</section>
-<section id="length">
-<h1>length 프로퍼티<a class="headerlink" href="#length" title="Link to this heading">#</a></h1>
-<p>length 프로퍼티는 문자열의 길이를 나타내는 0 이상의 정수를 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// 5</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// bar.js</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span><span class="w">  </span><span class="c1">// bar</span>
+</pre></div>
+</div>
+<br>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;foo.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;bar.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<br>
+<p>위 예제의 HTML에서 script 태그로 분리해서 로드된 2개의 자바스크립트 파일은 하나의 자바스크립트 파일 내에 있는 것처럼 동작한다.</p>
+<blockquote>
+<div><p>하나의 전역을 공유한다.</p>
+</div></blockquote>
+<p>따라서 foo.js와 bar.js는 하나의 전역을 공유하므로 전역 변수 x는 중복 선언되어 의도치 않게 값이 변경될 수 있다.</p>
+<br>
+<p>ESM은 파일 자체의 독자적인 모듈 스코프를 제공한다.<br />
+따라서 모듈 내에서 var 키워드로 선언한 변수는 더는 전역 변수가 아니며 window 객체의 프로퍼티도 아니다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// foo.mjs</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w">  </span><span class="c1">// foo</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// bar.mjs</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w">  </span><span class="c1">// bar</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<br>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;foo.mjs&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;bar.mjs&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p><br><br></p>
 </section>
-<section id="id1">
-<h1>String 메소드<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>문자열은 변경 불가능(immutable)한 값이다.<br />
-따라서 문자열의 일부를 변경하면 새로운 문자열을 생성하고 반환한다.</p>
-<section id="string-prototype-indexof">
-<h2>String.prototype.indexOf<a class="headerlink" href="#string-prototype-indexof" title="Link to this heading">#</a></h2>
-<p>indexOf 메소드는 주어진 문자열에서 찾고자 하는 문자열을 검색하여 찾은 위치를 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 1</span>
-</pre></div>
-</div>
+<section id="export">
+<h2>export 키워드<a class="headerlink" href="#export" title="Link to this heading">#</a></h2>
+<p>모듈은 독자적인 모듈 스코프를 갖는다.<br />
+따라서 모듈 내부에서 선언한 모든 식별자는 기본적으로 해당 모듈 내부에서만 참조할 수 있다.</p>
+<p>모듈 내부에서 선언한 식별자를 외부에 공개하여 다른 모듈들이 재사용할 수 있게 하려면 <code class="docutils literal notranslate"><span class="pre">export</span></code> 키워드를 사용한다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">export</span></code> 키워드는 선언문 앞에 사용한다.</p>
+<p>이로써 변수, 함수, 클래스 등 모든 식별자를 export 할 수 있다.</p>
 <br>
-<p>indexOf 메소드는 대상 문자열에 특정 문자열이 존재하는지 확인하는 데에도 사용할 수 있다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// lib.mjs</span>
+<span class="c1">// 변수의 공개</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+<span class="c1">// 함수의 공개</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="c1">// ES6</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
+<span class="c1">// 클래스의 공개</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<br>
-</section>
-<section id="string-prototype-search">
-<h2>String.prototype.search<a class="headerlink" href="#string-prototype-search" title="Link to this heading">#</a></h2>
-<p>search 메소드는 대상 문자열에서 주어진 문자열을 검색하여 검색된 문자열의 인덱스를 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 1</span>
-</pre></div>
-</div>
-<br>
-<p>정규식을 사용하여 검색할 수도 있다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/e/</span><span class="p">));</span><span class="w"> </span><span class="c1">// 1</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-includes">
-<h2>String.prototype.includes<a class="headerlink" href="#string-prototype-includes" title="Link to this heading">#</a></h2>
-<p>includes 메소드는 대상 문자열에 주어진 문자열이 포함되어 있는지 확인하여 그 결과를 불리언 값으로 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-startswith">
-<h2>String.prototype.startsWith<a class="headerlink" href="#string-prototype-startswith" title="Link to this heading">#</a></h2>
-<p>startsWith 메소드는 대상 문자열이 주어진 문자열로 시작하는지 확인하여 그 결과를 불리언 값으로 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
-</pre></div>
-</div>
-<p>2번째 인수로 검색을 시작할 인덱스를 전달할 수 있다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">));</span><span class="w"> </span><span class="c1">// false</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-endswith">
-<h2>String.prototype.endsWith<a class="headerlink" href="#string-prototype-endswith" title="Link to this heading">#</a></h2>
-<p>endsWith 메소드는 대상 문자열이 주어진 문자열로 끝나는지 확인하여 그 결과를 불리언 값으로 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
-</pre></div>
-</div>
-<p>2번째 인수로 검색을 시작할 인덱스를 전달할 수 있다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
+<p>선언문 앞에 매번 <code class="docutils literal notranslate"><span class="pre">export</span></code> 키워드를 붙이는 것이 번거롭다면 <code class="docutils literal notranslate"><span class="pre">export</span></code>할 대상을 하나의 객체로 구성하여 한번에 <code class="docutils literal notranslate"><span class="pre">export</span></code> 할 수도 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// lib.mjs</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">;</span>
 
-<span class="c1">// 문자열 str의 처음 5글자를 대상으로 검색하여 문자열 &#39;Hello&#39;로 끝나는지 확인한다.</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-charat">
-<h2>String.prototype.charAt<a class="headerlink" href="#string-prototype-charat" title="Link to this heading">#</a></h2>
-<p>charAt 메소드는 대상 문자열에서 인덱스에 해당하는 문자를 검색하여 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mf">1</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;e&#39;</span>
-</pre></div>
-</div>
-<p>범위를 벗어날 경우 빈 문자열을 반환한다.</p>
-<br>
-</section>
-<section id="string-prototype-substring">
-<h2>String.prototype.substring<a class="headerlink" href="#string-prototype-substring" title="Link to this heading">#</a></h2>
-<p>substring 메소드는 대상 문자열에서 첫 번째 인수로 전달받은 인덱스에서<br />
-두 번째 인수로 전달받은 인덱스 이전의 부분 문자열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;ell&#39;</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-slice">
-<h2>String.prototype.slice<a class="headerlink" href="#string-prototype-slice" title="Link to this heading">#</a></h2>
-<p>slice 메소드는 대상 문자열에서 첫 번째 인수로 전달받은 인덱스에서<br />
-두 번째 인수로 전달받은 인덱스 이전의 부분 문자열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;ell&#39;</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">substring</span></code> 메소드와 동일하게 동작하지만<br />
-<code class="docutils literal notranslate"><span class="pre">slice</span></code> 메소드에는 음수인 인수를 전달할 수 있다.</p>
-<br>
-</section>
-<section id="string-prototype-trim">
-<h2>String.prototype.trim<a class="headerlink" href="#string-prototype-trim" title="Link to this heading">#</a></h2>
-<p>trim 메소드는 대상 문자열 앞뒤에 공백 문자가 있을 경우 이를 제거한 문자열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;   foo   &#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">trim</span><span class="p">());</span><span class="w"> </span><span class="c1">// &#39;foo&#39;</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-replace">
-<h2>String.prototype.replace<a class="headerlink" href="#string-prototype-replace" title="Link to this heading">#</a></h2>
-<p>replace 메소드는 대상 문자열에서 첫 번째 인수로 전달받은 문자열 또는 정규식을<br />
-두 번째 인수로 전달받은 문자열로 치환한 문자열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;h&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;hello&#39;</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-repeat">
-<h2>String.prototype.repeat<a class="headerlink" href="#string-prototype-repeat" title="Link to this heading">#</a></h2>
-<p>repeat 메소드는 대상 문자열을 인수로 전달받은 횟수만큼 반복 연결한 새로운 문자열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mf">2</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;HelloHello&#39;</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-split">
-<h2>String.prototype.split<a class="headerlink" href="#string-prototype-split" title="Link to this heading">#</a></h2>
-<p>split 메소드는 대상 문자열을 인수로 전달받은 구분자를 기준으로 잘라 배열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;hello world&#39;</span><span class="p">;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="c1">// 문자열 str을 공백 문자를 기준으로 잘라 배열을 반환한다.</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// [&#39;hello&#39;, &#39;world&#39;]</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 변수, 함수 클래스를 하나의 객체로 구성하여 공개</span>
+<span class="k">export</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">pi</span><span class="p">,</span><span class="w"> </span><span class="nx">square</span><span class="p">,</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">};</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="import">
+<h2>import 키워드<a class="headerlink" href="#import" title="Link to this heading">#</a></h2>
+<p>다른 모듈에서 공개(export)한 식별자를 자신의 모듈 스코프 내부로 로드하려면 <code class="docutils literal notranslate"><span class="pre">import</span></code> 키워드를 사용한다.<br />
+다른 모듈이 <code class="docutils literal notranslate"><span class="pre">export</span></code>한 식별자 이름으로 <code class="docutils literal notranslate"><span class="pre">import</span></code>해야 하며 ESM의 경우 파일 확장자를 생략할 수 없다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// app.mjs</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">pi</span><span class="p">,</span><span class="w"> </span><span class="nx">square</span><span class="p">,</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./lib.mjs&#39;</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pi</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">square</span><span class="p">(</span><span class="mf">10</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<br>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;app.mjs&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>위 예제의 <code class="docutils literal notranslate"><span class="pre">app.mjs</span></code>는 어플리케이션의 진입점(entry point)이므로 반드시 <code class="docutils literal notranslate"><span class="pre">script</span></code> 태그로 로드해야 한다. 하지만 <code class="docutils literal notranslate"><span class="pre">lib.mjs</span></code>는 <code class="docutils literal notranslate"><span class="pre">app.mjs</span></code>의 <code class="docutils literal notranslate"><span class="pre">import</span></code>문에 의해 로드되는 의존성이다.</p>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">lib.mjs</span></code>는 <code class="docutils literal notranslate"><span class="pre">script</span></code> 태그로 로드하지 않아도 된다.</p>
+<p>모듈이 export한 식별자 일므을 일일이 지정하지 않고 하나의 이름으로 한 번에 import 할 수도 있다. 이때 import되는 식별자는 as 뒤에 지정한 이름의 객체에 프로퍼티로 할당된다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// app.mjs</span>
+<span class="c1">// lib.mjs 모듈이 export한 모든 식별자를 lib 객체의 프로퍼티로 모아 import 한다.</span>
+<span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">lib</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./lib.mjs&#39;</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lib</span><span class="p">.</span><span class="nx">pi</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lib</span><span class="p">.</span><span class="nx">square</span><span class="p">(</span><span class="mf">10</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">lib</span><span class="p">.</span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p>모듈이 export한 식별자 이름을 변경하여 import 할 수도 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// app.mjs</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">pi</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">PI</span><span class="p">,</span><span class="w"> </span><span class="nx">square</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">sq</span><span class="p">,</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">P</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./lib.mjs&#39;</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">PI</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sq</span><span class="p">(</span><span class="mf">10</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">P</span><span class="p">(</span><span class="s1">&#39;Lee&#39;</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>끝.</p>
@@ -828,20 +845,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="chapter_31.html"
+       href="chapter_47.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 31 - RegExp</p>
+        <p class="prev-next-title">Chapter 47 - 에러 처리</p>
       </div>
     </a>
     <a class="right-next"
-       href="chapter_33.html"
+       href="chapter_49.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 33 - Symbol</p>
+        <p class="prev-next-title">Chapter 49 - Babel과 Webpack을 이용한 ES6+/ES.NEXT 개발 환경 구축</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -861,24 +878,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 32 - String</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String 생성자 함수</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#length">length 프로퍼티</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">String 메소드</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-indexof">String.prototype.indexOf</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-search">String.prototype.search</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-includes">String.prototype.includes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-startswith">String.prototype.startsWith</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-endswith">String.prototype.endsWith</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-charat">String.prototype.charAt</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-substring">String.prototype.substring</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-slice">String.prototype.slice</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-trim">String.prototype.trim</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-replace">String.prototype.replace</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-repeat">String.prototype.repeat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-split">String.prototype.split</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 48 - 모듈</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">모듈의 일반적 의미</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">자바스크립트와 모듈</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#es6-esm">ES6 모듈(ESM)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">모듈 스코프</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export">export 키워드</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import">import 키워드</a></li>
 </ul>
 </li>
 </ul>

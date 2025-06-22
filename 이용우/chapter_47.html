@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Chapter 32 - String &#8212; 스터디</title>
+    <title>Chapter 47 - 에러 처리 &#8212; 스터디</title>
   
   
   
@@ -57,12 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_32';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_47';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 33 - Symbol" href="chapter_33.html" />
-    <link rel="prev" title="Chapter 31 - RegExp" href="chapter_31.html" />
+    <link rel="next" title="Chapter 48 - 모듈" href="chapter_48.html" />
+    <link rel="prev" title="Chapter 46 - 제너레이터와 async/await" href="chapter_46.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -306,7 +306,7 @@
 
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Chapter 32 - String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_32.html">Chapter 32 - String</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="chapter_33.html">Chapter 33 - Symbol</a></li>
@@ -378,7 +378,7 @@
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="chapter_47.html">Chapter 47 - 에러 처리</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Chapter 47 - 에러 처리</a></li>
 
 
 
@@ -463,7 +463,7 @@
       
       
       
-      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_32.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_47.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -493,7 +493,7 @@
       
       
       
-      <li><a href="../_sources/이용우/chapter_32.md" target="_blank"
+      <li><a href="../_sources/이용우/chapter_47.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -577,7 +577,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chapter 32 - String</h1>
+    <h1>Chapter 47 - 에러 처리</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -587,26 +587,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 32 - String</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String 생성자 함수</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#length">length 프로퍼티</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">String 메소드</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-indexof">String.prototype.indexOf</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-search">String.prototype.search</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-includes">String.prototype.includes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-startswith">String.prototype.startsWith</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-endswith">String.prototype.endsWith</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-charat">String.prototype.charAt</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-substring">String.prototype.substring</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-slice">String.prototype.slice</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-trim">String.prototype.trim</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-replace">String.prototype.replace</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-repeat">String.prototype.repeat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-split">String.prototype.split</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 47 - 에러 처리</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#try-catch-finally">try .. catch … finally</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#error">Error 객체</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#throw">throw 문</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">에러의 전파</a></li>
 </ul>
 
             </nav>
@@ -619,182 +604,207 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="chapter-32-string">
-<h1>Chapter 32 - String<a class="headerlink" href="#chapter-32-string" title="Link to this heading">#</a></h1>
-<p>표준 빌트인 객체인 String은 원시 타입인 문자열을 다룰 때 유용한 프로퍼티와 메소드를 제공한다.</p>
-<section id="string">
-<h2>String 생성자 함수<a class="headerlink" href="#string" title="Link to this heading">#</a></h2>
-<p>String 객체는 생성자 함수 객체이다.<br />
-따라서 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 호출하여 <code class="docutils literal notranslate"><span class="pre">String</span></code> 인스턴스를 생성할 수 있다.</p>
-<p><code class="docutils literal notranslate"><span class="pre">String</span></code> 생성자 함수에 인수를 전달하지 않고 <code class="docutils literal notranslate"><span class="pre">new</span></code> 연산자와 함께 호출하면 <code class="docutils literal notranslate"><span class="pre">[[StringData]]</span></code> 내부 슬롯에<br />
-빈 문자열을 할당한 <code class="docutils literal notranslate"><span class="pre">String</span></code> 래퍼 객체를 생성한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">strObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">String</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">strObj</span><span class="p">);</span><span class="w"> </span><span class="c1">// String { length: 0, [[PrimitiveValue]]: &#39;&#39; }</span>
+  <section id="chapter-47">
+<h1>Chapter 47 - 에러 처리<a class="headerlink" href="#chapter-47" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">...</span> <span class="pre">catch</span></code> 문을 사용해 발생한 에러에 적절하게 대응하면 프로그램이 강제 종료되지 않고<br />
+계속해서 코드를 실행시킬 수 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;[Start&#39;</span><span class="p">);</span>
 
-<span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span><span class="w"> </span><span class="c1">// String {0: &quot;H&quot;, 1: &quot;e&quot;, 2: &quot;l&quot;, 3: &quot;l&quot;, 4: &quot;o&quot;, length: 5, [[PrimitiveValue]]: &quot;Hello&quot;}</span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">foo</span><span class="p">();</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error!&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>직접적으로 에러를 발생시키지 않는 예외(exception)적인 상황이 발생할 수도 있다.<br />
+예외적인 상황에 적절하게 대응하지 않으면 에러로 이어질 가능성이 크다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// DOM에 button 요소가 존재하지 않으면 querySelector 메소드는 에러를 발생시키지 않고 null을 반환한다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">$button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span>
+<span class="nx">$button</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// TypeError: Cannot read property &#39;classList&#39; of null</span>
+</pre></div>
+</div>
+<p>위 예제의 <code class="docutils literal notranslate"><span class="pre">querySelector</span></code> 메소드는 인수로 전달한 문자열이 CSS 선택자 문법에 맞지 않는 경우 에러를 발생시킨다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">$elem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#1&#39;</span><span class="p">);</span>
+<span class="c1">// DOMException: Failed to execute &#39;querySelector&#39; on &#39;Document&#39;: &#39;#1&#39; is not a valid selector.</span>
 </pre></div>
 </div>
 <br>
+<p>하지만 <code class="docutils literal notranslate"><span class="pre">querySelector</span></code> 메소드는 인수로 전달한 CSS 선택자 문자열로 DOM에서 요소 노드를 찾을 수 없는 경우 에러를 발생시키지 않고 <code class="docutils literal notranslate"><span class="pre">null</span></code>을 반환한다.<br />
+이때 <code class="docutils literal notranslate"><span class="pre">if</span></code> 문으로 <code class="docutils literal notranslate"><span class="pre">querySelector</span></code> 메소드의 반환값을 확인하거나 단축 평가 또는 옵셔널 체이닝 연산자(<code class="docutils literal notranslate"><span class="pre">?.</span></code>)를 사용하지 않으면<br />
+다음 처리에서 에러로 이어질 가능성이 높아진다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// DOM에 button 요소가 존재하지 않는 경우 querySelector 메소드는 에러를 발생시키지 않고 null을 반환한다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">$button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// null</span>
+<span class="nx">$button</span><span class="o">?</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<br>
+<p>이와 같이 에러나 예외적인 상황에 대응하지 않으면 프로그램은 강제 종료될 것이다.<br />
+에러나 예외적인 상황은 너무 다양하기 때문에 아무런 조치 없이 프로그램이 강제 종료된다면 원인 파악이 어려워 대응이 힘들다.</p>
+<p><br><br></p>
 </section>
+<section id="try-catch-finally">
+<h1>try .. catch … finally<a class="headerlink" href="#try-catch-finally" title="Link to this heading">#</a></h1>
+<p>기본적으로 예외 처리를 구현하는 방법은 크게 두 가지가 있다.<br />
+<code class="docutils literal notranslate"><span class="pre">querySelector</span></code>나 <code class="docutils literal notranslate"><span class="pre">Array#find</span></code> 메소드처럼 예외적인 상황이 발생하면 반환하는 값(<code class="docutils literal notranslate"><span class="pre">null</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">-1</span></code>)을 <code class="docutils literal notranslate"><span class="pre">if</span></code>문이나<br />
+단축 평가 또는 옵셔널 체이닝 연산자를 통해 확인해서 처리하는 방법과<br />
+에러 처리 코드를 미리 등록해 두고 에러가 발생하면 에러 처리 코드로 점프하도록 하는 방법이 있다.</p>
+<br>
+<p><code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">...</span> <span class="pre">catch</span> <span class="pre">...</span> <span class="pre">finally</span></code> 문은 두 번째 방법이다.<br />
+일반적으로 이 방법을 에러 처리(error handling)라고 한다.<br />
+<code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">...</span> <span class="pre">catch</span> <span class="pre">...</span> <span class="pre">finally</span></code> 문은 다음과 같이 3개의 코드 블록으로 구성된다.<br />
+<code class="docutils literal notranslate"><span class="pre">finally</span></code> 문은 불필요하다면 생략 가능하다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">catch</span></code> 문도 생략 가능하지만 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 문이 없는 <code class="docutils literal notranslate"><span class="pre">try</span></code> 문은 의미가 없으므로 생략하지 않는다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 실행할 코드 (에러가 발생할 가능성이 있는 코드)</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// try 코드 블록에서 에러가 발생하면 이 코드 블록의 코드가 실행된다.</span>
+<span class="w">    </span><span class="c1">// err에는 try 코드 블록에서 발생한 Error 객체가 전달된다.</span>
+<span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 에러 발생과 상관없이 반드시 한 번 실행된다.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><br><br></p>
 </section>
-<section id="length">
-<h1>length 프로퍼티<a class="headerlink" href="#length" title="Link to this heading">#</a></h1>
-<p>length 프로퍼티는 문자열의 길이를 나타내는 0 이상의 정수를 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// 5</span>
+<section id="error">
+<h1>Error 객체<a class="headerlink" href="#error" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Error</span></code> 생성자 함수는 에러 객체를 생성한다.<br />
+<code class="docutils literal notranslate"><span class="pre">Error</span></code> 생성자 함수에는 에러를 상세히 설명하는 에러 메시지를 인수로 전달할 수 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;invalid&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Error</span></code> 생성자 함수가 생성한 에러 객체는 <code class="docutils literal notranslate"><span class="pre">message</span></code> 프로퍼티와 <code class="docutils literal notranslate"><span class="pre">stack</span></code> 프로퍼티를 갖는다.<br />
+<code class="docutils literal notranslate"><span class="pre">message</span></code> 프로퍼티의 값은 <code class="docutils literal notranslate"><span class="pre">Error</span></code> 생성자 함수에 인수로 전달한 에러 메시지이고<br />
+<code class="docutils literal notranslate"><span class="pre">stack</span></code> 프로퍼티의 값은 에러를 발생시킨 콜 스택의 호출 정보를 나타내는 문자열이며 디버깅 목적으로 사용한다.</p>
+<p>자바스크립트는 Error 생성자 함수를 포함해 7가지의 에러 객체를 생성할 수 있는 Error 생성자 함수를 제공한다.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>생성자 함수</p></th>
+<th class="head text-center"><p>인스턴스</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Error</p></td>
+<td class="text-center"><p>일반적 에러 객체</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>SyntaxError</p></td>
+<td class="text-center"><p>자바스크립트 문법에 맞지 않는 문을 해석할 때 발생하는 에러 객체</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>ReferenceError</p></td>
+<td class="text-center"><p>참조할 수 없는 식별자를 참조했을 때 발생하는 에러 객체</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>TypeError</p></td>
+<td class="text-center"><p>피연산자 또는 인수의 데이터 타입이 유효하지 않을 때 발생하는 에러 객체</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>RangeError</p></td>
+<td class="text-center"><p>숫자값의 허용 범위를 벗어났을 때 발생하는 에러 객체</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>URIError</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">encodeURI</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">decodeURI</span></code> 함수에 부적절한 인수를 전달했을 때 발생하는 에러 객체</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>EvalError</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">eval</span></code> 함수에서 발생하는 에러 객체</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br><br></p>
+</section>
+<section id="throw">
+<h1>throw 문<a class="headerlink" href="#throw" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Error</span></code> 생성자 함수로 에러 객체를 생성한다고 에러가 발생하는 것은 아니다.</p>
+<blockquote>
+<div><p>즉, 에러 객체 생성과 에러 발생은 그 의미가 다르다.</p>
+</div></blockquote>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 에러 객체를 생성한다고 에러가 발생하는 것은 아니다.</span>
+<span class="w">    </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;something wrong&#39;</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>에러를 발생시키려면 try 코드 블록에서 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 문으로 에러 객체를 던져야 한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">throw</span><span class="w"> </span><span class="nx">표현식</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">throw</span></code> 문의 표현식은 어떤 값이라도 상관없지만 일반적으로 에러 객체를 지정한다.<br />
+에러를 던지면 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 문의 에러 변수가 생성되고 던져진 에러 객체가 할당된다.<br />
+그리고 <code class="docutils literal notranslate"><span class="pre">catch</span></code> 코드 블록이 실행되기 시작한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 에러 객체를 던지면 catch 코드 블록이 실행되기 시작한다.</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;something wrong&#39;</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<br>
+<p>예를 들어, 외부에서 전달받은 콜백 함수를 n번만큼 반복 호출하는 <code class="docutils literal notranslate"><span class="pre">repeat</span></code> gkatnfmf rngusgoqhwk.</p>
+<p><code class="docutils literal notranslate"><span class="pre">repeat</span></code> 함수는 두 번째 인수로 반드시 콜백 함수를 전달받아야 한다.<br />
+만약 두 번째 인수가 아니면 <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> 에러를 발생시켜보자.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// 외부에서 전달받은 콜백 함수를 n번만큼 반복 호출한다.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">repeat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">,</span><span class="w"> </span><span class="nx">f</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 매개변수 f에 전달된 인수가 함수가 아니면 TypeError를 발생시킨다.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;function&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;f must be a function&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">n</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">f</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span><span class="w">  </span><span class="c1">// i를 전달하면서 f를 호출</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="nx">repeat</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// 2번째 인수가 함수가 아니므로 TypeError가 발생(throw)한다.</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// TypeError: f must be a function</span>
 </pre></div>
 </div>
 <p><br><br></p>
 </section>
 <section id="id1">
-<h1>String 메소드<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>문자열은 변경 불가능(immutable)한 값이다.<br />
-따라서 문자열의 일부를 변경하면 새로운 문자열을 생성하고 반환한다.</p>
-<section id="string-prototype-indexof">
-<h2>String.prototype.indexOf<a class="headerlink" href="#string-prototype-indexof" title="Link to this heading">#</a></h2>
-<p>indexOf 메소드는 주어진 문자열에서 찾고자 하는 문자열을 검색하여 찾은 위치를 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 1</span>
-</pre></div>
-</div>
-<br>
-<p>indexOf 메소드는 대상 문자열에 특정 문자열이 존재하는지 확인하는 데에도 사용할 수 있다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
+<h1>에러의 전파<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>에러는 호출자(<code class="docutils literal notranslate"><span class="pre">caller</span></code>) 방향으로 전파된다.<br />
+즉, 콜 스택의 아래 방향(실행 중인 실행 컨텍스트가 Push되기 직전에 Push된 실행 컨텍스트 방향)으로 전파된다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;foo에서 발생한 에러&#39;</span><span class="p">);</span><span class="w">   </span><span class="c1">// (4)</span>
+<span class="p">};</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">foo</span><span class="p">();</span><span class="w">   </span><span class="c1">// (3)</span>
+<span class="p">};</span>
 
-<span class="c1">// ES6</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-search">
-<h2>String.prototype.search<a class="headerlink" href="#string-prototype-search" title="Link to this heading">#</a></h2>
-<p>search 메소드는 대상 문자열에서 주어진 문자열을 검색하여 검색된 문자열의 인덱스를 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 1</span>
-</pre></div>
-</div>
-<br>
-<p>정규식을 사용하여 검색할 수도 있다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/e/</span><span class="p">));</span><span class="w"> </span><span class="c1">// 1</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-includes">
-<h2>String.prototype.includes<a class="headerlink" href="#string-prototype-includes" title="Link to this heading">#</a></h2>
-<p>includes 메소드는 대상 문자열에 주어진 문자열이 포함되어 있는지 확인하여 그 결과를 불리언 값으로 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-startswith">
-<h2>String.prototype.startsWith<a class="headerlink" href="#string-prototype-startswith" title="Link to this heading">#</a></h2>
-<p>startsWith 메소드는 대상 문자열이 주어진 문자열로 시작하는지 확인하여 그 결과를 불리언 값으로 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
-</pre></div>
-</div>
-<p>2번째 인수로 검색을 시작할 인덱스를 전달할 수 있다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">));</span><span class="w"> </span><span class="c1">// false</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-endswith">
-<h2>String.prototype.endsWith<a class="headerlink" href="#string-prototype-endswith" title="Link to this heading">#</a></h2>
-<p>endsWith 메소드는 대상 문자열이 주어진 문자열로 끝나는지 확인하여 그 결과를 불리언 값으로 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
-</pre></div>
-</div>
-<p>2번째 인수로 검색을 시작할 인덱스를 전달할 수 있다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">baz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">bar</span><span class="p">();</span><span class="w">   </span><span class="c1">// (2)</span>
+<span class="p">};</span>
 
-<span class="c1">// 문자열 str의 처음 5글자를 대상으로 검색하여 문자열 &#39;Hello&#39;로 끝나는지 확인한다.</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">baz</span><span class="p">();</span><span class="w">   </span><span class="c1">// (1)</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<br>
-</section>
-<section id="string-prototype-charat">
-<h2>String.prototype.charAt<a class="headerlink" href="#string-prototype-charat" title="Link to this heading">#</a></h2>
-<p>charAt 메소드는 대상 문자열에서 인덱스에 해당하는 문자를 검색하여 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mf">1</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;e&#39;</span>
-</pre></div>
-</div>
-<p>범위를 벗어날 경우 빈 문자열을 반환한다.</p>
-<br>
-</section>
-<section id="string-prototype-substring">
-<h2>String.prototype.substring<a class="headerlink" href="#string-prototype-substring" title="Link to this heading">#</a></h2>
-<p>substring 메소드는 대상 문자열에서 첫 번째 인수로 전달받은 인덱스에서<br />
-두 번째 인수로 전달받은 인덱스 이전의 부분 문자열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;ell&#39;</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-slice">
-<h2>String.prototype.slice<a class="headerlink" href="#string-prototype-slice" title="Link to this heading">#</a></h2>
-<p>slice 메소드는 대상 문자열에서 첫 번째 인수로 전달받은 인덱스에서<br />
-두 번째 인수로 전달받은 인덱스 이전의 부분 문자열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;ell&#39;</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">substring</span></code> 메소드와 동일하게 동작하지만<br />
-<code class="docutils literal notranslate"><span class="pre">slice</span></code> 메소드에는 음수인 인수를 전달할 수 있다.</p>
-<br>
-</section>
-<section id="string-prototype-trim">
-<h2>String.prototype.trim<a class="headerlink" href="#string-prototype-trim" title="Link to this heading">#</a></h2>
-<p>trim 메소드는 대상 문자열 앞뒤에 공백 문자가 있을 경우 이를 제거한 문자열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;   foo   &#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">trim</span><span class="p">());</span><span class="w"> </span><span class="c1">// &#39;foo&#39;</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-replace">
-<h2>String.prototype.replace<a class="headerlink" href="#string-prototype-replace" title="Link to this heading">#</a></h2>
-<p>replace 메소드는 대상 문자열에서 첫 번째 인수로 전달받은 문자열 또는 정규식을<br />
-두 번째 인수로 전달받은 문자열로 치환한 문자열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;h&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;hello&#39;</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-repeat">
-<h2>String.prototype.repeat<a class="headerlink" href="#string-prototype-repeat" title="Link to this heading">#</a></h2>
-<p>repeat 메소드는 대상 문자열을 인수로 전달받은 횟수만큼 반복 연결한 새로운 문자열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mf">2</span><span class="p">));</span><span class="w"> </span><span class="c1">// &#39;HelloHello&#39;</span>
-</pre></div>
-</div>
-<br>
-</section>
-<section id="string-prototype-split">
-<h2>String.prototype.split<a class="headerlink" href="#string-prototype-split" title="Link to this heading">#</a></h2>
-<p>split 메소드는 대상 문자열을 인수로 전달받은 구분자를 기준으로 잘라 배열을 반환한다.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;hello world&#39;</span><span class="p">;</span>
-
-<span class="c1">// 문자열 str을 공백 문자를 기준으로 잘라 배열을 반환한다.</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// [&#39;hello&#39;, &#39;world&#39;]</span>
-</pre></div>
-</div>
+<p>(1)에서 <code class="docutils literal notranslate"><span class="pre">baz</span></code> 함수를 호출하면 (2)에서 <code class="docutils literal notranslate"><span class="pre">bar</span></code> 함수가 호출되고 (3)에서 <code class="docutils literal notranslate"><span class="pre">foo</span></code>함수는 (4)에서 에러를 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 한다.<br />
+이때 <code class="docutils literal notranslate"><span class="pre">foo</span></code> 함수가 <code class="docutils literal notranslate"><span class="pre">throw</span></code>한 에러는 다음과 같이 호출자에게 전파되어 전역에서 캐치된다.</p>
+<img src="https://github.com/user-attachments/assets/9052a730-cd6c-4394-89f9-61fb4265a773" >
+<p>이처럼 <code class="docutils literal notranslate"><span class="pre">throw</span></code>된 에러를 캐치하지 않으면 호출자 방향으로 전파된다.<br />
+이때 throw된 에러를 캐지하여 적절히 대응하면 프로그램을 강제 종료시키지 않고 코드의 실행 흐름을 복구할 수 있다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">throw</span></code>된 에러를 어디에서도 캐치하지 않으면 프로그램은 강제 종료된다.</p>
+<p><br><br></p>
+<p>비동기 함수나 프로미스 후속 처리 메소드의 콜백 함수는 호출자가 없다.</p>
+<blockquote>
+<div><p>테스크 큐나 마이크로테스크 큐에 일시 저장되었다가 콜 스택이 비면 이벤트 루프에 의해 콜 스택으로 Push되어 시랳ㅇ된다.</p>
+</div></blockquote>
+<p>이때 콜 스택에 푸시된 콜백 함수의 실행 컨텍스트는 콜 스택의 가장 하부에 존재하게 된다.<br />
+따라서 에러를 전달할 호출자가 존재하지 않는다.</p>
+<p><br><br></p>
 <p>끝.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -828,20 +838,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="chapter_31.html"
+       href="chapter_46.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 31 - RegExp</p>
+        <p class="prev-next-title">Chapter 46 - 제너레이터와 async/await</p>
       </div>
     </a>
     <a class="right-next"
-       href="chapter_33.html"
+       href="chapter_48.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 33 - Symbol</p>
+        <p class="prev-next-title">Chapter 48 - 모듈</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -861,26 +871,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 32 - String</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String 생성자 함수</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#length">length 프로퍼티</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">String 메소드</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-indexof">String.prototype.indexOf</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-search">String.prototype.search</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-includes">String.prototype.includes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-startswith">String.prototype.startsWith</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-endswith">String.prototype.endsWith</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-charat">String.prototype.charAt</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-substring">String.prototype.substring</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-slice">String.prototype.slice</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-trim">String.prototype.trim</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-replace">String.prototype.replace</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-repeat">String.prototype.repeat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-prototype-split">String.prototype.split</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 47 - 에러 처리</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#try-catch-finally">try .. catch … finally</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#error">Error 객체</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#throw">throw 문</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">에러의 전파</a></li>
 </ul>
 
   </nav></div>

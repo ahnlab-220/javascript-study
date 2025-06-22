@@ -1,0 +1,1139 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 49 - Babel과 Webpack을 이용한 ES6+/ES.NEXT 개발 환경 구축 &#8212; 스터디</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '이용우/chapter_49';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Chapter 48 - 모듈" href="chapter_48.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">스터디</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_19.html">Chapter 19 - 프로토타입</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_20.html">Chapter 20 - strict mode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_21.html">Chapter 21 - 빌트인 객체</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/chapter_22.html">Chapter 22 - <code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">개인 공간</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/main.html">공희재</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_15.html">Chapter 15 - <code class="docutils literal notranslate"><span class="pre">let</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span></code> 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_20.html">Chapter 20 - strict mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_21.html">Chapter 21 - 빌트인 객체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_22.html">Chapter 22 - <code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B3%B5%ED%9D%AC%EC%9E%AC/chapter_24.html">Chapter 24 - Closure(클로저)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/main.html">김현우</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%EA%B9%80%ED%98%84%EC%9A%B0/chapter_04.html">Chapter 04 - 변수</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="main.html">이용우</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chapter_04.html">Chapter 04 - 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_05.html">Chapter 05 - 표현식과 문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_06.html">Chapter 06 - 데이터 타입</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_07.html">Chapter 07 - 연산자</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_08.html">Chapter 08 - 제어문</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_09.html">Chapter 09 - 타입 변환과 단축 평가</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_10.html">Chapter 10 - 객체 리터럴</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_11.html">Chapter 11 - 원시 값과 객체의 비교</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_12.html">Chapter 12 - 함수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_14.html">Chapter 14 - 전역 변수의 문제점</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_15.html">Chapter 15 - let, const 키워드와 블록 레벨 스코프</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_16.html">Chapter 16 - 프로퍼티 어트리뷰트</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_17.html">Chapter 17 - 생성자 함수에 의한 객체 생성</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_18.html">Chapter 18 - 함수와 일급 객체</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter_19.html">Chapter 19 - 프로토타입</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_20.html">Chapter 20 - strict mode</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_21.html">Chapter 21 - 빌트인 객체</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_22.html">Chapter 22 - this</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_23.html">Chapter 23 - 실행 컨텍스트</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_24.html">Chapter 24 - 클로저</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_25.html">Chapter 25 - 클래스</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_26.html">Chapter 26 - ES6 함수의 추가 기능</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_27.html">Chapter 27 - 배열</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_28.html">Chapter 28 - Number</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_29.html">Chapter 29 - Math</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_30.html">Chapter 30 - Date</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_31.html">Chapter 31 - RegExp</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_32.html">Chapter 32 - String</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_33.html">Chapter 33 - Symbol</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_34.html">chapter 34 - 이터러블</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_35.html">chapter 35 - 스프레드 문법</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_36.html">Chapter 36 - 디스트럭처링 할당</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_37.html">Chapter 37 - Set과 Map</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_38.html">Chapter 38 - 브라우저의 렌더링 과정</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_39.html">Chapter 39 - DOM</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_40.html">Chapter 40 - 이벤트</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_41.html">Chapter 41 - 타이머</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_42.html">Chapter 42 - 비동기 프로그래밍</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_43.html">Chapter 43 - Ajax</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_44.html">Chapter 44 - REST API</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_45.html">Chapter 45 - 프로피스</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_46.html">Chapter 46 - 제너레이터와 async/await</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_47.html">Chapter 47 - 에러 처리</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chapter_48.html">Chapter 48 - 모듈</a></li>
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Chapter 49 - Babel과 Webpack을 이용한 ES6+/ES.NEXT 개발 환경 구축</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ahnlab-220/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2F이용우/chapter_49.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/이용우/chapter_49.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 49 - Babel과 Webpack을 이용한 ES6+/ES.NEXT 개발 환경 구축</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 49 - Babel과 Webpack을 이용한 ES6+/ES.NEXT 개발 환경 구축</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#babel">Babel</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Babel 설치</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#babel-babel-config-json">Babel 프리셋 설치와 babel.config.json 설정 파일 작성</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">트랜스파일링</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Babel 플러그인 설치</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">브라우저에서 모듈 로딩 테스트</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#webpack">Webpack</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Webpack 설치</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#babel-loader">babel-loader 설치</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#webpack-config-js">webpack.config.js 설정 파일 작성</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#babel-polyfill">babel-polyfill 설치</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="chapter-49-babel-webpack-es6-es-next">
+<h1>Chapter 49 - Babel과 Webpack을 이용한 ES6+/ES.NEXT 개발 환경 구축<a class="headerlink" href="#chapter-49-babel-webpack-es6-es-next" title="Link to this heading">#</a></h1>
+<p>크롬, 사파리, 파이어폭스, 엣지 같은 에버그린 브라우저(evergreen browser)의 ES6 지원율은 약 98%로 거의 대부분의 ES6 사양을 지원한다.</p>
+<p><a class="reference external" href="https://compat-table.github.io/compat-table/es6/">https://compat-table.github.io/compat-table/es6/</a></p>
+<p><br><br></p>
+<p>하지만 IE 11의 ES6 지원율은 약 11%이다.<br />
+그리고 매년 새롭게 도입되는 ES6 이상의 버전과 제안 단계에 있는 ES 제안 사양(ES.NEXT)은 브라우저에 따라 지원율이 제각각이다.</p>
+<br>
+<p>따라서 ES6+와 ES.NEXT의 최신 ECMAScript 사양을 사용하여 프로젝트를 진행하려면<br />
+최신 사양으로 작성된 코드를 경우에 따라 IE를 포함한 구현 브라우저에서 문제 없이 동작시키기 위한 개발 환경을 구축하는 것이 필요하다.</p>
+<br>
+<p>그리고 대부분의 프로젝트가 모듈을 사용하므로 모듈 로더도 필요하다.<br />
+ES6 모듈(ESM)은 대부분의 모던 브라우저에서 사용할 수 있다.<br />
+하지만 아래의 이유로 아직까지는 ESM보다는 별도의 모듈 로더를 사용하는 것이 일반적이다.</p>
+<br>
+<ul class="simple">
+<li><p>IE를 포함한 구현 브라우저는 ESM을 지원하지 않는다.</p></li>
+<li><p>ESM을 사용하더라도 트랜스파일링이나 번들링이 필요한 것은 변함이 없다.</p></li>
+<li><p>ESM이 아직 지원하지 않는 기능이 있고 점차 해결되고는 있지만 아직 이슈는 존재한다.</p></li>
+</ul>
+<br>
+<p>트랜스파일러(transpiler)인 Babel과 모듈 번들러(module bundler)인 Webpack을 이용하여 ES6+/ES.NEXT 개발 환경을 구축해보도록 하자.</p>
+<br>
+<p>그리고 Webpack을 통해 Babel을 로드하여 구형 브라우저에서도 동작하도록<br />
+ES5 사양의 소스코드로 트랜스파일링하는 방법도 알아보도록 하자.</p>
+<p><br><br></p>
+</section>
+<section id="babel">
+<h1>Babel<a class="headerlink" href="#babel" title="Link to this heading">#</a></h1>
+<p>아래 예제는 ES6의 화살표 함수와 ES7의 지수 연산자를 사용하고 있다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="nx">n</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>IE와 같은 구형 브라우저에서는 ES6의 화살표 함수와 ES7의 지수 연산자를 지원하지 않을 수 있다.<br />
+Babel을 사용하면 위 코드를 다음과 같이 ES5 사양으로 변할 수 있다.</p>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+<span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>이처럼 Babel은 ES6+/ES.NEXT로 구현된 최신 사양의 소스코드를 IE 같은 구형 브라우저에서도 동작하는<br />
+ES5 사양의 소스코드로 변환(트랜스파일링)할 수 있다.</p>
+<p><br><br></p>
+<section id="id1">
+<h2>Babel 설치<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>npm을 사용하여 Babel을 설치해보자.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 프로젝트 폴더 생성</span>
+$<span class="w"> </span>mkdir<span class="w"> </span>esnext-project<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>esnext-project
+
+<span class="c1"># package.json 생성</span>
+$<span class="w"> </span>npm<span class="w"> </span>init<span class="w"> </span>-y
+
+<span class="c1"># babel-core, babel-cli 설치</span>
+$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>@babel/core<span class="w"> </span>@babel/cli
+</pre></div>
+</div>
+<br>
+<p>Babel, Webpack, 플러그인의 버전은 빈번하게 업그레이드 된다.<br />
+때문에 특정 버전을 설치하고 싶다면 아래와 같이 패키지 이름 뒤에 &#64;와 설치하고 싶은 버전을 지정한다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>@babel/core@7.24.0<span class="w"> </span>@babel/cli@7.24.0
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="babel-babel-config-json">
+<h2>Babel 프리셋 설치와 babel.config.json 설정 파일 작성<a class="headerlink" href="#babel-babel-config-json" title="Link to this heading">#</a></h2>
+<p>Babel을 사용하려면 <code class="docutils literal notranslate"><span class="pre">&#64;babel/preset-env</span></code>를 설치해야 한다.<br />
+<code class="docutils literal notranslate"><span class="pre">&#64;babel/preset-env</span></code>는 함께 사용되어야 하는 babel 플러그인을 모아 둔 것으로 Babel 프리셋이라 한다.</p>
+<p>Babel이 제공하는 공식 Babel 프리셋은 다음과 같다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;babel/preset-env</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;babel/preset-flow</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;babel/preset-react</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;babel/preset-typescript</span></code></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;babel/preset-env</span></code>는 필요한 플러그인들을 프로젝트 지원 환경에 맞춰 동적으로 결정해 준다.<br />
+프로젝트 지원 환경은 Browserslist 형식으로 <code class="docutils literal notranslate"><span class="pre">.browserslistrc</span></code> 파일에 상세히 설정할 수 있다.</p>
+<br>
+<p>프로젝트 지원 환경 설정 작업을 생략하면 기본값으로 설정된다.</p>
+<p><br><br></p>
+<p>기본 설정은 모든 ES6+/ES.NEXT 사양의 소스코드를 변환한다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @babel/preset-env 설치</span>
+$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>@babel/preset-env
+</pre></div>
+</div>
+<p>설치가 완료되면 프로젝트 루트 폴더에 <code class="docutils literal notranslate"><span class="pre">babel.config.json</span></code> 설정 파일을 생성하고 다음과 같이 작성한다.<br />
+지금 설치한 <code class="docutils literal notranslate"><span class="pre">&#64;babel/preset-env</span></code>를 사용하겠다는 의미와 같다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;presets&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;@babel/preset-env&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id2">
+<h2>트랜스파일링<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Babel을 사용하여 ES6+/ES.NEXT 사양의 소스코드로 트랜스파일링해보자.<br />
+Babel CLI 명령을 사용할 수도 있으나 트랜스파일링할 때마다 매번 Babel CLI 명령어를 입력하는 것은 번거로우므로<br />
+<code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">scripts</span></code>에 Babel CLI 명령어를 등록하여 사용하자.</p>
+<br>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;esnext-project&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index.js&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;build&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;babel src/js -w -d dist/js&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;@babel/cli&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^7.24.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;@babel/core&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^7.24.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;@babel/preset-env&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^7.24.0&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><br><br></p>
+<p>위 npm scripts의 build는 src/js 폴더(타깃 폴더)에 있는 모든 자바스크립트 파일들을 트랜스파일링 한 후,<br />
+그 결과물을 <code class="docutils literal notranslate"><span class="pre">dist/js</span></code> 폴더에 저장한다. 사용한 옵션의 의미는 다음과 같다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-w</span></code>: 타깃 폴더에 있는 모든 자바스크립트 파일들의 변경을 감지하여 자동으로 트랜스파일한다. (–watch)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span></code>: 트랜스파일링된 결과물이 저장될 폴더를 저장한다. 만약 지정된 폴더가 존재하지 않으면 자동 생성한다. (–out_dir)</p></li>
+</ul>
+<br>
+<p>트랜스파일링을 테스트 하기 위해 ES6+/ES.NEXT 사양의 자바스크립트 파일을 작성하자.<br />
+프로젝트 루트 폴더에 <code class="docutils literal notranslate"><span class="pre">src/js</span></code> 폴더를 생성하고 <code class="docutils literal notranslate"><span class="pre">lib.js</span></code>와 <code class="docutils literal notranslate"><span class="pre">main.js</span></code>를 추가한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// src/js/lib.js</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">power</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span><span class="w">  </span><span class="c1">// ES7 지수 연산자</span>
+<span class="p">}</span>
+
+<span class="c1">// ES6 클래스</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">#private</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w">  </span><span class="c1">// 클래스 필드 정의 제안</span>
+
+<span class="w">    </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// stage4: Rest/Spread 프로퍼티 제안</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">x</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">c</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">d</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">};</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">#private</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<br>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// src/js/main.js</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">pi</span><span class="p">,</span><span class="w"> </span><span class="nx">power</span><span class="p">,</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./lib.js&#39;</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pi</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">power</span><span class="p">(</span><span class="nx">pi</span><span class="p">,</span><span class="w"> </span><span class="nx">pi</span><span class="p">));</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Foo</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">foo</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">bar</span><span class="p">());</span>
+</pre></div>
+</div>
+<br>
+<p>터미널에서 아래의 명령을 입력하여 트랜스파일링을 진행한다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build
+
+&gt;<span class="w"> </span>esnext-project@1.0.0<span class="w"> </span>build<span class="w"> </span>/Users/user/Desktop/esnext-project
+&gt;<span class="w"> </span>babel<span class="w"> </span>src/js<span class="w"> </span>-w<span class="w"> </span>-d<span class="w"> </span>dist/js
+
+SyntaxError:<span class="w"> </span>/Users/wooy0ng/Desktop/esnext-project/src/js/lib.js:<span class="w"> </span>Support<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>experimental<span class="w"> </span>syntax<span class="w"> </span><span class="s1">&#39;classProperties&#39;</span><span class="w"> </span>isn<span class="err">&#39;</span>t<span class="w"> </span>currently<span class="w"> </span>enabled<span class="w"> </span><span class="o">(</span><span class="m">10</span>:3<span class="o">)</span>
+
+<span class="m">8</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>//<span class="w"> </span>ES6<span class="w"> </span>클래스
+<span class="m">9</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span>class<span class="w"> </span>Foo<span class="w"> </span><span class="o">{</span>
+<span class="m">10</span><span class="w"> </span><span class="p">|</span><span class="w">   </span><span class="c1">#private = 10;  // 클래스 필드 정의 제안</span>
+<span class="w">   </span><span class="p">|</span><span class="w">   </span>^
+<span class="m">11</span><span class="w"> </span><span class="p">|</span>
+<span class="m">12</span><span class="w"> </span><span class="p">|</span><span class="w">   </span>foo<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="m">13</span><span class="w"> </span><span class="p">|</span><span class="w">     </span>//<span class="w"> </span>stage4:<span class="w"> </span>Rest/Spread<span class="w"> </span>프로퍼티<span class="w"> </span>제안
+...
+</pre></div>
+</div>
+<br>
+<p>privat 필드 정의 제안에서 에러가 발생했다.<br />
+이것은 <code class="docutils literal notranslate"><span class="pre">&#64;babel/preset-env</span></code>가 현재 제안 단계에 있는 사양에 대한 플러그인을 지원하지 않기 때문에 발생한 에러이다.<br />
+따라서 현재 제안 단계에 있는 사양을 프랜스파일링하려면 별도의 플러그인을 설치해야 한다.</p>
+<p><br><br></p>
+</section>
+<section id="id3">
+<h2>Babel 플러그인 설치<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>설치가 필요한 Babel 플러그인은 Babel 홈페이지에서 검색할 수 있다.<br />
+Babel 홈페이지 상단 메뉴의 Search란에 제안 사양의 이름을 입력하면 해당 플러그인을 검색할 수 있다.</p>
+<p><a class="reference external" href="https://babeljs.io/">https://babeljs.io/</a></p>
+<p>검색된 Babel 플러그인 중에서 <code class="docutils literal notranslate"><span class="pre">public/private</span></code> 클래스 필드를 지원하는<br />
+<code class="docutils literal notranslate"><span class="pre">&#64;babel/plugin-proposal-class-properties</span></code>를 설치하자.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>@babel/plugin-proposal-class-properties
+</pre></div>
+</div>
+<br>
+<br>
+<p>설치 후 다시 터미널에서 명령을 입력하여 트랜스파일링을 실행해보자.<br />
+성공적으로 실행 완료되면 프로젝트 루트 폴더에 dist/js 폴더가 자동으로 생성되고<br />
+트랜스파일링된 main.js와 lib.js가 저장된다.</p>
+<p><br><br></p>
+</section>
+<section id="id4">
+<h2>브라우저에서 모듈 로딩 테스트<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>위 예제의 모듈 기능은 Node.js 환경에서 동작한 것이고<br />
+Babel이 모듈을 트랜스파일링한 것도 Node.js가 기본 지원하는 CommonJS 방식의 모듈 로딩 시스템에 따른 것이다.<br />
+다음은 src/js/main.js가 Babel에 의해 트랜스파일링된 결과이다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// dist/js/main.js</span>
+<span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">_lib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./lib.js&quot;</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">_lib</span><span class="p">.</span><span class="nx">pi</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">_lib</span><span class="p">.</span><span class="nx">power</span><span class="p">)(</span><span class="nx">_lib</span><span class="p">.</span><span class="nx">pi</span><span class="p">,</span><span class="w"> </span><span class="nx">_lib</span><span class="p">.</span><span class="nx">pi</span><span class="p">));</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">_lib</span><span class="p">.</span><span class="nx">Foo</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">foo</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">bar</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>브라우저는 CommonJS 방식의 <code class="docutils literal notranslate"><span class="pre">require</span></code> 함수를 지원하지 않으므로<br />
+위에서 트랜스파일링된 결과를 그대로 브라우저에서 실행하면 에러가 발생한다.</p>
+<p>프로파일링된 자바스크립트 파일을 브라우저에서 실행해보자.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;dist/js/lib.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;dist/js/main.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>위 HTML 파일을 브라우저에서 실행하면 다음과 같은 에러가 발생한다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Uncaught<span class="w"> </span>ReferenceError:<span class="w"> </span>exports<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>defined<span class="w"> </span>at<span class="w"> </span>lib.js:3
+main.js:3<span class="w"> </span>Uncaught<span class="w"> </span>ReferenceError:<span class="w"> </span>require<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>defined<span class="w"> </span>at<span class="w"> </span>main.js:3
+</pre></div>
+</div>
+<p>브라우저의 ES6 모듈을 사용하도록 Babel을 설정할 수도 있으나<br />
+위와 같이 ESM을 사용하는 것은 문제가 있다.<br />
+<strong>이를 Webapck을 통해 문제를 해결할 수 있다.</strong></p>
+<p><br><br></p>
+</section>
+</section>
+<section id="webpack">
+<h1>Webpack<a class="headerlink" href="#webpack" title="Link to this heading">#</a></h1>
+<p>Webpack은 의존관계에 있는 자바스크립트, CSS, 이미지 등의 리소스를<br />
+하나(또는 여러 개)의 파일로 번들링하는 모듈 번들러이다.</p>
+<p>Webpack을 사용하면 의존 모듈이 하나의 파일로 번들링되므로 별도의 모듈 로더가 필요없다.<br />
+그리고 여러 개의 자바스크립트 파일을 하나로 번들링하므로 HTML 파일에서 script 태그로 여러 개의 자바스크립트 파일을 로드해야하는 번거로움도 사라진다.</p>
+<p><br><br></p>
+<section id="id5">
+<h2>Webpack 설치<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>터미널에서 아래 명령을 입력해 Webpack을 설치한다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>webpack<span class="w"> </span>webpack-cli
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="babel-loader">
+<h2>babel-loader 설치<a class="headerlink" href="#babel-loader" title="Link to this heading">#</a></h2>
+<p>Webpack이 모듈을 번들링할 때 Babel을 사용하여 ES6+/ES.NEXT 사양의 소스코드를<br />
+ES5 사양의 소스코드로 트랜스파일링하도록 babel-loader를 설치한다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>babel-loader
+</pre></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="webpack-config-js">
+<h2>webpack.config.js 설정 파일 작성<a class="headerlink" href="#webpack-config-js" title="Link to this heading">#</a></h2>
+<p>webpack.config.js는 Webpack이 실행될 때 참조하는 설정 파일이다.<br />
+프로젝트 루트 폴더에 webpack.config.js 파일을 생성하고 다음과 같이 작성한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">entry</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./src/js/main.js&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;dist&#39;</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">filename</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bundle.js&#39;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">module</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">rules</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                </span><span class="nx">test</span><span class="o">:</span><span class="w"> </span><span class="sr">/\.js$/</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="nx">include</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;src/js&#39;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nx">exclude</span><span class="o">:</span><span class="w"> </span><span class="sr">/node_modules/</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">use</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">loader</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">options</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">presets</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;@babel/preset-env&#39;</span><span class="p">],</span>
+<span class="w">                        </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="s1">&#39;@babel/plugin-proposal-class-properties&#39;</span>
+<span class="w">                        </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">devtool</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;source-map&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;development&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<br>
+<p>이제 Webpack을 실행하여 트랜스파일링 및 번들링을 실행해보자.<br />
+트랜스파일링은 Babel이 수행하고 번들링은 Webpack이 수행한다.</p>
+<p>만약 이전에 실행시킨 빌드 명령이 실행 중인 상태라면 중지시키고 다음 명령을 실행한다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build
+</pre></div>
+</div>
+<br>
+<p>Webpack을 실행한 결과, dist/js 폴더에 bundle.js 파일이 생성되었다.<br />
+이 파일은 main.js, lib.js 모듈이 하나로 번들링된 결과이다.</p>
+<p>index.html을 다음과 같이 수정하고 브라우저에서 실행해보자.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;dist/bundle.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>main.js, lib.js 모듈이 하나로 번들링된 bundle.js가 브라우저에서 문제없이 실행된 것을 확인할 수 있다.</p>
+<p><br><br></p>
+</section>
+<section id="babel-polyfill">
+<h2>babel-polyfill 설치<a class="headerlink" href="#babel-polyfill" title="Link to this heading">#</a></h2>
+<p>Babel을 사용하여 ES6+/ES.NEXT 사양의 소스코드를 ES5 사양의 소스코드로 트랜스파일링해도 브라우저가 지원하지 않는 코드가 존재할 수 있다.<br />
+특정 객체 및 함수는 ES5에서 대체할 기능이 없기 때문에 에러가 발생할 수 있다.</p>
+<p>src/js/main.js를 다음과 같이 수정하여<br />
+ES6에서 추가된 Promise, Object.assign, Array.fron 등이 어떻게 트렌스파일링되는지 확인해보자.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// src/js/main.js</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">pi</span><span class="p">,</span><span class="w"> </span><span class="nx">power</span><span class="p">,</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./lib.js&#39;</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pi</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">power</span><span class="p">(</span><span class="nx">pi</span><span class="p">,</span><span class="w"> </span><span class="nx">pi</span><span class="p">));</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Foo</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">foo</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">bar</span><span class="p">());</span>
+
+<span class="c1">// polyfill이 필요한 코드</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">resolve</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="p">}));</span>
+
+<span class="c1">// polyfill이 필요한 코드</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">}));</span>
+
+<span class="c1">// polyfill이 필요한 코드</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="kr">from</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">],</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">x</span><span class="p">));</span>
+</pre></div>
+</div>
+<br>
+<p>다시 트랜스파일링과 번들링을 실행한 다음, dist/js/bundle.js를 확인해보면<br />
+Promise, Object.assign, Array.from 등과 같이 ES5 사양으로 대체할 수 없는 기능은 트랜스파일링 되지 않는다.</p>
+<p>따라서 구형 브라우저에서도 Promise, Object.assign, Array.from 등과 같은 객체나 메소드를 사용하기 위해서는 &#64;babel/polyfill을 사용해야 한다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>@babel/polyfill
+</pre></div>
+</div>
+<br>
+<p>ES6의 import를 사용하는 경우에는 진입점의 선두에서 polyfill을 로드하도록 하자.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// src/js/main.js</span>
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;@babel/polyfill&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">pi</span><span class="p">,</span><span class="w"> </span><span class="nx">power</span><span class="p">,</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./lib.js&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Webpack을 사용하는 경우에는 위 방법 대신 webpack.config.js 파일의 entry 배열에 polyfill을 추가한다.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">entry</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;@babel/polyfill&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;./src/js/main.js&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;dist&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>끝.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./이용우"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter_48.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 48 - 모듈</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 49 - Babel과 Webpack을 이용한 ES6+/ES.NEXT 개발 환경 구축</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#babel">Babel</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Babel 설치</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#babel-babel-config-json">Babel 프리셋 설치와 babel.config.json 설정 파일 작성</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">트랜스파일링</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Babel 플러그인 설치</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">브라우저에서 모듈 로딩 테스트</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#webpack">Webpack</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Webpack 설치</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#babel-loader">babel-loader 설치</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#webpack-config-js">webpack.config.js 설정 파일 작성</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#babel-polyfill">babel-polyfill 설치</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ahnlab-220
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
